@@ -40,6 +40,10 @@ span {
   border: 3px solid black;
 }
 
+.mt-30 {
+  margin-top: 30px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
