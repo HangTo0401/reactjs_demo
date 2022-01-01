@@ -1,1 +1,1 @@
-# reactjs_demo
+This repo is used to learn ReactJS
