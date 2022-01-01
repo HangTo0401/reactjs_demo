@@ -5,6 +5,10 @@ import SizeSetting from './components/SizeSetting';
 import Reset from './components/Reset';
 import Result from './components/Result';
 import Header from './components/Header';
+import TaskForm from './components/TaskForm';
+import Search from './components/Search';
+import Sort from './components/Sort';
+import TabList from './components/TabList';
 
 class App extends Component {
 
@@ -110,7 +114,8 @@ class App extends Component {
       txtDescription: '',
       sltGender: 0,
       rdLang: 'VN',
-      chkbStatus: true
+      chkbStatus: true,
+      keyword: ''
     };
 
     this.onReceiveColor = this.onReceiveColor.bind(this);
@@ -165,6 +170,7 @@ class App extends Component {
               
               <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <SizeSetting fontSize = { this.state.fontSize } onReceiceSize= { this.onReceiceSize }/>
+                <br/>
                 <Reset onSettingDefault = { this.onSettingDefault  }/>
               </div>
               <Result color = { this.state.color } fontSize = { this.state.fontSize }/>
@@ -228,6 +234,27 @@ class App extends Component {
                     </div>
                 </div>
                 
+              </div>
+            </div>
+          </div>
+
+          <br/>
+          <div className="container">
+            <div className="row">
+              
+              <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h3 className="panel-title">Quản lí công việc</h3>
+                <TaskForm/>
+              </div>
+
+              <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <button className="btn btn-primary"><i className="fa fa-plus" aria-hidden="true"></i>Thêm công việc</button>  
+                <div className="row mt-15">
+                  <Search/>
+                  <Sort/>
+                </div>
+                <br/>
+                <TabList/>
               </div>
             </div>
           </div>

@@ -27,6 +27,10 @@
   border: 2px solid red;
 }
 
+.label {
+  font-weight: 600;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -36,12 +40,71 @@ span {
   margin: 10px;
 }
 
+.search-input {
+  width: 100px;
+  height: 40px;
+  margin-top: 10px;
+}
+
 .active-class {
   border: 3px solid black;
 }
 
 .mt-30 {
   margin-top: 30px;
+}
+
+.reset-btn {
+  margin-left: 20px;
+}
+
+.btn-info.search-btn {
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.dropdown-btn {
+  height: 40px;
+  margin-top: 10px;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 12px !important;
+}
+
+.panel-text {
+  height: 30px;
+  background-color: rgb(248, 232, 201);
+  color: black;
+  align-items: center;
+}
+
+.panel-body {
+  margin-left: 20px;
+}
+
+.form-input {
+  border: 1px solid rgb(248, 232, 201);
+}
+
+.table-border {
+  width: 100%;
+  height: 100%;
+  border-radius: 15%;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.col-title {
+  height: 40px !important;
+  text-align: center;
+}
+
+.table, th, td {
+  border: 1px solid rgb(177, 177, 177);
 }
 
 @keyframes App-logo-spin {
