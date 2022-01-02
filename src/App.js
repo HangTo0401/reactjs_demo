@@ -12,6 +12,17 @@ import TabList from './components/TabList';
 
 class App extends Component {
 
+  // This function is called when refresh page once only
+  componentWillMount() {
+    if (localStorage && localStorage.getItem("tasks")) {
+      var multiTasks = JSON.parse(localStorage.getItem("tasks"));
+
+      this.setState({
+        tasks: multiTasks
+      });
+    }
+  }
+
   showInfo(a) {
     if (a === 5) {
       return <h2>Active: {a}</h2>
@@ -78,7 +89,45 @@ class App extends Component {
   onHandleSubmit(event) {
     event.preventDefault();
     console.log(this.state)
-    
+  }
+
+  onGenerateData() {
+    var newTasks = [{
+      id: this.onGenerateId(),
+      name: "Học Angular",
+      status: true
+    },
+    {
+      id: this.onGenerateId(),
+      name: "Học Reactjs",
+      status: false
+    },
+    {
+      id: this.onGenerateId(),
+      name: "Học Thuật toán",
+      status: true
+    }];
+
+    this.setState({
+      tasks: newTasks
+    })
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+  }
+
+  onGenerateId = () => {
+    return Math.floor(1 + Math.random() * 0x1000).toString(16);
+  }
+
+  onDisplayForm = () => {
+    this.setState({
+      isDisplayForm : !this.state.isDisplayForm
+    });
+  }
+
+  onCloseForm = () => {
+    this.setState({
+      isDisplayForm : false
+    });
   }
 
   constructor(props) {
@@ -115,7 +164,9 @@ class App extends Component {
       sltGender: 0,
       rdLang: 'VN',
       chkbStatus: true,
-      keyword: ''
+      keyword: '',
+      tasks: [],
+      isDisplayForm: false
     };
 
     this.onReceiveColor = this.onReceiveColor.bind(this);
@@ -124,6 +175,7 @@ class App extends Component {
     this.onHandleForm = this.onHandleForm.bind(this);
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
     this.onReset = this.onReset.bind(this);
+    this.onGenerateData = this.onGenerateData.bind(this);
     this.onSettingDefault = this.onSettingDefault.bind(this);
   }
 
@@ -142,6 +194,9 @@ class App extends Component {
         return result;
       }
     });
+
+    var { tasks, isDisplayForm } = this.state
+    var elementTaskForm = isDisplayForm ? <TaskForm onCloseForm = { this.onCloseForm }/> : ''
 
     return (
       <div className='App'>
@@ -242,19 +297,22 @@ class App extends Component {
           <div className="container">
             <div className="row">
               
-              <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              <div className={ isDisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : "" }>
                 <h3 className="panel-title">Quản lí công việc</h3>
-                <TaskForm/>
+                { elementTaskForm }
               </div>
 
-              <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <button className="btn btn-primary"><i className="fa fa-plus" aria-hidden="true"></i>Thêm công việc</button>  
+              <div className={ isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+                <button className="btn btn-primary" onClick={ this.onDisplayForm }><i className="fa fa-plus" aria-hidden="true"></i>Thêm công việc</button>&nbsp;
+                <button className="btn btn-danger" onClick={ this.onGenerateData }>Generate Data</button>
+
                 <div className="row mt-15">
                   <Search/>
                   <Sort/>
                 </div>
                 <br/>
-                <TabList/>
+
+                <TabList tasks = { tasks }/>
               </div>
             </div>
           </div>

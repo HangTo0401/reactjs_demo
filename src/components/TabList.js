@@ -1,4 +1,5 @@
 import { Component } from "react";
+import TaskItem from "./TaskItem";
 
 class TabList extends Component {
     constructor(props) {
@@ -6,6 +7,11 @@ class TabList extends Component {
     }
 
     render() {
+        var tasks  = this.props.tasks;
+        var elementTask = tasks.map((singleTask, index) => {
+            return <TaskItem singleTask = { singleTask } key = { index }/>
+        });
+
         return(
             <div className="row mt-15">     
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -34,6 +40,7 @@ class TabList extends Component {
                                     </select>
                                 </td>
                             </tr>
+                            { elementTask }
                         </tbody>
                     </table>
                 </div>

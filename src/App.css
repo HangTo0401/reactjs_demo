@@ -31,12 +31,31 @@
   font-weight: 600;
 }
 
+.label-info {
+  color: whitesmoke;
+  border-radius: 0.25rem;
+  background-color: #17a2b8;  
+}
+
+.label-danger {
+  color: whitesmoke;
+  border-radius: 0.25rem;
+  background-color: #dc3545;
+}
+
+.close-btn {
+  position: absolute;  
+  color: #dc3545;
+  right: 10px;
+  margin-top: 0px;
+}
+
 .App-link {
   color: #61dafb;
 }
 
 span {
-  padding: 10px 20px;
+  padding: 5px 15px;
   margin: 10px;
 }
 
@@ -52,6 +71,13 @@ span {
 
 .mt-30 {
   margin-top: 30px;
+}
+
+.mt-40 {
+  width: 350px;
+  display: flex;
+  margin-left: 0px;
+  background-color: rgb(248, 232, 201);
 }
 
 .reset-btn {
@@ -78,8 +104,8 @@ span {
 
 .panel-text {
   height: 30px;
-  background-color: rgb(248, 232, 201);
   color: black;
+  margin-left: 15px;
   align-items: center;
 }
 

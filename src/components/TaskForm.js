@@ -5,12 +5,19 @@ class TaskForm extends Component {
         super(props)
     }
 
+    onClose = () => {
+        this.props.onCloseForm();
+    }
+
     render() {
         return(
             <div className="form-input">
                 <div className="panel panel-primary">
                     <div className="panel-heading">
-                        <div className="panel-text">Thêm công việc</div>
+                        <div className="row mt-40">
+                            <div className="panel-text">Thêm công việc</div>
+                            <span className="fa fa-times close-btn" aria-hidden="true" onClick={ this.onClose }></span>
+                        </div>
                     </div>
 
                     <div className="panel-body">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-// function Product () {
 class Product extends Component {
     onAddToCart(text) {
         alert(text);
