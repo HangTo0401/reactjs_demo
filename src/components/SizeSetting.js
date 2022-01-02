@@ -6,7 +6,6 @@ class SizeSetting extends Component {
     }
 
     changeSize(value) {
-        console.log(value)
         this.props.onReceiceSize(value)
     }
 

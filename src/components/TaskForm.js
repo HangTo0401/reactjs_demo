@@ -3,10 +3,32 @@ import { Component } from "react";
 class TaskForm extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            name: '',
+            status: false
+        };
     }
 
     onClose = () => {
         this.props.onCloseForm();
+    }
+
+    onChangeForm = (event) => {
+        var target = event.target
+        var name = target.name
+        if (name === "status") {
+            var value = target.value === "true" ? true : false
+        } else {
+            var value = target.value
+        }
+        this.setState({
+            [name] : value
+        });
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.props.onReceiveTaskForm(this.state);
     }
 
     render() {
@@ -21,15 +43,15 @@ class TaskForm extends Component {
                     </div>
 
                     <div className="panel-body">
-                        <form>
+                        <form onSubmit={ this.onSubmit }>
                             <div className="form-group">
                                 <label>Tên</label>
-                                <input type="text" name="txtName" className="form-control"/>
+                                <input type="text" name="name" className="form-control" value = { this.state.txtName } onChange={ this.onChangeForm }/>
                             </div>
 
                             <div className="form-group">
                                 <label>Trạng thái: </label>
-                                <select name="status" className="form-control">
+                                <select name="status" className="form-control" onChange={ this.onChangeForm } value = { this.state.status }>
                                     <option value={ true }>Kích hoạt</option>
                                     <option value={ false }>Ẩn</option>
                                 </select>

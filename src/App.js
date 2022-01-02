@@ -55,6 +55,18 @@ class App extends Component {
     }
   }
 
+  onReceiveTaskForm = (params) => {
+    params.id = this.onGenerateId()
+    var tasks = this.state.tasks
+    tasks.push(params)
+
+    this.setState({
+      tasks: tasks
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+  }
+
   onSettingDefault(params) {
     if (params) {
       this.setState({
@@ -88,7 +100,6 @@ class App extends Component {
 
   onHandleSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
   }
 
   onGenerateData() {
@@ -196,7 +207,7 @@ class App extends Component {
     });
 
     var { tasks, isDisplayForm } = this.state
-    var elementTaskForm = isDisplayForm ? <TaskForm onCloseForm = { this.onCloseForm }/> : ''
+    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } onCloseForm = { this.onCloseForm }/> : ''
 
     return (
       <div className='App'>

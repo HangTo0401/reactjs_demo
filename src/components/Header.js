@@ -9,7 +9,6 @@ export class Header extends Component {
     }
 
     onAddProduct(params) {
-        console.log(this.refs.name.value)
     }
 
     render() {
