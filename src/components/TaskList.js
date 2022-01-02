@@ -1,7 +1,7 @@
 import { Component } from "react";
 import TaskItem from "./TaskItem";
 
-class TabList extends Component {
+class TaskList extends Component {
     constructor(props) {
         super(props)
     }
@@ -9,7 +9,11 @@ class TabList extends Component {
     render() {
         var tasks  = this.props.tasks;
         var elementTask = tasks.map((singleTask, index) => {
-            return <TaskItem singleTask = { singleTask } key = { singleTask.id } index = { index } onUpdateStatus = { this.props.onUpdateStatus }/>
+            return <TaskItem singleTask = { singleTask } 
+                             key = { singleTask.id } 
+                             index = { index } 
+                             onUpdateStatus = { this.props.onUpdateStatus }
+                             onDelete = { this.props.onDelete }/>
         });
 
         return(
@@ -49,4 +53,4 @@ class TabList extends Component {
     };
 }
 
-export default TabList;
+export default TaskList;

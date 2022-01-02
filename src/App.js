@@ -8,7 +8,7 @@ import Header from './components/Header';
 import TaskForm from './components/TaskForm';
 import Search from './components/Search';
 import Sort from './components/Sort';
-import TabList from './components/TabList';
+import TaskList from './components/TaskList';
 
 class App extends Component {
 
@@ -151,6 +151,19 @@ class App extends Component {
       tasks: tasks
     });
     localStorage.setItem("tasks", JSON.stringify(tasks))
+  }
+
+  onDelete = (id) => {
+    var { tasks } = this.state
+    var deleteIndex = this.findIndex(id);
+    if (deleteIndex !== -1) {
+      tasks.splice(deleteIndex, 1)
+      this.setState({
+        tasks: tasks
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks))
+    }
+    this.onCloseForm()
   }
 
   findIndex = (id) => {
@@ -359,7 +372,7 @@ class App extends Component {
                 </div>
                 <br/>
 
-                <TabList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus }/>
+                <TaskList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus } onDelete = { this.onDelete }/>
               </div>
             </div>
           </div>
