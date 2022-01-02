@@ -9,7 +9,7 @@ class TabList extends Component {
     render() {
         var tasks  = this.props.tasks;
         var elementTask = tasks.map((singleTask, index) => {
-            return <TaskItem singleTask = { singleTask } key = { singleTask.id } index = { index }/>
+            return <TaskItem singleTask = { singleTask } key = { singleTask.id } index = { index } onUpdateStatus = { this.props.onUpdateStatus }/>
         });
 
         return(
@@ -34,9 +34,8 @@ class TabList extends Component {
                                 <td>
                                     <select className="form-control" name="filterStatus">
                                         <option value={ -1 }>Tất cả</option>
-                                        <option value={ 0 }>Tất cả</option>
-                                        <option value={ 1 }>Tất cả</option>
-                                        <option value={ 2 }>Tất cả</option>
+                                        <option value={ 0 }>Kích hoạt</option>
+                                        <option value={ 1 }>Ẩn</option>
                                     </select>
                                 </td>
                             </tr>

@@ -5,6 +5,10 @@ class TaskItem extends Component {
         super(props)
     }
 
+    onUpdateStatus = () => {
+        this.props.onUpdateStatus(this.props.singleTask.id)
+    }
+
     render() {
 
         return(
@@ -13,7 +17,9 @@ class TaskItem extends Component {
                 <td>{ this.props.singleTask.name }</td>
 
                 <td className="text-center">
-                    <span className={ this.props.singleTask.status ? "label label-info" : "label label-danger" }>{ this.props.singleTask.status ? "Kích hoạt" : "Ẩn" }</span>
+                    <span className={ this.props.singleTask.status ? "label label-info" : "label label-danger" } onClick={ this.onUpdateStatus }>
+                        { this.props.singleTask.status ? "Kích hoạt" : "Ẩn" }
+                    </span>
                 </td>
 
                 <td className="text-center">

@@ -141,6 +141,30 @@ class App extends Component {
     });
   }
 
+  onUpdateStatus = (id) => {
+    var { tasks } = this.state
+    var index = this.findIndex(id);
+    if (index !== -1) {
+      tasks[index].status = !tasks[index].status;
+    }
+    this.setState({
+      tasks: tasks
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }
+
+  findIndex = (id) => {
+    var { tasks } = this.state
+    var result = -1
+
+    tasks.forEach((task, index) => {
+      if (task.id === id) {
+        result = index;
+      }
+    });
+    return result;
+  }
+
   constructor(props) {
     super(props)
 
@@ -335,7 +359,7 @@ class App extends Component {
                 </div>
                 <br/>
 
-                <TabList tasks = { tasks }/>
+                <TabList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus }/>
               </div>
             </div>
           </div>
