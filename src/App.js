@@ -196,6 +196,16 @@ class App extends Component {
     this.onShowForm()
   }
 
+  onFilter = (filterName, filterStatus) => {
+    var filterStatus = parseInt(filterStatus, 10)
+    this.setState({
+      filter: {
+        filterName: filterName.toLowerCase(),
+        filterStatus: filterStatus
+      }
+    });
+  }
+
   findIndex = (id) => {
     var { tasks } = this.state
     var result = -1
@@ -245,7 +255,11 @@ class App extends Component {
       keyword: '',
       tasks: [],
       isDisplayForm: false,
-      taskEditing: null
+      taskEditing: null,
+      filter: {
+        filterName: '',
+        filterStatus: -1
+      }
     };
 
     this.onReceiveColor = this.onReceiveColor.bind(this);
@@ -274,10 +288,22 @@ class App extends Component {
       }
     });
 
-    var { tasks, isDisplayForm, taskEditing } = this.state
+    var { tasks, isDisplayForm, taskEditing, filter } = this.state
     var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
                                                     onCloseForm = { this.onCloseForm } 
                                                     taskEditing = { taskEditing }/> : ''
+    if (filter) {
+      if (filter.filterName) {
+        tasks = tasks.filter(task => {
+          return task.name.toLowerCase().indexOf(filter.filterName) !== -1;
+        });
+      }
+
+      tasks = tasks.filter(task => {
+        if (filter.filterStatus == -1) return task
+        else return task.status === (filter.filterStatus === 1 ? true : false)
+      });
+    }
 
     return (
       <div className='App'>
@@ -405,7 +431,11 @@ class App extends Component {
                 </div>
                 <br/>
 
-                <TaskList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus } onDelete = { this.onDelete } onUpdateForm = { this.onUpdateForm }/>
+                <TaskList tasks = { tasks } 
+                          onUpdateStatus = { this.onUpdateStatus } 
+                          onDelete = { this.onDelete } 
+                          onUpdateForm = { this.onUpdateForm } 
+                          onFilter = { this.onFilter }/>
               </div>
             </div>
           </div>
