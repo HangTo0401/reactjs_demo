@@ -12,7 +12,8 @@ import TaskList from './components/TaskList';
 
 class App extends Component {
 
-  // This function is called when refresh page once only
+  // This function is called when component is rendered once only after we refresh page
+  // TODO: Refractor componentWillMount to componentDidMount function
   componentWillMount() {
     if (localStorage && localStorage.getItem("tasks")) {
       var multiTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -22,12 +23,6 @@ class App extends Component {
       });
     }
   }
-
-  showInfo(a) {
-    if (a === 5) {
-      return <h2>Active: {a}</h2>
-    }
-  };
 
   onSetState() {
     if (this.state.isActive === true) {
@@ -56,12 +51,20 @@ class App extends Component {
   }
 
   onReceiveTaskForm = (params) => {
-    params.id = this.onGenerateId()
-    var tasks = this.state.tasks
-    tasks.push(params)
+    var { tasks } = this.state
+    if (!params.id) {
+      // Adding
+      params.id = this.onGenerateId()
+      tasks.push(params)
+    } else {
+      // Editing
+      var index = this.findIndex(params.id);
+      tasks[index] = params
+    }
 
     this.setState({
-      tasks: tasks
+      tasks: tasks,
+      taskEditing: null
     });
 
     localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
@@ -130,14 +133,29 @@ class App extends Component {
   }
 
   onDisplayForm = () => {
-    this.setState({
-      isDisplayForm : !this.state.isDisplayForm
-    });
+    // Form is opened and editing task
+    if (this.state.isDisplayForm && this.state.taskEditing) {
+      this.setState({
+        isDisplayForm : true,
+        taskEditing: null
+      });
+    } else {
+      this.setState({
+        isDisplayForm : !this.state.isDisplayForm,
+        taskEditing: null
+      });
+    }
   }
 
   onCloseForm = () => {
     this.setState({
       isDisplayForm : false
+    });
+  }
+
+  onShowForm = () => {
+    this.setState({
+      isDisplayForm : true
     });
   }
 
@@ -164,6 +182,18 @@ class App extends Component {
       localStorage.setItem("tasks", JSON.stringify(tasks))
     }
     this.onCloseForm()
+  }
+
+  onUpdateForm = (id) => {
+    var { tasks } = this.state
+    var updateIndex = this.findIndex(id);
+    var taskEditing = tasks[updateIndex]
+    if (updateIndex !== -1) { 
+      this.setState({
+        taskEditing: taskEditing      
+      });
+    }
+    this.onShowForm()
   }
 
   findIndex = (id) => {
@@ -214,7 +244,8 @@ class App extends Component {
       chkbStatus: true,
       keyword: '',
       tasks: [],
-      isDisplayForm: false
+      isDisplayForm: false,
+      taskEditing: null
     };
 
     this.onReceiveColor = this.onReceiveColor.bind(this);
@@ -243,8 +274,10 @@ class App extends Component {
       }
     });
 
-    var { tasks, isDisplayForm } = this.state
-    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } onCloseForm = { this.onCloseForm }/> : ''
+    var { tasks, isDisplayForm, taskEditing } = this.state
+    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
+                                                    onCloseForm = { this.onCloseForm } 
+                                                    taskEditing = { taskEditing }/> : ''
 
     return (
       <div className='App'>
@@ -372,7 +405,7 @@ class App extends Component {
                 </div>
                 <br/>
 
-                <TaskList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus } onDelete = { this.onDelete }/>
+                <TaskList tasks = { tasks } onUpdateStatus = { this.onUpdateStatus } onDelete = { this.onDelete } onUpdateForm = { this.onUpdateForm }/>
               </div>
             </div>
           </div>

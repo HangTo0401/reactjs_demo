@@ -4,6 +4,7 @@ class TaskForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: '',
             name: '',
             status: false
         };
@@ -40,13 +41,47 @@ class TaskForm extends Component {
         });
     }
 
+    // Click on Edit button first time then componentWillMount is called once only when TaskForm component is rendered first time
+    // TODO: Refractor componentWillMount to componentDidMount function
+    componentWillMount() {
+        var taskEditing = this.props.taskEditing
+        if (this.props.taskEditing) {
+            this.setState({
+                id: taskEditing.id,
+                name: taskEditing.name,
+                status: taskEditing.status
+            });
+        }
+    }
+
+    // If TaskForm component is rendered already, this function is called when it's rendered again
+    // componentWillReceiveProps is renamed by getDerivedStateFromProps
+    // TODO: Refractor componentWillReceiveProps to getDerivedStateFromProps function
+    componentWillReceiveProps(nextProps) {
+        if (nextProps && nextProps.taskEditing) {
+            this.setState({
+                id: nextProps.taskEditing.id,
+                name: nextProps.taskEditing.name,
+                status: nextProps.taskEditing.status
+            });
+        } else if (nextProps && !nextProps.taskEditing) {
+            // Edit -> Add new
+            this.setState({
+                id: '',
+                name: '',
+                status: false
+            });
+        }
+    }
+
     render() {
+        var { id } = this.state
         return(
             <div className="form-input">
                 <div className="panel panel-primary">
                     <div className="panel-heading">
                         <div className="row mt-40">
-                            <div className="panel-text">Thêm công việc</div>
+                            <div className="panel-text">{ id !== "" ? "Cập nhật công việc" : "Thêm công việc"}</div>
                             <span className="fa fa-times close-btn" aria-hidden="true" onClick={ this.onClose }></span>
                         </div>
                     </div>

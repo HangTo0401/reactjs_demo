@@ -13,7 +13,8 @@ class TaskList extends Component {
                              key = { singleTask.id } 
                              index = { index } 
                              onUpdateStatus = { this.props.onUpdateStatus }
-                             onDelete = { this.props.onDelete }/>
+                             onDelete = { this.props.onDelete }
+                             onUpdateForm = { this.props.onUpdateForm }/>
         });
 
         return(
