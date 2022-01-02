@@ -6,20 +6,14 @@ class TaskItem extends Component {
     }
 
     render() {
-        let status;
-        if (this.props.singleTask.status) {
-            status = <span className="label label-info">Kích hoạt</span>
-        } else {
-            status = <span className="label label-danger">Ẩn</span>;
-        }
 
         return(
             <tr>
-                <td> { this.props.singleTask.id }</td>
+                <td> { this.props.index + 1 }</td>
                 <td>{ this.props.singleTask.name }</td>
 
                 <td className="text-center">
-                    { status }
+                    <span className={ this.props.singleTask.status ? "label label-info" : "label label-danger" }>{ this.props.singleTask.status ? "Kích hoạt" : "Ẩn" }</span>
                 </td>
 
                 <td className="text-center">

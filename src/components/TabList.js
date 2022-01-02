@@ -9,7 +9,7 @@ class TabList extends Component {
     render() {
         var tasks  = this.props.tasks;
         var elementTask = tasks.map((singleTask, index) => {
-            return <TaskItem singleTask = { singleTask } key = { index }/>
+            return <TaskItem singleTask = { singleTask } key = { singleTask.id } index = { index }/>
         });
 
         return(

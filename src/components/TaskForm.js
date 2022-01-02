@@ -29,6 +29,15 @@ class TaskForm extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onReceiveTaskForm(this.state);
+        this.onClear()
+        this.onClose()
+    }
+
+    onClear = () => {
+        this.setState({
+            name: '',
+            status: false
+        });
     }
 
     render() {
@@ -46,7 +55,7 @@ class TaskForm extends Component {
                         <form onSubmit={ this.onSubmit }>
                             <div className="form-group">
                                 <label>Tên</label>
-                                <input type="text" name="name" className="form-control" value = { this.state.txtName } onChange={ this.onChangeForm }/>
+                                <input type="text" name="name" className="form-control" value = { this.state.name } onChange={ this.onChangeForm }/>
                             </div>
 
                             <div className="form-group">
@@ -59,7 +68,7 @@ class TaskForm extends Component {
 
                             <div className="btns-group">
                                 <button type="submit" className="btn btn-warning"><i className="fa fa-plus"></i>&nbsp; Lưu lại</button>&nbsp;
-                                <button type="reset" className="btn btn-danger"><i className="fa fa-times"></i>&nbsp; Hủy bỏ</button>
+                                <button type="button" className="btn btn-danger" onClick={ this.onClear }><i className="fa fa-times"></i>&nbsp; Hủy bỏ</button>
                             </div>
                         </form>
                     </div>
