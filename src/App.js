@@ -214,6 +214,18 @@ class App extends Component {
           <Header/>
           <div className='container-fluid'>
             <div className='row'>
+            <div className="panel panel-danger">
+              <div className="panel-heading">
+                <h3 className="panel-title">Thêm sản phẩm</h3>
+              </div>
+              <div className="panel-body">
+                <div className="row">
+                  <label>Tên sản phẩm</label>
+                  <input type="text" className="form-control" ref={this.refName}/>
+                  <button className="btn btn-primary" onClick={() => this.onAddProduct()}>Lưu</button>
+                </div>
+              </div>
+            </div>
             <table className="table table-hover">
                 <thead>
                     <tr>

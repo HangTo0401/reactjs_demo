@@ -31,16 +31,6 @@ export class Header extends Component {
                         </div>
 
                     </div>
-                    {/* <div className="panel panel-danger">
-                        <div className="panel-heading">
-                                <h3 className="panel-title">Thêm sản phẩm</h3>
-                        </div>
-                        <div className="panel-body">
-                                <label>Tên sản phẩm</label>
-                                <input type="text" className="form-control" ref={this.refName}/>
-                        </div>
-                        <button className="btn btn-primary" onClick={() => this.onAddProduct()}>Lưu</button>
-                    </div> */}
                 </div>
             </StyledHeader>
         )
