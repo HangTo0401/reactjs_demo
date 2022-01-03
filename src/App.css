@@ -134,6 +134,24 @@ span {
   border: 1px solid rgb(177, 177, 177);
 }
 
+.dropdown-menu {
+  width: 220px;
+}
+
+.divider {
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.sort_selected::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 400;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0px 0px 0px 10px;
+  display: inline-block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

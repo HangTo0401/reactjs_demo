@@ -206,6 +206,13 @@ class App extends Component {
     });
   }
 
+  onSort = (sortBy, sortValue) => {
+    this.setState({
+      sortBy: sortBy,
+      sortValue: sortValue
+    })
+  }
+
   findIndex = (id) => {
     var { tasks } = this.state
     var result = -1
@@ -259,7 +266,9 @@ class App extends Component {
       filter: {
         filterName: '',
         filterStatus: -1
-      }
+      },
+      sortBy: "name",
+      sortValue: 1
     };
 
     this.onReceiveColor = this.onReceiveColor.bind(this);
@@ -288,7 +297,7 @@ class App extends Component {
       }
     });
 
-    var { tasks, isDisplayForm, taskEditing, filter } = this.state
+    var { tasks, isDisplayForm, taskEditing, filter, sortBy, sortValue } = this.state
     var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
                                                     onCloseForm = { this.onCloseForm } 
                                                     taskEditing = { taskEditing }/> : ''
@@ -305,6 +314,20 @@ class App extends Component {
       });
     }
 
+    if (sortBy === "name") {
+      tasks.sort((a,b) => {
+        if (a.name > b.name) return sortValue //sortValue = 1: asc, sortValue = -1: desc
+        else if (a.name < b.name) return sortValue
+        else return 0
+      });
+    } else {
+      // sort by status
+      tasks.sort((a,b) => {
+        if (a.status > b.status) return -sortValue //sortValue = 1: asc, sortValue = -1: desc
+        else if (a.status < b.status) return sortValue
+        else return 0
+      });
+    }
     return (
       <div className='App'>
           <Header/>
@@ -426,8 +449,8 @@ class App extends Component {
                 <button className="btn btn-danger" onClick={ this.onGenerateData }>Generate Data</button>
 
                 <div className="row mt-15">
-                  <Search/>
-                  <Sort/>
+                  <Search onSearch = { this.onSearch }/>
+                  <Sort onSort = { this.onSort } sortBy = { sortBy } sortValue = { sortValue }/>
                 </div>
                 <br/>
 
