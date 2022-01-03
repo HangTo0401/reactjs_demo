@@ -9,14 +9,14 @@ import TaskForm from './components/TaskForm';
 import Search from './components/Search';
 import Sort from './components/Sort';
 import TaskList from './components/TaskList';
-
+import _ from 'lodash';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
   // TODO: Refractor componentWillMount to componentDidMount function
   componentWillMount() {
-    if (localStorage && localStorage.getItem("tasks")) {
-      var multiTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (localStorage && localStorage.getItem('tasks')) {
+      var multiTasks = JSON.parse(localStorage.getItem('tasks'));
 
       this.setState({
         tasks: multiTasks
@@ -67,7 +67,7 @@ class App extends Component {
       taskEditing: null
     });
 
-    localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+    localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
   }
 
   onSettingDefault(params) {
@@ -82,7 +82,7 @@ class App extends Component {
   onHandleForm(event) {
     var target = event.target
     var name = target.name
-    var value = target.type === "checkbox" ? target.checked : target.value
+    var value = target.type === 'checkbox' ? target.checked : target.value
 
     // Set value for multi inputs
     this.setState({
@@ -108,17 +108,17 @@ class App extends Component {
   onGenerateData() {
     var newTasks = [{
       id: this.onGenerateId(),
-      name: "Học Angular",
+      name: 'Học Angular',
       status: true
     },
     {
       id: this.onGenerateId(),
-      name: "Học Reactjs",
+      name: 'Học Reactjs',
       status: false
     },
     {
       id: this.onGenerateId(),
-      name: "Học Thuật toán",
+      name: 'Học Thuật toán',
       status: true
     }];
 
@@ -168,25 +168,25 @@ class App extends Component {
     this.setState({
       tasks: tasks
     });
-    localStorage.setItem("tasks", JSON.stringify(tasks))
+    localStorage.setItem('tasks', JSON.stringify(tasks))
   }
 
   onDelete = (id) => {
     var { tasks } = this.state
-    var deleteIndex = this.findIndex(id);
+    var deleteIndex = _.findIndex(tasks, (task) => { return task.id === id });
     if (deleteIndex !== -1) {
       tasks.splice(deleteIndex, 1)
       this.setState({
         tasks: tasks
       });
-      localStorage.setItem("tasks", JSON.stringify(tasks))
+      localStorage.setItem('tasks', JSON.stringify(tasks))
     }
     this.onCloseForm()
   }
 
   onUpdateForm = (id) => {
     var { tasks } = this.state
-    var updateIndex = this.findIndex(id);
+    var updateIndex = _.findIndex(tasks, (task) => { return task.id === id });
     var taskEditing = tasks[updateIndex]
     if (updateIndex !== -1) { 
       this.setState({
@@ -210,6 +210,12 @@ class App extends Component {
     this.setState({
       sortBy: sortBy,
       sortValue: sortValue
+    })
+  }
+
+  onSearch = (params) => {
+    this.setState({
+      keyword: params
     })
   }
 
@@ -267,7 +273,7 @@ class App extends Component {
         filterName: '',
         filterStatus: -1
       },
-      sortBy: "name",
+      sortBy: 'name',
       sortValue: 1
     };
 
@@ -297,24 +303,30 @@ class App extends Component {
       }
     });
 
-    var { tasks, isDisplayForm, taskEditing, filter, sortBy, sortValue } = this.state
+    var { tasks, isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
     var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
                                                     onCloseForm = { this.onCloseForm } 
                                                     taskEditing = { taskEditing }/> : ''
     if (filter) {
       if (filter.filterName) {
-        tasks = tasks.filter(task => {
+        tasks = _.filter(tasks, (task) => {
           return task.name.toLowerCase().indexOf(filter.filterName) !== -1;
-        });
+        })
       }
 
-      tasks = tasks.filter(task => {
+      tasks = _.filter(tasks, (task) => {
         if (filter.filterStatus == -1) return task
         else return task.status === (filter.filterStatus === 1 ? true : false)
       });
     }
 
-    if (sortBy === "name") {
+    if (keyword) {
+      tasks = _.filter(tasks, (task) => {
+        return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+      })
+    }
+
+    if (sortBy === 'name') {
       tasks.sort((a,b) => {
         if (a.name > b.name) return sortValue //sortValue = 1: asc, sortValue = -1: desc
         else if (a.name < b.name) return sortValue
@@ -328,24 +340,25 @@ class App extends Component {
         else return 0
       });
     }
+
     return (
       <div className='App'>
           <Header/>
           <div className='container-fluid'>
             <div className='row'>
-            <div className="panel panel-danger">
-              <div className="panel-heading">
-                <h3 className="panel-title">Thêm sản phẩm</h3>
+            <div className='panel panel-danger'>
+              <div className='panel-heading'>
+                <h3 className='panel-title'>Thêm sản phẩm</h3>
               </div>
-              <div className="panel-body">
-                <div className="row">
+              <div className='panel-body'>
+                <div className='row'>
                   <label>Tên sản phẩm</label>
-                  <input type="text" className="form-control" ref={this.refName}/>
-                  <button className="btn btn-primary" onClick={() => this.onAddProduct()}>Lưu</button>
+                  <input type='text' className='form-control' ref={this.refName}/>
+                  <button className='btn btn-primary' onClick={() => this.onAddProduct()}>Lưu</button>
                 </div>
               </div>
             </div>
-            <table className="table table-hover">
+            <table className='table table-hover'>
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -365,7 +378,7 @@ class App extends Component {
             <div className='row'>     
               <ColorPicker color={ this.state.color } onReceiveColor= { this.onReceiveColor }/>
               
-              <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
                 <SizeSetting fontSize = { this.state.fontSize } onReceiceSize= { this.onReceiceSize }/>
                 <br/>
                 <Reset onSettingDefault = { this.onSettingDefault  }/>
@@ -376,57 +389,57 @@ class App extends Component {
 
           <div className='container mt-30'>
             <div className='row'>
-              <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div className="panel panel-primary">
-                    <div className="panel-heading">
-                      <h3 className="panel-title">Form</h3>
+              <div className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
+                <div className='panel panel-primary'>
+                    <div className='panel-heading'>
+                      <h3 className='panel-title'>Form</h3>
                     </div>
-                    <div className="panel-body">
+                    <div className='panel-body'>
                       <form>
-                        <div className="form-group">
+                        <div className='form-group'>
                           <label>Username</label>
-                          <input type="text" className="form-control" placeholder="" aria-describedby="helpId" name="txtUsername" onChange={ this.onHandleForm } value={ this.state.txtUsername }/>
+                          <input type='text' className='form-control' placeholder='' aria-describedby='helpId' name='txtUsername' onChange={ this.onHandleForm } value={ this.state.txtUsername }/>
                         </div>
 
-                        <div className="form-group">
+                        <div className='form-group'>
                           <label>Password</label>
-                          <input type="password" className="form-control" placeholder="" aria-describedby="helpId" name="txtPassword" onChange={ this.onHandleForm } value={ this.state.txtPassword }/>
+                          <input type='password' className='form-control' placeholder='' aria-describedby='helpId' name='txtPassword' onChange={ this.onHandleForm } value={ this.state.txtPassword }/>
                         </div>
 
-                        <div className="form-group">
+                        <div className='form-group'>
                           <label>Description</label>
-                          <textarea className="form-control" placeholder="" aria-describedby="helpId" name="txtDescription" onChange={ this.onHandleForm } value={ this.state.txtDescription }/>
+                          <textarea className='form-control' placeholder='' aria-describedby='helpId' name='txtDescription' onChange={ this.onHandleForm } value={ this.state.txtDescription }/>
                         </div>
 
                         <label>Gender</label>
-                        <select name="txtSelect" id="input" className="form-control" required="required" onChange={ this.onHandleForm } value={ this.state.sltGender }>
+                        <select name='txtSelect' id='input' className='form-control' required='required' onChange={ this.onHandleForm } value={ this.state.sltGender }>
                           <option value={0}>Nữ</option>
                           <option value={1}>Nam</option>
                         </select>
                         <br/>
 
                         <label>Language</label>
-                        <div className="radio">
+                        <div className='radio'>
                           <label>
-                            <input type="radio" name="rdLang" id="input" value="" checked={ this.state.rdLang === "ENG"} value="ENG" onChange={ this.onHandleForm }/>
+                            <input type='radio' name='rdLang' id='input' value='' checked={ this.state.rdLang === 'ENG'} value='ENG' onChange={ this.onHandleForm }/>
                             Tiếng Anh
                           </label>&nbsp;
                           <label>
-                            <input type="radio" name="rdLang" id="input" value="" checked={ this.state.rdLang === "VN"} value="VN" onChange={ this.onHandleForm }/>
+                            <input type='radio' name='rdLang' id='input' value='' checked={ this.state.rdLang === 'VN'} value='VN' onChange={ this.onHandleForm }/>
                             Tiếng Việt
                           </label>
                         </div>
                         <br/>
                         
-                        <div className="checkbox">
+                        <div className='checkbox'>
                           <label>
-                            <input type="checkbox" name="chkbStatus" value={ true } onChange={ this.onHandleForm } checked={ this.state.chkbStatus === true}/>
+                            <input type='checkbox' name='chkbStatus' value={ true } onChange={ this.onHandleForm } checked={ this.state.chkbStatus === true}/>
                             Trạng thái
                           </label>
                         </div>
                         
-                        <button type="submit" className="btn btn-primary" onClick={ this.onHandleSubmit }>Lưu lại</button>&nbsp;
-                        <button type="reset" className="btn btn-default" onClick={ this.onReset }>Xóa</button>
+                        <button type='submit' className='btn btn-primary' onClick={ this.onHandleSubmit }>Lưu lại</button>&nbsp;
+                        <button type='reset' className='btn btn-default' onClick={ this.onReset }>Xóa</button>
                       </form>
                     </div>
                 </div>
@@ -436,20 +449,20 @@ class App extends Component {
           </div>
 
           <br/>
-          <div className="container">
-            <div className="row">
+          <div className='container'>
+            <div className='row'>
               
-              <div className={ isDisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : "" }>
-                <h3 className="panel-title">Quản lí công việc</h3>
+              <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
+                <h3 className='panel-title'>Quản lí công việc</h3>
                 { elementTaskForm }
               </div>
 
-              <div className={ isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                <button className="btn btn-primary" onClick={ this.onDisplayForm }><i className="fa fa-plus" aria-hidden="true"></i>Thêm công việc</button>&nbsp;
-                <button className="btn btn-danger" onClick={ this.onGenerateData }>Generate Data</button>
+              <div className={ isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
+                <button className='btn btn-primary' onClick={ this.onDisplayForm }><i className='fa fa-plus' aria-hidden='true'></i>Thêm công việc</button>&nbsp;
+                <button className='btn btn-danger' onClick={ this.onGenerateData }>Generate Data</button>
 
-                <div className="row mt-15">
-                  <Search onSearch = { this.onSearch }/>
+                <div className='row mt-15'>
+                  <Search onSearch = { this.onSearch } keyword = { keyword }/>
                   <Sort onSort = { this.onSort } sortBy = { sortBy } sortValue = { sortValue }/>
                 </div>
                 <br/>
