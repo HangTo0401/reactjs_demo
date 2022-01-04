@@ -58,7 +58,7 @@ class App extends Component {
       tasks.push(params)
     } else {
       // Editing
-      var index = this.findIndex(params.id);
+      var index = _.findIndex(tasks, (task) => { return task.id === params.id });
       tasks[index] = params
     }
 
@@ -161,7 +161,7 @@ class App extends Component {
 
   onUpdateStatus = (id) => {
     var { tasks } = this.state
-    var index = this.findIndex(id);
+    var index = _.findIndex(tasks, (task) => { return task.id === id });
     if (index !== -1) {
       tasks[index].status = !tasks[index].status;
     }
