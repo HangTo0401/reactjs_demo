@@ -10,6 +10,7 @@ import Search from './components/Search';
 import Sort from './components/Sort';
 import TaskList from './components/TaskList';
 import _ from 'lodash';
+import Demo from './training_redux/Demo';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
