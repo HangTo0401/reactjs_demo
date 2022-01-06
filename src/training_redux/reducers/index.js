@@ -5,6 +5,6 @@ import { combineReducers } from 'redux';
 const myReducer = combineReducers({
     StatusReducer,
     SortReducer
-});
+})
 
-export default myReducer;
+export default myReducer
