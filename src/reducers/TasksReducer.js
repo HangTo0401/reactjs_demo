@@ -1,6 +1,8 @@
 import * as types from './../constants/ActionTypes';
 
-var initialState = [];
+// Get from localStorage
+var data = JSON.parse(localStorage.getItem('tasks'));
+var initialState = data ? data : [];
 
 var TasksReducer = (state = initialState, action) => {
     switch(action.type) {
