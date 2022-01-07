@@ -10,20 +10,19 @@ import Search from './components/Search';
 import Sort from './components/Sort';
 import TaskList from './components/TaskList';
 import _ from 'lodash';
-import Demo from './training_redux/Demo';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
   // TODO: Refractor componentWillMount to componentDidMount function
-  componentWillMount() {
-    if (localStorage && localStorage.getItem('tasks')) {
-      var multiTasks = JSON.parse(localStorage.getItem('tasks'));
+  // componentWillMount() {
+  //   if (localStorage && localStorage.getItem('tasks')) {
+  //     var multiTasks = JSON.parse(localStorage.getItem('tasks'));
 
-      this.setState({
-        tasks: multiTasks
-      });
-    }
-  }
+  //     this.setState({
+  //       tasks: multiTasks
+  //     });
+  //   }
+  // }
 
   onSetState() {
     if (this.state.isActive === true) {
@@ -267,7 +266,7 @@ class App extends Component {
       rdLang: 'VN',
       chkbStatus: true,
       keyword: '',
-      tasks: [],
+      // tasks: [],
       isDisplayForm: false,
       taskEditing: null,
       filter: {
@@ -304,43 +303,44 @@ class App extends Component {
       }
     });
 
-    var { tasks, isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
+    // var { tasks, isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
+    var { isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
     var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
                                                     onCloseForm = { this.onCloseForm } 
                                                     taskEditing = { taskEditing }/> : ''
-    if (filter) {
-      if (filter.filterName) {
-        tasks = _.filter(tasks, (task) => {
-          return task.name.toLowerCase().indexOf(filter.filterName) !== -1;
-        })
-      }
+    // if (filter) {
+    //   if (filter.filterName) {
+    //     tasks = _.filter(tasks, (task) => {
+    //       return task.name.toLowerCase().indexOf(filter.filterName) !== -1;
+    //     })
+    //   }
 
-      tasks = _.filter(tasks, (task) => {
-        if (filter.filterStatus == -1) return task
-        else return task.status === (filter.filterStatus === 1 ? true : false)
-      });
-    }
+    //   tasks = _.filter(tasks, (task) => {
+    //     if (filter.filterStatus == -1) return task
+    //     else return task.status === (filter.filterStatus === 1 ? true : false)
+    //   });
+    // }
 
-    if (keyword) {
-      tasks = _.filter(tasks, (task) => {
-        return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
-      })
-    }
+    // if (keyword) {
+    //   tasks = _.filter(tasks, (task) => {
+    //     return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+    //   })
+    // }
 
-    if (sortBy === 'name') {
-      tasks.sort((a,b) => {
-        if (a.name > b.name) return sortValue //sortValue = 1: asc, sortValue = -1: desc
-        else if (a.name < b.name) return sortValue
-        else return 0
-      });
-    } else {
-      // sort by status
-      tasks.sort((a,b) => {
-        if (a.status > b.status) return -sortValue //sortValue = 1: asc, sortValue = -1: desc
-        else if (a.status < b.status) return sortValue
-        else return 0
-      });
-    }
+    // if (sortBy === 'name') {
+    //   tasks.sort((a,b) => {
+    //     if (a.name > b.name) return sortValue //sortValue = 1: asc, sortValue = -1: desc
+    //     else if (a.name < b.name) return sortValue
+    //     else return 0
+    //   });
+    // } else {
+    //   // sort by status
+    //   tasks.sort((a,b) => {
+    //     if (a.status > b.status) return -sortValue //sortValue = 1: asc, sortValue = -1: desc
+    //     else if (a.status < b.status) return sortValue
+    //     else return 0
+    //   });
+    // }
 
     return (
       <div className='App'>
@@ -468,8 +468,12 @@ class App extends Component {
                 </div>
                 <br/>
 
-                <TaskList tasks = { tasks } 
+                {/* <TaskList tasks = { tasks } 
                           onUpdateStatus = { this.onUpdateStatus } 
+                          onDelete = { this.onDelete } 
+                          onUpdateForm = { this.onUpdateForm } 
+                          onFilter = { this.onFilter }/> */}
+                <TaskList onUpdateStatus = { this.onUpdateStatus } 
                           onDelete = { this.onDelete } 
                           onUpdateForm = { this.onUpdateForm } 
                           onFilter = { this.onFilter }/>

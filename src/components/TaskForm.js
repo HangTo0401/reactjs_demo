@@ -1,5 +1,6 @@
-import { Component } from "react";
-
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../actions/index'
 class TaskForm extends Component {
     constructor(props) {
         super(props)
@@ -29,7 +30,8 @@ class TaskForm extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onReceiveTaskForm(this.state);
+        this.props.onAddTask(this.state)
+        // this.props.onReceiveTaskForm(this.state);
         this.onClear()
         this.onClose()
     }
@@ -114,4 +116,21 @@ class TaskForm extends Component {
     };
 }
 
-export default TaskForm;
+const mapStateToProps = (state) => {
+    // Return object
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    // Return action to props
+    return {
+        onAddTask : (task) => {
+            dispatch(actions.addTask(task))
+        }
+    }
+}
+
+// Get input from Taskform and push on Store and Reducer return newTask so mapStateToProps is useless in here
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);

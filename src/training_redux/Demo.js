@@ -9,7 +9,6 @@ console.log('Default ', store.getState())
 // Change status
 var action = { type: 'TOGGLE_STATUS' }
 store.dispatch(status()) //updating a Redux store's state
-console.log('TOGGLE_STATUS ', store.getState())
 
 // Implement sort name Z-A
 var sortAction = {
@@ -24,4 +23,3 @@ store.dispatch(sort({
     by: 'name',
     value: -1 // 1: increase, -1: decrease
 })) //updating a Redux store's state
-console.log('SORT: ', store.getState())
