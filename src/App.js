@@ -10,6 +10,8 @@ import Search from './components/Search';
 import Sort from './components/Sort';
 import TaskList from './components/TaskList';
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import * as actions from './actions/index';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
@@ -134,28 +136,31 @@ class App extends Component {
 
   onDisplayForm = () => {
     // Form is opened and editing task
-    if (this.state.isDisplayForm && this.state.taskEditing) {
-      this.setState({
-        isDisplayForm : true,
-        taskEditing: null
-      });
-    } else {
-      this.setState({
-        isDisplayForm : !this.state.isDisplayForm,
-        taskEditing: null
-      });
-    }
+    // if (this.state.isDisplayForm && this.state.taskEditing) {
+    //   this.setState({
+    //     isDisplayForm : true,
+    //     taskEditing: null
+    //   });
+    // } else {
+    //   this.setState({
+    //     isDisplayForm : !this.state.isDisplayForm,
+    //     taskEditing: null
+    //   });
+    // }
+    this.props.onToggleForm()
   }
 
-  onCloseForm = () => {
-    this.setState({
-      isDisplayForm : false
-    });
-  }
+  // onCloseForm = () => {
+  //   this.setState({
+  //     isDisplayForm : false,
+  //     taskEditing: null
+  //   });
+  // }
 
   onShowForm = () => {
     this.setState({
-      isDisplayForm : true
+      isDisplayForm : true,
+      taskEditing: null
     });
   }
 
@@ -304,10 +309,12 @@ class App extends Component {
     });
 
     // var { tasks, isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
-    var { isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
-    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
-                                                    onCloseForm = { this.onCloseForm } 
-                                                    taskEditing = { taskEditing }/> : ''
+    var { taskEditing, filter, keyword, sortBy, sortValue } = this.state
+    var { isDisplayForm } = this.props
+    // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
+    //                                                 onCloseForm = { this.onCloseForm } 
+    //                                                 taskEditing = { taskEditing }/> : ''
+    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
     // if (filter) {
     //   if (filter.filterName) {
     //     tasks = _.filter(tasks, (task) => {
@@ -485,4 +492,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isDisplayForm: state.DisplayFormReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onToggleForm: () => {
+      dispatch(actions.toggleForm())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
