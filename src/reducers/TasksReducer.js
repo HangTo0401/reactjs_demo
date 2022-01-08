@@ -25,7 +25,7 @@ var TasksReducer = (state = initialState, action) => {
             localStorage.setItem('tasks', JSON.stringify(state)) // save on localStorage as String format, not Object format
             return [...state] // clone to new array and return new array
         case types.UPDATE_STATUS_TASK:
-            var index = _.findIndex(state, (task) => { return task.id === action.id });
+            var index = _.findIndex(state, (task) => { return task.id === action.id })
             if (index !== -1) {
                 state[index] = {
                     ...state[index],
@@ -33,6 +33,11 @@ var TasksReducer = (state = initialState, action) => {
                 }
             }
 
+            localStorage.setItem('tasks', JSON.stringify(state))
+            return [...state]
+        case types.DELETE_TASK:
+            var index = _.findIndex(state, (task) => { return task.id === action.id })
+            state.splice(index, 1)
             localStorage.setItem('tasks', JSON.stringify(state))
             return [...state]
         default: 

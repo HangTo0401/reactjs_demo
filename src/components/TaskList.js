@@ -33,7 +33,6 @@ class TaskList extends Component {
             return <TaskItem singleTask = { singleTask } 
             key = { singleTask.id } 
             index = { index }
-            onDelete = { this.props.onDelete }
             onUpdateForm = { this.props.onUpdateForm }/>
         });
 

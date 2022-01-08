@@ -176,18 +176,18 @@ class App extends Component {
   //   localStorage.setItem('tasks', JSON.stringify(tasks))
   // }
 
-  onDelete = (id) => {
-    var { tasks } = this.state
-    var deleteIndex = _.findIndex(tasks, (task) => { return task.id === id });
-    if (deleteIndex !== -1) {
-      tasks.splice(deleteIndex, 1)
-      this.setState({
-        tasks: tasks
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks))
-    }
-    this.onCloseForm()
-  }
+  // onDelete = (id) => {
+  //   var { tasks } = this.state
+  //   var deleteIndex = _.findIndex(tasks, (task) => { return task.id === id });
+  //   if (deleteIndex !== -1) {
+  //     tasks.splice(deleteIndex, 1)
+  //     this.setState({
+  //       tasks: tasks
+  //     });
+  //     localStorage.setItem('tasks', JSON.stringify(tasks))
+  //   }
+  //   this.onCloseForm()
+  // }
 
   onUpdateForm = (id) => {
     var { tasks } = this.state
@@ -480,8 +480,7 @@ class App extends Component {
                           onDelete = { this.onDelete } 
                           onUpdateForm = { this.onUpdateForm } 
                           onFilter = { this.onFilter }/> */}
-                <TaskList onDelete = { this.onDelete } 
-                          onUpdateForm = { this.onUpdateForm } 
+                <TaskList onUpdateForm = { this.onUpdateForm } 
                           onFilter = { this.onFilter }/>
               </div>
             </div>
