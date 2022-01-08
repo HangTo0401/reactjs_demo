@@ -55,6 +55,7 @@ class Alert extends Component {
      * removeAlert() method removes the specified alert object from the array, it allows individual alerts to be closed in the UI.
      */
     removeAlert(alert) {
+        
     }
 
     /**

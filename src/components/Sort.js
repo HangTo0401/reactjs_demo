@@ -10,6 +10,7 @@ class Sort extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        
     }
 
     render() {

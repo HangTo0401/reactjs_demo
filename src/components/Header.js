@@ -9,6 +9,7 @@ export class Header extends Component {
     }
 
     onAddProduct(params) {
+        
     }
 
     render() {

@@ -20,9 +20,7 @@ class Result extends Component {
                     Nội dung setting
                 </div>
             </div>
-            
         );
-
     };
 }
 

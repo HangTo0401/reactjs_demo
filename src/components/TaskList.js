@@ -67,7 +67,6 @@ class TaskList extends Component {
                         </tbody>
                     </table>
                 </div>
-                
             </div>
         );
     };

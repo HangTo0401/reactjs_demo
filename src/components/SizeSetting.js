@@ -21,7 +21,6 @@ class SizeSetting extends Component {
                 </div>
             </div>
         );
-
     };
 }
 

@@ -46,7 +46,6 @@ class ColorPicker extends Component {
                 
             </div>
         );
-
     };
 }
 

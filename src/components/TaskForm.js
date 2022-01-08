@@ -12,7 +12,6 @@ class TaskForm extends Component {
     }
 
     onClose = () => {
-        // this.props.onCloseForm();
         this.props.onCloseTaskForm()
     }
 
@@ -32,7 +31,6 @@ class TaskForm extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onAddTask(this.state) // add new task on Store
-        // this.props.onReceiveTaskForm(this.state);
         this.onClear()
         this.onClose()
     }

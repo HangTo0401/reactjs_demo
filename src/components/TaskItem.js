@@ -7,12 +7,10 @@ class TaskItem extends Component {
     }
 
     onUpdateStatus = () => {
-        // this.props.onUpdateStatus(this.props.singleTask.id)
         this.props.onUpdateStatusTask(this.props.singleTask.id)
     }
 
     onDelete = () => {
-        // this.props.onDelete(this.props.singleTask.id)
         this.props.onDeleteTask(this.props.singleTask.id)
         this.props.onCloseTaskForm()
     }
