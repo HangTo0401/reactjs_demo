@@ -11,7 +11,7 @@ var onGenerateId = () => {
 var TasksReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.LIST_ALL:
-            return state
+            return [...state]
         case types.ADD_TASK:
             // save task on initialState in Store
             var newTask = {
@@ -23,6 +23,9 @@ var TasksReducer = (state = initialState, action) => {
             state.push(newTask)
             localStorage.setItem('tasks', JSON.stringify(state)) // save on localStorage as String format, not Object format
             return [...state] // clone to new array and return new array
+        case types.UPDATE_STATUS_TASK:
+            console.log(action)
+            return [...state]
         default: return state
     }
 }

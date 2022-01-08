@@ -24,12 +24,17 @@ class TaskList extends Component {
         var { tasks }  = this.props;
         var { filterName, filterStatus }  = this.state;
         var elementTask = tasks.map((singleTask, index) => {
+            // return <TaskItem singleTask = { singleTask } 
+            //                  key = { singleTask.id } 
+            //                  index = { index } 
+            //                  onUpdateStatus = { this.props.onUpdateStatus }
+            //                  onDelete = { this.props.onDelete }
+            //                  onUpdateForm = { this.props.onUpdateForm }/>
             return <TaskItem singleTask = { singleTask } 
-                             key = { singleTask.id } 
-                             index = { index } 
-                             onUpdateStatus = { this.props.onUpdateStatus }
-                             onDelete = { this.props.onDelete }
-                             onUpdateForm = { this.props.onUpdateForm }/>
+            key = { singleTask.id } 
+            index = { index }
+            onDelete = { this.props.onDelete }
+            onUpdateForm = { this.props.onUpdateForm }/>
         });
 
         return(
