@@ -7,7 +7,8 @@ class TaskItem extends Component {
     }
 
     onUpdateStatus = () => {
-        this.props.onUpdateStatus(this.props.singleTask.id)
+        // this.props.onUpdateStatus(this.props.singleTask.id)
+        this.props.onUpdateStatusTask(this.props.singleTask.id)
     }
 
     onDelete = () => {
@@ -15,8 +16,7 @@ class TaskItem extends Component {
     }
 
     onUpdate = () => {
-        // this.props.onUpdateForm(this.props.singleTask.id)
-        this.props.onUpdateStatusTask(this.props.singleTask.id)
+        this.props.onUpdateForm(this.props.singleTask.id)
     }
 
     render() {
@@ -43,7 +43,7 @@ class TaskItem extends Component {
 }
 
 const mapStateToProps = () => {
-
+    return {}
 }
 
 const mapDispatchToProps = (dispatch, props) => {

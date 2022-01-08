@@ -1,4 +1,5 @@
 import * as types from './../constants/ActionTypes';
+import _ from 'lodash';
 
 // Get from localStorage
 var data = JSON.parse(localStorage.getItem('tasks'));
@@ -24,9 +25,14 @@ var TasksReducer = (state = initialState, action) => {
             localStorage.setItem('tasks', JSON.stringify(state)) // save on localStorage as String format, not Object format
             return [...state] // clone to new array and return new array
         case types.UPDATE_STATUS_TASK:
-            console.log(action)
+            var index = _.findIndex(state, (task) => { return task.id === action.id });
+            if (index !== -1) {
+                state[index].status = !state[index].status;
+            }
+            localStorage.setItem('tasks', JSON.stringify(state))
             return [...state]
-        default: return state
+        default: 
+            return state
     }
 }
 
