@@ -22,7 +22,6 @@ class TaskItem extends Component {
     }
 
     render() {
-
         return(
             <tr>
                 <td> { this.props.index + 1 }</td>
