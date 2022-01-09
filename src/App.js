@@ -271,7 +271,6 @@ class App extends Component {
       rdLang: 'VN',
       chkbStatus: true,
       keyword: '',
-      // tasks: [],
       isDisplayForm: false,
       taskEditing: null,
       filter: {
