@@ -77,6 +77,7 @@ class TaskForm extends Component {
 
     render() {
         var { id } = this.state
+        if (!this.props.isDisplayForm) return ''
         return(
             <div className="form-input">
                 <div className="panel panel-primary">
@@ -117,7 +118,9 @@ class TaskForm extends Component {
 
 const mapStateToProps = (state) => {
     // Return object
-    return {}
+    return {
+        isDisplayForm: state.DisplayFormReducer
+    }
 }
 
 const mapDispatchToProps = (dispatch, props) => {

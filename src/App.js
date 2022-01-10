@@ -313,7 +313,7 @@ class App extends Component {
     // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
     //                                                 onCloseForm = { this.onCloseForm } 
     //                                                 taskEditing = { taskEditing }/> : ''
-    var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
+    // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
     // if (filter) {
     //   if (filter.filterName) {
     //     tasks = _.filter(tasks, (task) => {
@@ -461,7 +461,8 @@ class App extends Component {
               
               <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
                 <h3 className='panel-title'>Quản lí công việc</h3>
-                { elementTaskForm }
+                {/* { elementTaskForm } */}
+                <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/>
               </div>
 
               <div className={ isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
