@@ -16,7 +16,8 @@ class TaskItem extends Component {
     }
 
     onUpdate = () => {
-        this.props.onUpdateForm(this.props.singleTask.id)
+        // this.props.onUpdateForm(this.props.singleTask.id)
+        this.props.onToggleForm(this.props.singleTask.id)
     }
 
     render() {
@@ -55,6 +56,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onCloseTaskForm: () => {
             dispatch(actions.closeForm())
+        },
+        onToggleForm: () => {
+            dispatch(actions.toggleForm())
         }
     }
 }
