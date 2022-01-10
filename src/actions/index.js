@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import * as types from './../constants/ActionTypes';
 
 export const listAll = () => {
@@ -42,5 +43,12 @@ export const deleteTask = (id) => {
     return {
         type: types.DELETE_TASK,
         id // id : id
+    }
+}
+
+export const editTask = (task) => {
+    return {
+        type: types.EDIT_TASK,
+        task // task: task
     }
 }
