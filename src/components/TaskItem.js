@@ -54,6 +54,9 @@ const mapDispatchToProps = (dispatch, props) => {
         onDeleteTask: (id) => {
             dispatch(actions.deleteTask(id))
         },
+        onEditTask: (task) => {
+            dispatch(actions.editTask(task))
+        },
         onCloseTaskForm: () => {
             dispatch(actions.closeForm())
         },
