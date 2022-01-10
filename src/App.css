@@ -152,6 +152,10 @@ span {
   display: inline-block;
 }
 
+button {
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
