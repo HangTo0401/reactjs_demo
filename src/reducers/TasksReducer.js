@@ -13,6 +13,24 @@ var TasksReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.LIST_ALL:
             return [...state]
+        case types.SAVE_TASK:
+            var newTask = {
+                id: action.task.id,
+                name: action.task.name,
+                status: action.task.status === 'true' ? true : false
+            }
+            if (!newTask.id) {
+                // Adding new task
+                newTask.id = onGenerateId()
+                state.push(newTask)
+            } else {
+                var index = _.findIndex(state, (task) => { return task.id === newTask.id })
+                if (index !== -1) {
+                    state[index] = newTask
+                }
+            }
+            localStorage.setItem('tasks', JSON.stringify(state)) // save on localStorage as String format, not Object format
+            return [...state]
         case types.ADD_TASK:
             // save task on initialState in Store
             var newTask = {
