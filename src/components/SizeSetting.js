@@ -16,8 +16,8 @@ class SizeSetting extends Component {
                     <h3 className="panel-title">Size : { this.props.fontSize }</h3>
                 </div>
                 <div className="panel-body">
-                    <button type="button" className="btn btn-success" onClick={ () => this.changeSize(-2) }>Giảm</button>&nbsp;
-                    <button type="button" className="btn btn-success" onClick={ () => this.changeSize(+2) }>Tăng</button>
+                    <button type="button" className="btn btn-success" onClick={ () => this.changeSize(-2) }>Decrease</button>&nbsp;
+                    <button type="button" className="btn btn-success" onClick={ () => this.changeSize(+2) }>Increase</button>
                 </div>
             </div>
         );

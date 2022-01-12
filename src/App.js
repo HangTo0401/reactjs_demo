@@ -98,7 +98,7 @@ class App extends Component {
       txtPassword: '',
       txtDescription: '',
       sltGender: 0,
-      rdLang: 'VN',
+      rdLang: 'EN',
       chkbStatus: true
     });
   }
@@ -268,7 +268,7 @@ class App extends Component {
       txtPassword: '',
       txtDescription: '',
       sltGender: 0,
-      rdLang: 'VN',
+      rdLang: 'EN',
       chkbStatus: true,
       keyword: '',
       isDisplayForm: false,
@@ -428,12 +428,12 @@ class App extends Component {
                         <label>Language</label>
                         <div className='radio'>
                           <label>
-                            <input type='radio' name='rdLang' id='input' value='' checked={ this.state.rdLang === 'ENG'} value='ENG' onChange={ this.onHandleForm }/>
-                            Tiếng Anh
+                            <input type='radio' name='rdLang' id='input' value='' checked={ this.state.rdLang === 'EN'} value='EN' onChange={ this.onHandleForm }/>
+                            English
                           </label>&nbsp;
                           <label>
                             <input type='radio' name='rdLang' id='input' value='' checked={ this.state.rdLang === 'VN'} value='VN' onChange={ this.onHandleForm }/>
-                            Tiếng Việt
+                            Vietnamese
                           </label>
                         </div>
                         <br/>
@@ -441,12 +441,12 @@ class App extends Component {
                         <div className='checkbox'>
                           <label>
                             <input type='checkbox' name='chkbStatus' value={ true } onChange={ this.onHandleForm } checked={ this.state.chkbStatus === true}/>
-                            Trạng thái
+                            Status
                           </label>
                         </div>
                         
-                        <button type='submit' className='btn btn-primary' onClick={ this.onHandleSubmit }>Lưu lại</button>&nbsp;
-                        <button type='reset' className='btn btn-default' onClick={ this.onReset }>Xóa</button>
+                        <button type='submit' className='btn btn-primary' onClick={ this.onHandleSubmit }>Save</button>&nbsp;
+                        <button type='reset' className='btn btn-default' onClick={ this.onReset }>Delete</button>
                       </form>
                     </div>
                 </div>
@@ -460,13 +460,13 @@ class App extends Component {
             <div className='row'>
               
               <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
-                <h3 className='panel-title'>Quản lí công việc</h3>
+                <h3 className='panel-title'>Task Management</h3>
                 {/* { elementTaskForm } */}
                 <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm }/>
               </div>
 
               <div className={ isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
-                <button className='btn btn-primary' onClick={ this.onDisplayForm }><i className='fa fa-plus' aria-hidden='true'></i>Thêm công việc</button>&nbsp;
+                <button className='btn btn-primary' onClick={ this.onDisplayForm }><i className='fa fa-plus' aria-hidden='true'></i>Add New Task</button>&nbsp;
                 <button className='btn btn-danger' onClick={ this.onGenerateData }>Generate Data</button>
 
                 <div className='row mt-15'>

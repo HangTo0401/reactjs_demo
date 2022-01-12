@@ -87,7 +87,7 @@ class TaskForm extends Component {
                 <div className="panel panel-primary">
                     <div className="panel-heading">
                         <div className="row mt-40">
-                            <div className="panel-text">{ id !== "" ? "Cập nhật công việc" : "Thêm công việc"}</div>
+                            <div className="panel-text">{ id !== "" ? "Update task" : "Add new task"}</div>
                             <span className="fa fa-times close-btn" aria-hidden="true" onClick={ this.onClose }></span>
                         </div>
                     </div>
@@ -100,16 +100,16 @@ class TaskForm extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label>Trạng thái: </label>
+                                <label>Status: </label>
                                 <select name="status" className="form-control" onChange={ this.onChangeForm } value = { this.state.status }>
-                                    <option value={ true }>Kích hoạt</option>
-                                    <option value={ false }>Ẩn</option>
+                                    <option value={ true }>Active</option>
+                                    <option value={ false }>Deactive</option>
                                 </select>
                             </div>
 
                             <div className="btns-group">
-                                <button type="submit" className="btn btn-warning"><i className="fa fa-plus"></i>&nbsp; Lưu lại</button>&nbsp;
-                                <button type="button" className="btn btn-danger" onClick={ this.onClear }><i className="fa fa-times"></i>&nbsp; Hủy bỏ</button>
+                                <button type="submit" className="btn btn-warning"><i className="fa fa-plus"></i>&nbsp; Save</button>&nbsp;
+                                <button type="button" className="btn btn-danger" onClick={ this.onClear }><i className="fa fa-times"></i>&nbsp; Cancel</button>
                             </div>
                         </form>
                     </div>

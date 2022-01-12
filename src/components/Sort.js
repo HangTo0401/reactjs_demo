@@ -20,32 +20,32 @@ class Sort extends Component {
                     <button className='btn btn-info dropdown-btn' 
                             type='button' 
                             data-toggle='dropdown' 
-                            id='dropdownMenu'><i className='fa fa-sort' aria-hidden='true'></i>&nbsp; Sắp xếp</button>
+                            id='dropdownMenu'><i className='fa fa-sort' aria-hidden='true'></i>&nbsp;  Sort</button>
                     
                     <ul className='dropdown-menu'>
                         <li onClick={() => this.onClickSortItem('name', 1) }>
                             <a role='button' className= { this.props.sortBy === 'name' && this.props.sortValue === 1 ?
                                                         'sort_selected' : ''}>
-                                <span className='fas fa-sort-amount-up' data-fa-transform='flip-v'>&nbsp;Tên A-Z</span>
+                                <span className='fas fa-sort-amount-up' data-fa-transform='flip-v'>&nbsp;Name A-Z</span>
                             </a>
                         </li>
                         <li onClick={() => this.onClickSortItem('name', -1) }>
                             <a role='button' className= { this.props.sortBy === 'name' && this.props.sortValue === -1 ?
                                                         'sort_selected' : ''}>
-                                <span  className='fas fa-sort-amount-down' data-fa-transform='flip-v'>&nbsp;Tên Z-A</span>
+                                <span  className='fas fa-sort-amount-down' data-fa-transform='flip-v'>&nbsp;Name Z-A</span>
                             </a>
                         </li>
                         <li role='separator' className='divider'></li>
                         <li onClick={() => this.onClickSortItem('status', 1) }>
                             <a role='button' className= { this.props.sortBy === 'status' && this.props.sortValue === 1 ?
                                                         'sort_selected' : ''}>
-                                <span>Trạng thái kích hoạt</span>
+                                <span>Active status</span>
                             </a>
                         </li>
                         <li onClick={() => this.onClickSortItem('status', -1) }>
                             <a role='button' className= { this.props.sortBy === 'status' && this.props.sortValue === -1 ?
                                                         'sort_selected' : ''}>
-                                <span>Trạng thái ẩn</span>
+                                <span>Deactive status</span>
                             </a>
                         </li>
                     </ul>

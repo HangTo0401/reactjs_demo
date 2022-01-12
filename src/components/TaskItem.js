@@ -29,13 +29,13 @@ class TaskItem extends Component {
 
                 <td className="text-center">
                     <span className={ this.props.singleTask.status ? "label label-info" : "label label-danger" } onClick={ this.onUpdateStatus }>
-                        { this.props.singleTask.status ? "Kích hoạt" : "Ẩn" }
+                        { this.props.singleTask.status ? "Active" : "Deactive" }
                     </span>
                 </td>
 
                 <td className="text-center">
-                    <button type="button" className="btn btn-warning" onClick={ this.onUpdate }><i className="fa fa-pencil" aria-hidden="true"></i>&nbsp; Sửa</button>&nbsp;
-                    <button type="button" className="btn btn-danger" onClick={ this.onDelete }><i className="fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa</button>
+                    <button type="button" className="btn btn-warning" onClick={ this.onUpdate }><i className="fa fa-pencil" aria-hidden="true"></i>&nbsp; Edit</button>&nbsp;
+                    <button type="button" className="btn btn-danger" onClick={ this.onDelete }><i className="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
                 </td>
             </tr>
         );
