@@ -37,6 +37,7 @@ class TaskForm extends Component {
 
     onClear = () => {
         this.setState({
+            id: '',
             name: '',
             status: false
         });
@@ -52,6 +53,8 @@ class TaskForm extends Component {
                 name: taskEditing.name,
                 status: taskEditing.status
             });
+        } else {
+            this.onClear()
         }
     }
 
@@ -67,11 +70,12 @@ class TaskForm extends Component {
             });
         } else if (nextProps && !nextProps.taskEditing) {
             // Edit -> Add new
-            this.setState({
-                id: '',
-                name: '',
-                status: false
-            });
+            // this.setState({
+            //     id: '',
+            //     name: '',
+            //     status: false
+            // });
+            this.onClear()
         }
     }
 
@@ -119,7 +123,8 @@ class TaskForm extends Component {
 const mapStateToProps = (state) => {
     // Return object
     return {
-        isDisplayForm: state.DisplayFormReducer
+        isDisplayForm: state.DisplayFormReducer,
+        taskEditing: state.EditTaskReducer
     }
 }
 
