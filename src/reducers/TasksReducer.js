@@ -17,13 +17,15 @@ var TasksReducer = (state = initialState, action) => {
             var newTask = {
                 id: action.task.id,
                 name: action.task.name,
-                status: action.task.status === 'true' ? true : false
+                // status: action.task.status === 'true' ? true : false
+                status: action.task.status
             }
             if (!newTask.id) {
                 // Adding new task
                 newTask.id = onGenerateId()
                 state.push(newTask)
             } else {
+                // Editing task
                 var index = _.findIndex(state, (task) => { return task.id === newTask.id })
                 if (index !== -1) {
                     state[index] = newTask

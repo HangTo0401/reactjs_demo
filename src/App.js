@@ -148,6 +148,11 @@ class App extends Component {
     //   });
     // }
     this.props.onToggleForm()
+    this.props.onClearTask({
+      id: '',
+      name: '',
+      status: false
+    })
   }
 
   // onCloseForm = () => {
@@ -462,7 +467,7 @@ class App extends Component {
               <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
                 <h3 className='panel-title'>Task Management</h3>
                 {/* { elementTaskForm } */}
-                <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm }/>
+                <TaskForm/>
               </div>
 
               <div className={ isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
@@ -500,6 +505,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     onToggleForm: () => {
       dispatch(actions.toggleForm())
+    },
+    onClearTask: (task) => {
+      dispatch(actions.editTask(task))
     }
   }
 }

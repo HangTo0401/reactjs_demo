@@ -48,14 +48,18 @@ class TaskForm extends Component {
     // TODO: Refractor componentWillMount to componentDidMount function
     componentWillMount() {
         var taskEditing = this.props.taskEditing
-        if (this.props.taskEditing) {
+        if (taskEditing && taskEditing.id !== null) {
             this.setState({
                 id: taskEditing.id,
                 name: taskEditing.name,
                 status: taskEditing.status
             });
         } else {
-            this.onClear()
+            this.setState({
+                id: '',
+                name: '',
+                status: false
+            });
         }
     }
 
@@ -71,18 +75,13 @@ class TaskForm extends Component {
             });
         } else if (nextProps && !nextProps.taskEditing) {
             // Edit -> Add new
-            // this.setState({
-            //     id: '',
-            //     name: '',
-            //     status: false
-            // });
             this.onClear()
         }
     }
 
     render() {
         var { id } = this.state
-        if (!this.props.isDisplayForm) return ''
+        if (!this.props.isDisplayForm) return null
         return(
             <div className="form-input">
                 <div className="panel panel-primary">
