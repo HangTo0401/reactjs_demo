@@ -30,7 +30,8 @@ class TaskForm extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onAddTask(this.state) // add new task on Store
+        // this.props.onAddTask(this.state) // add new task on Store
+        this.props.onSaveTask(this.state)
         this.onClear()
         this.onClose()
     }
@@ -133,6 +134,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask : (task) => {
             dispatch(actions.addTask(task))
+        },
+        onSaveTask : (task) => {
+            dispatch(actions.saveTask(task))
         },
         onOpenTaskForm: () => {
             dispatch(actions.openForm())
