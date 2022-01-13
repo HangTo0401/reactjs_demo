@@ -59,3 +59,10 @@ export const editTask = (task) => {
         task // task: task
     }
 }
+
+export const filterTask = (filter) => {
+    return {
+        type: types.FILTER_TASK,
+        filter // filter: filter
+    }
+}
