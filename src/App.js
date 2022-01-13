@@ -147,7 +147,13 @@ class App extends Component {
     //     taskEditing: null
     //   });
     // }
-    this.props.onToggleForm()
+    if (this.props.taskEditing && this.props.taskEditing.id !== '') {
+      // Editing
+      this.props.onOpenTaskForm()
+    } else {
+      // Adding new task
+      this.props.onToggleForm()
+    }
     this.props.onClearTask({
       id: '',
       name: '',
@@ -277,7 +283,6 @@ class App extends Component {
       chkbStatus: true,
       keyword: '',
       isDisplayForm: false,
-      taskEditing: null,
       filter: {
         filterName: '',
         filterStatus: -1
@@ -497,7 +502,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isDisplayForm: state.DisplayFormReducer
+    isDisplayForm: state.DisplayFormReducer,
+    taskEditing: state.EditTaskReducer
   }
 }
 
@@ -505,6 +511,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     onToggleForm: () => {
       dispatch(actions.toggleForm())
+    },
+    onOpenTaskForm: () => {
+      dispatch(actions.openForm())
     },
     onClearTask: (task) => {
       dispatch(actions.editTask(task))
