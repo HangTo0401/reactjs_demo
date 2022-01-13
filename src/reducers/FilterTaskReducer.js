@@ -8,8 +8,11 @@ var initialState = {
 var FilterTaskReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.FILTER_TASK:
-            console.log(action)
-            return state
+            var filter = {
+                name: action.filter.name,
+                status: parseInt(action.filter.status)
+            }
+            return filter
         default: return state
     }
 }

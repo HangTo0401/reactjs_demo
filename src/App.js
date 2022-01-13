@@ -318,24 +318,12 @@ class App extends Component {
     });
 
     // var { tasks, isDisplayForm, taskEditing, filter, keyword, sortBy, sortValue } = this.state
-    var { filter, keyword, sortBy, sortValue } = this.state
+    var { keyword, sortBy, sortValue } = this.state
     var { isDisplayForm } = this.props
     // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } 
     //                                                 onCloseForm = { this.onCloseForm } 
     //                                                 taskEditing = { taskEditing }/> : ''
     // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
-    // if (filter) {
-    //   if (filter.filterName) {
-    //     tasks = _.filter(tasks, (task) => {
-    //       return task.name.toLowerCase().indexOf(filter.filterName) !== -1;
-    //     })
-    //   }
-
-    //   tasks = _.filter(tasks, (task) => {
-    //     if (filter.filterStatus == -1) return task
-    //     else return task.status === (filter.filterStatus === 1 ? true : false)
-    //   });
-    // }
 
     // if (keyword) {
     //   tasks = _.filter(tasks, (task) => {
@@ -471,7 +459,6 @@ class App extends Component {
               
               <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
                 <h3 className='panel-title'>Task Management</h3>
-                {/* { elementTaskForm } */}
                 <TaskForm/>
               </div>
 
@@ -490,8 +477,7 @@ class App extends Component {
                           onDelete = { this.onDelete } 
                           onUpdateForm = { this.onUpdateForm } 
                           onFilter = { this.onFilter }/> */}
-                <TaskList onUpdateForm = { this.onUpdateForm } 
-                          onFilter = { this.onFilter }/>
+                <TaskList onUpdateForm = { this.onUpdateForm } />
               </div>
             </div>
           </div>

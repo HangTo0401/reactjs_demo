@@ -2,6 +2,7 @@ import { Component } from 'react';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import * as actions from './../actions/index';
+import _ from 'lodash';
 class TaskList extends Component {
     constructor(props) {
         super(props)
@@ -27,8 +28,24 @@ class TaskList extends Component {
     }
 
     render() {
-        var { tasks }  = this.props;
+        var { tasks, filterTask }  = this.props;
         var { filterName, filterStatus }  = this.state;
+
+        // Filter on table
+        if (filterTask) {
+            if (filterTask.name) {
+                tasks = _.filter(tasks, (task) => {
+                    return task.name.toLowerCase().indexOf(filterTask.name.toLowerCase()) !== -1;
+                })
+            }
+
+            if (filterTask.status !== undefined || filterTask.status !== null) {
+                tasks = _.filter(tasks, (task) => {
+                    if (filterTask.status == -1) return task
+                    else return task.status === (filterTask.status === 1 ? true : false)
+                });
+            }
+        }
         var elementTask = tasks.map((singleTask, index) => {
             // return <TaskItem singleTask = { singleTask } 
             //                  key = { singleTask.id } 
@@ -36,12 +53,11 @@ class TaskList extends Component {
             //                  onUpdateStatus = { this.props.onUpdateStatus }
             //                  onDelete = { this.props.onDelete }
             //                  onUpdateForm = { this.props.onUpdateForm }/>
-            return <TaskItem singleTask = { singleTask } 
-            key = { singleTask.id } 
+            return <TaskItem singleTask = { singleTask }
+            key = { singleTask.id }
             index = { index }
             onUpdateForm = { this.props.onUpdateForm }/>
         });
-
         return(
             <div className='row mt-15'>     
                 <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
@@ -82,7 +98,8 @@ class TaskList extends Component {
 const mapStateToProps = (state) => {
     return {
         // now props of TaskList is tasks
-        tasks: state.TasksReducer // TasksReducer from index.js from reducers folder
+        tasks: state.TasksReducer, // TasksReducer from index.js from reducers folder
+        filterTask: state.FilterTaskReducer
     }
 }
 
