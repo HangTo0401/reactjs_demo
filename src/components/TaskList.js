@@ -28,9 +28,9 @@ class TaskList extends Component {
     }
 
     render() {
-        var { tasks, filterTask, keyword }  = this.props;
+        var { tasks, filterTask, keyword, sort }  = this.props;
         var { filterName, filterStatus }  = this.state;
-
+        console.log(sort)
         // Filter on table
         if (filterTask) {
             if (filterTask.name) {
@@ -39,12 +39,10 @@ class TaskList extends Component {
                 })
             }
 
-            if (filterTask.status !== undefined || filterTask.status !== null) {
-                tasks = _.filter(tasks, (task) => {
-                    if (filterTask.status == -1) return task
-                    else return task.status === (filterTask.status === 1 ? true : false)
-                });
-            }
+            tasks = _.filter(tasks, (task) => {
+                if (filterTask.status === -1) return task
+                else return task.status === (filterTask.status === 1 ? true : false)
+            });
         }
 
         // Search
@@ -52,6 +50,22 @@ class TaskList extends Component {
             tasks = _.filter(tasks, (task) => {
                 return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
             })
+        }
+
+        // Sort
+        if (sort.by === 'name') {
+            tasks.sort((a,b) => {
+                if (a.name > b.name) return sort.value //sortValue = 1: asc, sortValue = -1: desc
+                else if (a.name < b.name) return sort.value
+                else return 0
+            });
+        } else {
+            // sort by status
+            tasks.sort((a,b) => {
+                if (a.status > b.status) return -sort.value //sortValue = 1: asc, sortValue = -1: desc
+                else if (a.status < b.status) return sort.value
+                else return 0
+            });
         }
 
         var elementTask = tasks.map((singleTask, index) => {
@@ -108,7 +122,8 @@ const mapStateToProps = (state) => {
         // now props of TaskList is tasks
         tasks: state.TasksReducer, // TasksReducer from index.js from reducers folder
         filterTask: state.FilterTaskReducer,
-        keyword: state.SearchTaskReducer
+        keyword: state.SearchTaskReducer,
+        sort: state.SortTaskReducer
     }
 }
 

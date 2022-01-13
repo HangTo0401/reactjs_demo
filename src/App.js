@@ -323,22 +323,6 @@ class App extends Component {
     //                                                 onCloseForm = { this.onCloseForm } 
     //                                                 taskEditing = { taskEditing }/> : ''
     // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
-
-    // if (sortBy === 'name') {
-    //   tasks.sort((a,b) => {
-    //     if (a.name > b.name) return sortValue //sortValue = 1: asc, sortValue = -1: desc
-    //     else if (a.name < b.name) return sortValue
-    //     else return 0
-    //   });
-    // } else {
-    //   // sort by status
-    //   tasks.sort((a,b) => {
-    //     if (a.status > b.status) return -sortValue //sortValue = 1: asc, sortValue = -1: desc
-    //     else if (a.status < b.status) return sortValue
-    //     else return 0
-    //   });
-    // }
-
     return (
       <div className='App'>
           <Header/>

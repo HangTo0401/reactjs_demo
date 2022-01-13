@@ -2,7 +2,7 @@ import * as types from './../constants/ActionTypes';
 
 var initialState = {
     name: '',
-    status: ''
+    status: -1
 }
 
 var FilterTaskReducer = (state = initialState, action) => {
