@@ -281,7 +281,6 @@ class App extends Component {
       sltGender: 0,
       rdLang: 'EN',
       chkbStatus: true,
-      keyword: '',
       isDisplayForm: false,
       filter: {
         filterName: '',
@@ -324,12 +323,6 @@ class App extends Component {
     //                                                 onCloseForm = { this.onCloseForm } 
     //                                                 taskEditing = { taskEditing }/> : ''
     // var elementTaskForm = isDisplayForm ? <TaskForm onReceiveTaskForm = { this.onReceiveTaskForm } taskEditing = { taskEditing }/> : ''
-
-    // if (keyword) {
-    //   tasks = _.filter(tasks, (task) => {
-    //     return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
-    //   })
-    // }
 
     // if (sortBy === 'name') {
     //   tasks.sort((a,b) => {

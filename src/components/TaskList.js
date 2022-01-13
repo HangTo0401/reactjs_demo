@@ -28,7 +28,7 @@ class TaskList extends Component {
     }
 
     render() {
-        var { tasks, filterTask }  = this.props;
+        var { tasks, filterTask, keyword }  = this.props;
         var { filterName, filterStatus }  = this.state;
 
         // Filter on table
@@ -46,6 +46,14 @@ class TaskList extends Component {
                 });
             }
         }
+
+        // Search
+        if (keyword) {
+            tasks = _.filter(tasks, (task) => {
+                return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+            })
+        }
+
         var elementTask = tasks.map((singleTask, index) => {
             // return <TaskItem singleTask = { singleTask } 
             //                  key = { singleTask.id } 
@@ -99,7 +107,8 @@ const mapStateToProps = (state) => {
     return {
         // now props of TaskList is tasks
         tasks: state.TasksReducer, // TasksReducer from index.js from reducers folder
-        filterTask: state.FilterTaskReducer
+        filterTask: state.FilterTaskReducer,
+        keyword: state.SearchTaskReducer
     }
 }
 
