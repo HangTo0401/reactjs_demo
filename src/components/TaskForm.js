@@ -30,7 +30,6 @@ class TaskForm extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        // this.props.onAddTask(this.state) // add new task on Store
         this.props.onSaveTask(this.state)
         this.onClear()
         this.onClose()
@@ -38,7 +37,6 @@ class TaskForm extends Component {
 
     onClear = () => {
         this.setState({
-            id: '',
             name: '',
             status: false
         });
@@ -75,7 +73,11 @@ class TaskForm extends Component {
             });
         } else if (nextProps && !nextProps.taskEditing) {
             // Edit -> Add new
-            this.onClear()
+            this.setState({
+                id: '',
+                name: '',
+                status: false
+            });
         }
     }
 
