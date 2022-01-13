@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import * as types from './../constants/ActionTypes';
 
 export const listAll = () => {

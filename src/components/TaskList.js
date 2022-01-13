@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
+import * as actions from './../actions/index';
 class TaskList extends Component {
     constructor(props) {
         super(props)
@@ -14,7 +15,12 @@ class TaskList extends Component {
         var target = event.target;
         var name = target.name;
         var value = target.value;
-        this.props.onFilter(name === 'filterName' ? value : this.state.filterName, name === 'filterStatus' ? value : this.state.filterStatus)
+        var filter = {
+            name: name === 'filterName' ? value : this.state.filterName,
+            status: name === 'filterStatus' ? value : this.state.filterStatus
+        }
+        this.props.onFilterTask(filter)
+        // this.props.onFilter(name === 'filterName' ? value : this.state.filterName, name === 'filterStatus' ? value : this.state.filterStatus)
         this.setState({
             [name]: value
         });
@@ -80,4 +86,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(TaskList);
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onFilterTask: (filter) => {
+            dispatch(actions.filterTask(filter))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
