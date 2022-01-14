@@ -644,7 +644,7 @@ class App extends Component {
                   </div>
               </ul>
 
-              <nav className="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark scrolling-navbar double-nav">
+              <nav className="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark scrolling-navbar double-nav top-nav-bar">
 
                   <div className="float-left">
                       <a data-activates="slide-out" className="button-collapse">

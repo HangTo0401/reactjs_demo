@@ -114,6 +114,10 @@ span {
   margin-left: 20px;
 }
 
+.form-control {
+  display: block !important;
+}
+
 .form-input {
   border: 1px solid rgb(248, 232, 201);
 }
@@ -154,6 +158,39 @@ span {
 
 button {
   cursor: pointer;
+}
+
+.btn {
+  text-transform: none !important;
+  font-weight: 600;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.top-nav-bar {
+  /* background-color: radial-gradien()#4285F4; */
 }
 
 @keyframes App-logo-spin {
