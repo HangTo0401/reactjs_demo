@@ -190,7 +190,17 @@ button {
 }
 
 .top-nav-bar {
-  /* background-color: radial-gradien()#4285F4; */
+  color: #000000;
+  font-weight: bolder;
+}
+
+.button-collapse {
+  color: white !important;
+}
+
+.fa-user,
+.nav-bar-text {
+  color: #000000 !important;
 }
 
 @keyframes App-logo-spin {

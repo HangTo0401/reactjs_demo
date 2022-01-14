@@ -664,7 +664,9 @@ class App extends Component {
                       <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle waves-effect waves-light" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                               aria-expanded="false">
-                              <i className="fa fa-user"></i> Tài Khoản</a>
+                              <i className="fa fa-user"></i>
+                                <span className='nav-bar-text'> Tài Khoản</span>
+                              </a>
                           <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                               <a className="dropdown-item waves-effect waves-light">Đăng Ký</a>
                               <a className="dropdown-item waves-effect waves-light">Đăng Nhập</a>
