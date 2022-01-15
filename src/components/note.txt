@@ -1,13 +1,13 @@
 App
-    Header 1
-    Products 2
-        Product 3
-        Product
-        Product
-    Message 4
-    Cart 5
-        CartItem 6
-        CartItem
-        CartItem
-        CartResult 7
-    Footer 8
+    ShoppingCartHeader 1
+    ShoppingCartProducts 2
+        ShoppingCartProduct 3
+        ShoppingCartProduct
+        ShoppingCartProduct
+    ShoppingCartMessage 4
+    ShoppingCart 5
+        ShoppingCartItem 6
+        ShoppingCartItem
+        ShoppingCartItem
+        ShoppingCartResult 7
+    ShoppingCartFooter 8
