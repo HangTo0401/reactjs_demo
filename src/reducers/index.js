@@ -5,6 +5,7 @@ import EditTaskReducer from './EditTaskReducer';
 import FilterTaskReducer from './FilterTaskReducer';
 import SearchTaskReducer from './SearchTaskReducer';
 import SortTaskReducer from './SortTaskReducer';
+import ShoppingCartProductsReducer from './ShoppingCartProductsReducer';
 
 const myReducer = combineReducers({
     TasksReducer, //TasksReducer: TasksReducer
@@ -12,7 +13,8 @@ const myReducer = combineReducers({
     EditTaskReducer, //EditTaskReducer: EditTaskReducer
     FilterTaskReducer, //FilterTaskReducer: FilterTaskReducer
     SearchTaskReducer, //SearchTaskReducer: SearchTaskReducer
-    SortTaskReducer //SortTaskReducer: SortTaskReducer
+    SortTaskReducer, //SortTaskReducer: SortTaskReducer
+    ShoppingCartProductsReducer //ShoppingCartProductsReducer: ShoppingCartProductsReducer
 });
 
 export default myReducer
