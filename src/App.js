@@ -20,6 +20,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import ShoppingCart from './components/ShoppingCart';
+import ProductsContainer from './container/ProductsContainer';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
@@ -473,7 +474,7 @@ class App extends Component {
             <ShoppingCartHeader/>
             <main id="mainContainer">
                 <div className="container">
-                  <ShoppingCartProducts/>
+                  <ProductsContainer/>
                   <ShoppingCartMessage/>
                   <ShoppingCart/>
                 </div>
