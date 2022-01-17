@@ -6,22 +6,33 @@ class ShoppingCartProducts extends Component {
         super(props)
     }
 
+    showProducts = (products) => {
+        var result = null
+        if (products.length > 0) {
+            result = products.map((product, index) => {
+                return <ShoppingCartProduct key={index}/>
+            })
+        }
+        return result
+    }
+
     render() {
+        var { products } = this.props
         return(
             <section className="section">
                 <h1 className="section-heading">Danh Sách Sản Phẩm</h1>
                 <div className="row">
-                    <ShoppingCartProduct/>
-                    <ShoppingCartProduct/>
-                    <ShoppingCartProduct/>
+                    { this.showProducts(products) }
                 </div>
             </section>
         );
     };
 }
 
-const mapStateToProps = () => {
-    return {}
+const mapStateToProps = (state) => {
+    return {
+        products: state.ShoppingCartProductsReducer
+    }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
