@@ -10,7 +10,7 @@ class ShoppingCartProducts extends Component {
         var result = null
         if (products.length > 0) {
             result = products.map((product, index) => {
-                return <ShoppingCartProduct key={index}/>
+                return <ShoppingCartProduct key={index} product={product}/>
             })
         }
         return result
