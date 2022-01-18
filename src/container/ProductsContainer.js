@@ -33,16 +33,16 @@ class ProductsContainer extends Component {
 
 // Typechecking With PropTypes
 ProductsContainer.propTypes = {
-    propTypes: PropTypes.arrayOf(
+    products: PropTypes.arrayOf(
         PropTypes.shape({
             // Check properties of product
-            id: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             image: PropTypes.string.isRequired,
             description: PropTypes.string.isRequired,
-            price: PropTypes.string.isRequired,
-            inventory: PropTypes.string.isRequired,
-            rating: PropTypes.string.isRequired
+            price: PropTypes.number.isRequired,
+            inventory: PropTypes.number.isRequired,
+            rating: PropTypes.number.isRequired
         })
     ).isRequired
 }
