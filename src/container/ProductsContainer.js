@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import ShoppingCartProducts from '../components/ShoppingCartProducts';
 import ShoppingCartProduct from '../components/ShoppingCartProduct';
-
+import PropTypes from 'prop-types';
 class ProductsContainer extends Component {
     /**This component will go on Store to get state and give them to product component **/
     constructor(props) {
@@ -29,6 +29,22 @@ class ProductsContainer extends Component {
             </div>
         );
     };
+}
+
+// Typechecking With PropTypes
+ProductsContainer.propTypes = {
+    propTypes: PropTypes.arrayOf(
+        PropTypes.shape({
+            // Check properties of product
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            price: PropTypes.string.isRequired,
+            inventory: PropTypes.string.isRequired,
+            rating: PropTypes.string.isRequired
+        })
+    ).isRequired
 }
 
 const mapStateToProps = (state) => {
