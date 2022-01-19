@@ -1,19 +1,37 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import ShoppingCartProducts from '../components/ShoppingCartProducts';
-import ShoppingCartProduct from '../components/ShoppingCartProduct';
 import PropTypes from 'prop-types';
+import ShoppingCart from '../components/ShoppingCart';
+import ShoppingCartItem from '../components/ShoppingCartItem';
+import * as Message from './../constants/Messages';
 class CartContainer extends Component {
     /**This component will go on Store to get state and give them to product component **/
     constructor(props) {
         super(props)
     }
 
+    showCartItems = (cart) => {
+        var result = Message.MSG_CART_EMPTY
+        if (cart.length > 0) {
+            result = cart.map((item, index) => {
+                return(
+                    <ShoppingCartItem 
+                        key={index}
+                        item={item}
+                        index={index}
+                    />
+                );
+            })
+        }
+        return result
+    }
+
     render() {
         var { cart } = this.props
-        console.log(cart)
         return(
-            <div></div>
+            <ShoppingCart>
+                { this.showCartItems(cart) }
+            </ShoppingCart>
         );
     };
 }
