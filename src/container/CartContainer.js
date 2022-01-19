@@ -10,20 +10,18 @@ class CartContainer extends Component {
     }
 
     render() {
+        var { cart } = this.props
+        console.log(cart)
         return(
-            <div>
-                <ShoppingCartProducts>
-                    { this.showProducts(products) }
-                </ShoppingCartProducts>
-            </div>
+            <div></div>
         );
     };
 }
 
 // Typechecking With PropTypes
 CartContainer.propTypes = {
-    cart: PropTypes.arrayOf(
-        PropTypes.shape({
+    cart: PropTypes.arrayOf(PropTypes.shape({
+        product: PropTypes.shape({
             // Check properties of product
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
@@ -32,7 +30,9 @@ CartContainer.propTypes = {
             price: PropTypes.number.isRequired,
             inventory: PropTypes.number.isRequired,
             rating: PropTypes.number.isRequired
-        })
+        }),
+        quantity: PropTypes.number.isRequired
+    })
     ).isRequired
 }
 
