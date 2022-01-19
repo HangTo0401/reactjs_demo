@@ -22,11 +22,9 @@ class ProductsContainer extends Component {
     render() {
         var { products } = this.props
         return(
-            <div>
-                <ShoppingCartProducts>
-                    { this.showProducts(products) }
-                </ShoppingCartProducts>
-            </div>
+            <ShoppingCartProducts>
+                { this.showProducts(products) }
+            </ShoppingCartProducts>
         );
     };
 }

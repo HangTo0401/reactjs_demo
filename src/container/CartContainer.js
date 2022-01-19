@@ -11,16 +11,10 @@ class CartContainer extends Component {
     }
 
     showCartItems = (cart) => {
-        var result = Message.MSG_CART_EMPTY
+        var result = null
         if (cart.length > 0) {
             result = cart.map((item, index) => {
-                return(
-                    <ShoppingCartItem 
-                        key={index}
-                        item={item}
-                        index={index}
-                    />
-                );
+                return <ShoppingCartItem key={index} item={item} index={index}/>
             })
         }
         return result

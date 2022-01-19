@@ -8,6 +8,7 @@ class ShoppingCart extends Component {
     }
 
     render() {
+        var { children } = this.props
         return(
             <div>
                 <section className="section">
@@ -24,9 +25,7 @@ class ShoppingCart extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <ShoppingCartItem/>
-                                <ShoppingCartItem/>
-                                <ShoppingCartItem/>
+                                { children }
                                 <ShoppingCartResult/>
                             </tbody>
                         </table>
