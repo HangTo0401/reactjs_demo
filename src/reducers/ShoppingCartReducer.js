@@ -8,7 +8,7 @@ var initialState = [
             name: 'Iphone 7 Plus',
             image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
             description: 'Sản phẩm do Apple sản xuất',
-            price: 12000000,
+            price: 120,
             inventory: 10,
             rating: 4
         },
@@ -20,7 +20,7 @@ var initialState = [
             name: 'Iphone 8',
             image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
             description: 'Sản phẩm do Apple sản xuất',
-            price: 15000000,
+            price: 150,
             inventory: 5,
             rating: 3
         },
@@ -32,7 +32,7 @@ var initialState = [
             name: 'Iphone 8 Plus',
             image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
             description: 'Sản phẩm do Apple sản xuất',
-            price: 17000000,
+            price: 170,
             inventory: 20,
             rating: 5
         },
@@ -44,7 +44,7 @@ var initialState = [
             name: 'Iphone X',
             image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
             description: 'Sản phẩm do Apple sản xuất',
-            price: 20000000,
+            price: 200,
             inventory: 20,
             rating: 5
         },

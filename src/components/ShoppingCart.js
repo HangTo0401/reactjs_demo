@@ -1,7 +1,5 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import ShoppingCartItem from './ShoppingCartItem';
-import ShoppingCartResult from './ShoppingCartResult';
 class ShoppingCart extends Component {
     constructor(props) {
         super(props)
@@ -26,7 +24,6 @@ class ShoppingCart extends Component {
                             </thead>
                             <tbody>
                                 { children }
-                                <ShoppingCartResult/>
                             </tbody>
                         </table>
                     </div>

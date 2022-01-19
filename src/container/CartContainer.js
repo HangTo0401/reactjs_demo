@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ShoppingCart from '../components/ShoppingCart';
 import ShoppingCartItem from '../components/ShoppingCartItem';
+import ShoppingCartResult from '../components/ShoppingCartResult';
 import * as Message from './../constants/Messages';
 class CartContainer extends Component {
     /**This component will go on Store to get state and give them to product component **/
@@ -20,11 +21,20 @@ class CartContainer extends Component {
         return result
     }
 
+    showTotalAmount = (cart) => {
+        var result = null
+        if (cart.length > 0) {
+            result = <ShoppingCartResult cart={cart}/>
+        }
+        return result
+    }
+
     render() {
         var { cart } = this.props
         return(
             <ShoppingCart>
                 { this.showCartItems(cart) }
+                { this.showTotalAmount(cart) }
             </ShoppingCart>
         );
     };
