@@ -24,7 +24,7 @@ var initialState = [
             inventory: 5,
             rating: 3
         },
-        quantity: 5
+        quantity: 2
     },
     {
         product: {
@@ -36,7 +36,19 @@ var initialState = [
             inventory: 20,
             rating: 5
         },
-        quantity: 5
+        quantity: 3
+    },
+    {
+        product: {
+            id: 4,
+            name: 'Iphone X',
+            image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
+            description: 'Sản phẩm do Apple sản xuất',
+            price: 20000000,
+            inventory: 20,
+            rating: 5
+        },
+        quantity: 6
     },
 ]
 
