@@ -55,6 +55,7 @@ var initialState = [
 var ShoppingCartReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ADD_TO_CART:
+            console.log(action)
             return [...state] 
         default: return [...state]
     }
