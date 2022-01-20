@@ -7,11 +7,12 @@ class ShoppingCartItem extends Component {
     }
 
     showSubTotal = (price, qty) => {
-        return price*qty
+        return price * qty
     }
 
     render() {
         var { item } = this.props
+        var { quantity } = item;
         return(
             <tr>
                 <th scope="row">
@@ -25,7 +26,7 @@ class ShoppingCartItem extends Component {
                 </td>
                 <td>{ item.product.price }$</td>
                 <td className="center-on-small-only">
-                    <span className="qty">{ item.quantity }</span>
+                    <span className="qty">{ quantity }</span>
                     <div className="btn-group radio-group" data-toggle="buttons">
                         <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>—</a>
@@ -47,12 +48,4 @@ class ShoppingCartItem extends Component {
     };
 }
 
-const mapStateToProps = () => {
-    return {}
-}
-
-const mapDispatchToProps = (dispatch, props) => {
-    return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartItem)
+export default ShoppingCartItem
