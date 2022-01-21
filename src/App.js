@@ -11,17 +11,12 @@ import Sort from './components/Sort';
 import TaskList from './components/TaskList';
 import ShoppingCartHeader from './components/ShoppingCartHeader';
 import ShoppingCartFooter from './components/ShoppingCartFooter';
-import ShoppingCartItem from './components/ShoppingCartItem';
-import ShoppingCartMessage from './components/ShoppingCartMessage';
-import ShoppingCartProducts from './components/ShoppingCartProducts';
-import ShoppingCartProduct from './components/ShoppingCartProduct';
-import ShoppingCartResult from './components/ShoppingCartResult';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
-import ShoppingCart from './components/ShoppingCart';
 import ProductsContainer from './container/ProductsContainer';
 import CartContainer from './container/CartContainer';
+import MessageContainer from './container/MessageContainer';
 class App extends Component {
 
   // This function is called when component is rendered once only after we refresh page
@@ -476,7 +471,7 @@ class App extends Component {
             <main id="mainContainer">
                 <div className="container">
                   <ProductsContainer/>
-                  <ShoppingCartMessage/>
+                  <MessageContainer/>
                   <CartContainer/>
                 </div>
             </main>
