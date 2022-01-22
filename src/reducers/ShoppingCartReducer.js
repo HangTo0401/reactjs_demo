@@ -54,7 +54,7 @@ var initialState = [
 
 var ShoppingCartReducer = (state = initialState, action) => {
     var { product, quantity } = action
-    var index = -1
+    var index = -1 // Not found => index = -1
     switch(action.type) {
         case types.ADD_TO_CART:
             index = findProductInCart(state, product)
@@ -67,6 +67,13 @@ var ShoppingCartReducer = (state = initialState, action) => {
                 })
             }
 
+            localStorage.setItem('cart', JSON.stringify(state))
+            return [...state]
+        case types.DELETE_PRODUCT_IN_CART:
+            index = findProductInCart(state, product)
+            if (index !== -1) {
+                state.splice(index, 1)
+            }
             localStorage.setItem('cart', JSON.stringify(state))
             return [...state]
         default: return [...state]

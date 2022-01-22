@@ -94,3 +94,10 @@ export const changeMessage = (message) => {
         message, // message: message
     }
 }
+
+export const removeProductInCart = (product) => {
+    return {
+        type: types.DELETE_PRODUCT_IN_CART,
+        product, // product: product
+    }
+}
