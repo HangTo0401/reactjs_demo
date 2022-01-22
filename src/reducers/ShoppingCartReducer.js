@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
 var data = JSON.parse(localStorage.getItem('cart'));
-var initialState = [
+var initialState = data ? data : [
     {
         product: {
             id: 1,
@@ -73,6 +73,13 @@ var ShoppingCartReducer = (state = initialState, action) => {
             index = findProductInCart(state, product)
             if (index !== -1) {
                 state.splice(index, 1)
+            }
+            localStorage.setItem('cart', JSON.stringify(state))
+            return [...state]
+        case types.UPDATE_PRODUCT_IN_CART:
+            index = findProductInCart(state, product)
+            if (index !== -1) {
+                state[index].quantity = quantity
             }
             localStorage.setItem('cart', JSON.stringify(state))
             return [...state]

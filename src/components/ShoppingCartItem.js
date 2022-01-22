@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import * as messages from '../constants/Messages';
 class ShoppingCartItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            quantity: 1
+        }
     }
 
     showSubTotal = (price, qty) => {
@@ -15,9 +18,19 @@ class ShoppingCartItem extends Component {
         this.props.onChangeMessage(messages.MSG_DELETE_PRODUCT_IN_CART_SUCCESS)
     }
 
+    onUpdateQuantity = (product, quantity) => {
+        if (quantity > 0) {
+            this.setState({
+                quantity: quantity
+            })
+            this.props.onUpdateProductInCart(product, quantity)
+        }
+    }
+
     render() {
         var { item } = this.props
-        var { quantity } = item;
+        console.log(item.quantity)
+        var { quantity } = item.quantity > 0 ? item : this.state;
         return(
             <tr>
                 <th scope="row">
@@ -33,10 +46,12 @@ class ShoppingCartItem extends Component {
                 <td className="center-on-small-only">
                     <span className="qty">{ quantity }</span>
                     <div className="btn-group radio-group" data-toggle="buttons">
-                        <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+                        <label onClick={() => this.onUpdateQuantity(item.product, quantity - 1)}
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>—</a>
                         </label>
-                        <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+                        <label onClick={() => this.onUpdateQuantity(item.product, quantity + 1)}
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>+</a>
                         </label>
                     </div>
