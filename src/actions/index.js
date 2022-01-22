@@ -87,3 +87,10 @@ export const addToCart = (product, quantity) => {
         quantity // quantity: quantity
     }
 }
+
+export const changeMessage = (message) => {
+    return {
+        type: types.CHANGE_MESSAGE,
+        message, // message: message
+    }
+}
