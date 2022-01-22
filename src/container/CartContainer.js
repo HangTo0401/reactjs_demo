@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as actions from './../actions/index';
 import ShoppingCart from '../components/ShoppingCart';
 import ShoppingCartItem from '../components/ShoppingCartItem';
 import ShoppingCartResult from '../components/ShoppingCartResult';
@@ -12,10 +13,15 @@ class CartContainer extends Component {
     }
 
     showCartItems = (cart) => {
-        var result = null
+        var result = <tr>{Message.MSG_CART_EMPTY}</tr>
+        var { onDeleteProductInCart } = this.props
         if (cart.length > 0) {
             result = cart.map((item, index) => {
-                return <ShoppingCartItem key={index} item={item} index={index}/>
+                return <ShoppingCartItem 
+                            key={index} 
+                            item={item} 
+                            index={index}
+                            onDeleteProductInCart={onDeleteProductInCart}/>
             })
         }
         return result
@@ -65,7 +71,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    return {}
+    return {
+        onDeleteProductInCart: (product) => {
+            dispatch(actions.removeProductInCart(product))
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer)

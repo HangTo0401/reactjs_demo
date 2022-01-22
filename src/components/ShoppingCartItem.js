@@ -10,6 +10,11 @@ class ShoppingCartItem extends Component {
         return price * qty
     }
 
+    onDeleteProductInCart = (product) => {
+        console.log(product)
+        this.props.onDeleteProductInCart(product)
+    }
+
     render() {
         var { item } = this.props
         var { quantity } = item;
@@ -39,7 +44,7 @@ class ShoppingCartItem extends Component {
                 <td>{ this.showSubTotal(item.product.price, item.quantity) }$</td>
                 <td>
                     <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top"
-                        title="" data-original-title="Remove item">
+                        title="" data-original-title="Remove item" onClick={() => this.onDeleteProductInCart(item.product) }>
                         X
                     </button>
                 </td>
