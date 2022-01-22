@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-
+import * as messages from '../constants/Messages';
 class ShoppingCartItem extends Component {
     constructor(props) {
         super(props)
@@ -12,6 +12,7 @@ class ShoppingCartItem extends Component {
 
     onDeleteProductInCart = (product) => {
         this.props.onDeleteProductInCart(product)
+        this.props.onChangeMessage(messages.MSG_DELETE_PRODUCT_IN_CART_SUCCESS)
     }
 
     render() {
