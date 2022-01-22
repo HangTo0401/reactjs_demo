@@ -11,7 +11,6 @@ class ShoppingCartItem extends Component {
     }
 
     onDeleteProductInCart = (product) => {
-        console.log(product)
         this.props.onDeleteProductInCart(product)
     }
 
