@@ -101,3 +101,11 @@ export const removeProductInCart = (product) => {
         product, // product: product
     }
 }
+
+export const updateProductInCart = (product, quantity) => {
+    return {
+        type: types.UPDATE_PRODUCT_IN_CART,
+        product, // product: product
+        quantity // quantity: quantity
+    }
+}
