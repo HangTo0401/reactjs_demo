@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import * as messages from '../constants/Messages';
 class ShoppingCartItem extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            quantity: 1
-        }
+        super(props)
     }
 
     showSubTotal = (price, qty) => {
@@ -24,13 +21,13 @@ class ShoppingCartItem extends Component {
                 quantity: quantity
             })
             this.props.onUpdateProductInCart(product, quantity)
+            this.props.onChangeMessage(messages.MSG_UPDATE_CART_SUCCESS)
         }
     }
 
     render() {
         var { item } = this.props
-        console.log(item.quantity)
-        var { quantity } = item.quantity > 0 ? item : this.state;
+        var { quantity } = item;
         return(
             <tr>
                 <th scope="row">
