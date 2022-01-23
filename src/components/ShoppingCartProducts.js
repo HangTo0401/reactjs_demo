@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import ShoppingCartProduct from './ShoppingCartProduct';
 class ShoppingCartProducts extends Component {
     constructor(props) {
         super(props)
