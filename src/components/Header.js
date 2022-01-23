@@ -1,38 +1,48 @@
 import React, { Component } from 'react'
-import {NavBar, Nav, NavItem} from 'react-bootstrap'
+import { Nav, NavItem } from 'react-bootstrap'
 import styled from 'styled-components';
-
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Routes
+} from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
 export class Header extends Component {
     constructor() {
         super();
         this.refName = React.createRef();
     }
 
-    onAddProduct(params) {
-        
-    }
-
     render() {
         return (
             <StyledHeader>
-                <div className='container-fluid'>
-                    <div className='row'>
-                        <div className='col-md-2'>
-                            <Nav className='navbar navbar-inverse'>
-                                <NavItem className='nav navbar-nav active'>
-                                    Props
-                                </NavItem>
-                                <NavItem className='nav navbar-nav active'>
-                                    Home
-                                </NavItem>
-                                <NavItem className='nav navbar-nav'>
-                                    Menu
-                                </NavItem>
-                            </Nav>
+                <Router>
+                    <div className='container-fluid'>
+                        <div className='row'>
+                            <div className='col-md-2'>
+                                <Nav className='navbar navbar-inverse'>
+                                    <NavItem className='nav navbar-nav active'>
+                                        <Link to="/">Home</Link>
+                                    </NavItem>
+                                    <NavItem className='nav navbar-nav'>
+                                        <Link to="/about">About</Link>  
+                                    </NavItem>
+                                    <NavItem className='nav navbar-nav active'>
+                                        <Link to="/contact">Contact</Link>
+                                    </NavItem>
+                                </Nav>
+                            </div>
                         </div>
-
                     </div>
-                </div>
+                    <Routes>
+                        <Route path='/' element={<Home/>}/>
+                        <Route path='/about' element={<About/>}/>
+                        <Route path='/contact' element={<Contact/>}/>
+                    </Routes>
+                </Router>
             </StyledHeader>
         )
     }
