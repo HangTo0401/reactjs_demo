@@ -203,6 +203,17 @@ button {
   color: #000000 !important;
 }
 
+a {
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: darkturquoise;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
