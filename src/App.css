@@ -211,7 +211,8 @@ a {
 }
 
 a:hover {
-  color: darkturquoise;
+  background-color: #007bff;
+  color: white;
 }
 
 @keyframes App-logo-spin {
