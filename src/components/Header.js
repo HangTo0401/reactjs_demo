@@ -10,6 +10,14 @@ import {
 import Home from './Home';
 import About from './About';
 import Contact from './Contact';
+
+const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
+    return(
+        <NavItem>
+            <NavLink to={to} className='nav-link' exact={activeOnlyWhenExact}>{label}</NavLink>
+        </NavItem>
+    );
+}
 export class Header extends Component {
     constructor() {
         super();
@@ -22,16 +30,10 @@ export class Header extends Component {
                 <Router>
                     <div className='container-fluid'>
                         <div className='row'>
-                            <Nav className='navbar navbar-inverse'>
-                                <NavItem>
-                                    <NavLink exact='true' to='/' className='nav-link' activestyle={{ backgroundColor: 'white', color: 'red' }}>Home</NavLink>
-                                </NavItem>
-                                <NavItem >
-                                    <NavLink to='/about' className='nav-link' activestyle={{ backgroundColor: 'white', color: 'red' }}>About</NavLink>  
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink to='/contact' className='nav-link' activestyle={{ backgroundColor: 'white', color: 'red' }}>Contact</NavLink>
-                                </NavItem>
+                            <Nav className='navbar-default'>
+                                <MenuLink label='Home' to='/' activeOnlyWhenExact={true}></MenuLink>
+                                <MenuLink label='About' to='/about' activeOnlyWhenExact={true}></MenuLink>
+                                <MenuLink label='Contact' to='/contact' activeOnlyWhenExact={true}></MenuLink>
                             </Nav>
                         </div>
                     </div>
