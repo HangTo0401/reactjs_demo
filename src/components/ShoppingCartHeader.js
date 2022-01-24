@@ -223,7 +223,6 @@ class ShoppingCartHeader extends Component {
                 </header>
             </div>
         );
-
     };
 }
 
