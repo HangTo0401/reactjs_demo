@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
 import styled from 'styled-components';
 import {
     BrowserRouter as Router,
     Route,
-    NavLink,
     Routes
 } from 'react-router-dom';
+import Menu from './Menu';
 import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 import NotFound from './NotFound';
-
-const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
-    var active = 'active';
-    return(
-        <NavItem>
-            <NavLink to={to} className={`nav-link ${active}`} exact={activeOnlyWhenExact}>{label}</NavLink>
-        </NavItem>
-    );
-}
 export class Header extends Component {
     constructor() {
         super();
@@ -30,15 +20,7 @@ export class Header extends Component {
         return (
             <StyledHeader>
                 <Router>
-                    <div className='container-fluid'>
-                        <div className='row'>
-                            <Nav className='navbar-default'>
-                                <MenuLink label='Home' to='/' activeOnlyWhenExact={true}></MenuLink>
-                                <MenuLink label='About' to='/about' activeOnlyWhenExact={true}></MenuLink>
-                                <MenuLink label='Contact' to='/contact' activeOnlyWhenExact={true}></MenuLink>
-                            </Nav>
-                        </div>
-                    </div>
+                    <Menu/>
                     <Routes>
                         <Route path='/' element={<Home/>}/>
                         <Route path='/about' element={<About/>}/>
