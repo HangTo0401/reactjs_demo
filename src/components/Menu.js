@@ -52,9 +52,6 @@ class Menu extends Component {
             <div className='row'>
                 <Nav className='navbar-default'>
                     { this.showMenus(menus) }
-                    {/* <MenuLink label='Home' to='/' activeOnlyWhenExact={true}></MenuLink>
-                    <MenuLink label='About' to='/about' activeOnlyWhenExact={true}></MenuLink>
-                    <MenuLink label='Contact' to='/contact' activeOnlyWhenExact={true}></MenuLink> */}
                 </Nav>
             </div>
             </div>

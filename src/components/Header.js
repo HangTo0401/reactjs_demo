@@ -6,14 +6,27 @@ import {
     Routes
 } from 'react-router-dom';
 import Menu from './Menu';
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
-import NotFound from './NotFound';
+import routes from './../routes';
 export class Header extends Component {
     constructor() {
         super();
         this.refName = React.createRef();
+    }
+
+    showMenusContent = (routes) => {
+        var result = null
+        if (routes.length > 0) {
+            result = routes.map((route, index) => {
+                return(
+                    <Route 
+                        key={index} 
+                        path={route.path}
+                        exact={route.exact}
+                        element={route.element}/>
+                );
+            })
+        }
+        return result
     }
 
     render() {
@@ -22,10 +35,7 @@ export class Header extends Component {
                 <Router>
                     <Menu/>
                     <Routes>
-                        <Route path='/' element={<Home/>}/>
-                        <Route path='/about' element={<About/>}/>
-                        <Route path='/contact' element={<Contact/>}/>
-                        <Route path='*' element={<NotFound/>}/>
+                        { this.showMenusContent(routes) }
                     </Routes>
                 </Router>
             </StyledHeader>
