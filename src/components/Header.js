@@ -12,9 +12,10 @@ import About from './About';
 import Contact from './Contact';
 
 const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
+    var active = 'active';
     return(
         <NavItem>
-            <NavLink to={to} className='nav-link' exact={activeOnlyWhenExact}>{label}</NavLink>
+            <NavLink to={to} className={`nav-link ${active}`} exact={activeOnlyWhenExact}>{label}</NavLink>
         </NavItem>
     );
 }

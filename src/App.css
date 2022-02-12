@@ -70,6 +70,10 @@ span {
   border: 3px solid black;
 }
 
+.active {
+  border: 1px dashed rgb(250, 250, 176);
+}
+
 .mt-30 {
   margin-top: 30px;
 }
