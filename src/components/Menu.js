@@ -6,17 +6,22 @@ const menus = [
     {
         name: 'Home',
         to: '/',
-        exact: true
+        exact: 'true'
     },
     {
         name: 'About',
         to: '/about',
-        exact: true
+        exact: 'true'
     },
     {
         name: 'Contact',
         to: '/contact',
-        exact: true
+        exact: 'true'
+    },
+    {
+        name: 'Product',
+        to: '/products',
+        exact: 'false'
     }
 ]
 

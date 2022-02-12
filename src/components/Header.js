@@ -19,7 +19,7 @@ export class Header extends Component {
             result = routes.map((route, index) => {
                 return(
                     <Route 
-                        key={index} 
+                        key={index}
                         path={route.path}
                         exact={route.exact}
                         element={route.element}/>
