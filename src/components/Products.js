@@ -1,53 +1,59 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import ProductItem from './ProductItem'
+import { useLocation } from 'react-router-dom';
 
-class Products extends Component {
-    
-    render() {
-        var products = [
-            {
-                id: 1,
-                name: 'Iphone X',
-                price: 350
-            },
-            {
-                id: 2,
-                name: 'Iphone 8 Plus',
-                price: 450
-            },
-            {
-                id: 3,
-                name: 'Iphone 12 Pro max',
-                price: 600
-            }
-        ]
+export default function Products() {
+    const location = useLocation();
 
-        if (products.length > 0) {
-            var match = this.props
-            console.log(match)
-            var result = products.map((product, index) => {
-                return (
-                    <NavLink to='' key={index}>
-                        <li>
-                            { product.id } - { product.name } - { product.price }
-                        </li>
-                    </NavLink>
-
-                )
-            });
+    var products = [
+        {
+            id: 1,
+            slug: 'IphoneX',
+            name: 'Iphone X',
+            price: 350
+        },
+        {
+            id: 2,
+            slug: 'Iphone8',
+            name: 'Iphone 8 Plus',
+            price: 450
+        },
+        {
+            id: 3,
+            slug: 'Iphone12',
+            name: 'Iphone 12 Pro max',
+            price: 600
         }
+    ]
 
-        return (
-            <div className='container'>
-                <h2>Danh sách sản phẩm</h2>
-                <div className='row'>
-                    <ul className='list-group'>
-                        { result }
-                    </ul>
-                </div>
+    if (products.length > 0) {
+        var result = products.map((product, index) => {
+            return (
+                <NavLink to={`${location.pathname}/${product.slug}`} key={index}>
+                    <li>
+                        { product.id } - { product.name } - { product.price }
+                    </li>
+                </NavLink>
+            )
+        });
+    }
+
+    return (
+        <div className='container'>
+            <h2>Danh sách sản phẩm</h2>
+            <div className='row'>
+                <ul className='list-group'>
+                    { result }
+                </ul>
             </div>
-        );
-    };
-}
 
-export default Products
+            <div className='row'>
+                <Routes>
+                    <Route path='/products/1' exact='false' element={<ProductItem/>}/>
+                </Routes>
+            </div>
+        </div>
+    );
+}
