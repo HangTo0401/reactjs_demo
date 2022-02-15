@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import {
     BrowserRouter as Router,
     Route,
     Routes
-} from 'react-router-dom';
-import Menu from './Menu';
-import routes from './../routes';
+} from 'react-router-dom'
+import Menu from './Menu'
+import routes from './../routes'
+import ProductItem from './ProductItem'
 export class Header extends Component {
     constructor() {
         super();
@@ -18,7 +19,7 @@ export class Header extends Component {
         if (routes.length > 0) {
             result = routes.map((route, index) => {
                 return(
-                    <Route 
+                    <Route
                         key={index}
                         path={route.path}
                         exact={route.exact}
