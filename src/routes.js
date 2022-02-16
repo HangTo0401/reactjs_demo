@@ -4,6 +4,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Products from './components/Products';
 import NotFound from './components/NotFound';
+import ProductItem from './components/ProductItem';
 
 const routes = [
     {
@@ -27,7 +28,12 @@ const routes = [
         element: <Products/>
     },
     {
-        path: '*',
+        path: '/products/:slug',
+        exact: 'false',
+        element: <ProductItem/>
+    },
+    {
+        path: '/*',
         exact: 'false',
         element: <NotFound/>
     },
