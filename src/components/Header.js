@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom'
 import Menu from './Menu'
 import routes from './../routes'
-import ProductItem from './ProductItem'
 export class Header extends Component {
     constructor() {
         super();
