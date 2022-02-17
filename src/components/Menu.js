@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -21,6 +21,11 @@ const menus = [
     {
         name: 'Product',
         to: '/products',
+        exact: 'false'
+    },
+    {
+        name: 'Login',
+        to: '/login',
         exact: 'false'
     }
 ]
