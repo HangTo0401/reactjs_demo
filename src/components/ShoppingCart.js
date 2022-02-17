@@ -9,9 +9,9 @@ class ShoppingCart extends Component {
         var { children } = this.props
         return(
             <div>
-                <section className="section">
-                    <div className="table-responsive">
-                        <table className="table product-table">
+                <section className='section'>
+                    <div className='table-responsive'>
+                        <table className='table product-table'>
                             <thead>
                                 <tr>
                                     <th></th>

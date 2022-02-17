@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 class Result extends Component {
     constructor(props) {
@@ -14,9 +14,9 @@ class Result extends Component {
 
     render() {
         return(
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                 <p>Color : { this.props.color } - Font size : { this.props.fontSize}</p>
-                <div id="content" style = { this.setStyle() }>
+                <div id='content' style = { this.setStyle() }>
                     Setting content
                 </div>
             </div>
