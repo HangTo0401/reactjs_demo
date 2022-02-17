@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from './components/Home';
+import Login from './components/Login';
 import About from './components/About';
 import Contact from './components/Contact';
 import Products from './components/Products';
@@ -31,6 +32,11 @@ const routes = [
         path: '/products/:slug',
         exact: 'false',
         element: <ProductItem/>
+    },
+    {
+        path: '/login',
+        exact: 'false',
+        element: <Login/>
     },
     {
         path: '/*',
