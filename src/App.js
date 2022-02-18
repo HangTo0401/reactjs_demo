@@ -5,9 +5,11 @@ import SizeSetting from './components/SizeSetting';
 import Reset from './components/Reset';
 import Result from './components/Result';
 import Header from './components/Header';
+import Menu from './components/Menu/Menu';
 import TaskForm from './components/TaskForm';
 import Search from './components/Search';
 import Sort from './components/Sort';
+import ProductTable from './components/ProductTable';
 import TaskList from './components/TaskList';
 import ShoppingCartHeader from './components/ShoppingCartHeader';
 import ShoppingCartFooter from './components/ShoppingCartFooter';
@@ -331,6 +333,7 @@ class App extends Component {
     return (
       <div className='App'>
           <Header/>
+          <Menu/>
           <div className='container-fluid'>
             <div className='row'>
             <div className='panel panel-danger'>
@@ -467,7 +470,7 @@ class App extends Component {
             <div className='row'>
               <h3 className='panel-title'>Shopping Card Project</h3>
             </div>
-            <ShoppingCartHeader/>
+            {/* <ShoppingCartHeader/> */}
             <main id="mainContainer">
                 <div className="container">
                   <ProductsContainer/>
@@ -477,6 +480,7 @@ class App extends Component {
             </main>
             <ShoppingCartFooter/>
           </div>
+          <ProductTable/>
       </div>
     );
   }
