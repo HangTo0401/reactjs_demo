@@ -59,11 +59,11 @@ class Menu extends Component {
     render() {
         return(
             <div className='container-fluid'>
-            <div className='row'>
-                <Nav className='navbar-default'>
-                    { this.showMenus(menus) }
-                </Nav>
-            </div>
+                <div className='row'>
+                    <Nav className='navbar-default'>
+                        { this.showMenus(menus) }
+                    </Nav>
+                </div>
             </div>
         )
     }
