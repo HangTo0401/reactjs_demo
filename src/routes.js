@@ -6,6 +6,8 @@ import Contact from './components/Contact';
 import Products from './components/Products';
 import NotFound from './components/NotFound';
 import ProductItem from './components/ProductItem';
+import ProductActionPage from './components/ProductActionPage/ProductActionPage';
+import ProductListPage from './components/ProductListPage/ProductListPage';
 
 const routes = [
     {
@@ -27,6 +29,16 @@ const routes = [
         path: '/products',
         exact: 'false',
         element: <Products/>
+    },
+    {
+        path: '/product-list',
+        exact: 'false',
+        element: <ProductListPage/>
+    },
+    {
+        path: '/product/add',
+        exact: 'false',
+        element: <ProductActionPage/>
     },
     {
         path: '/products/:slug',
