@@ -5,7 +5,9 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Products from './components/Products';
 import NotFound from './components/NotFound';
+import HomePage from './components/pages/HomePage';
 import ProductItem from './components/ProductItem';
+import NotFoundPage from './components/pages/NotFoundPage';
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 import ProductListPage from './components/ProductListPage/ProductListPage';
 
@@ -14,6 +16,11 @@ const routes = [
         path: '/',
         exact: 'true',
         element: <Home/>
+    },
+    {
+        path: '/homepage',
+        exact: 'false',
+        element: <HomePage/>
     },
     {
         path: '/about',
@@ -49,6 +56,11 @@ const routes = [
         path: '/login',
         exact: 'false',
         element: <Login/>
+    },
+    {
+        path: '/notfoundpage',
+        exact: 'false',
+        element: <NotFoundPage/>
     },
     {
         path: '/*',
