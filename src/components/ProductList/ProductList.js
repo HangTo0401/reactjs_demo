@@ -23,7 +23,6 @@ class ProductList extends Component {
                             {this.props.children}
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
         )
