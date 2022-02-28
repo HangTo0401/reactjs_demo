@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProductItem from '../ProductItem/ProductItem';
 import ProductList from './../ProductList/ProductList'
 import { connect } from 'react-redux';
-import axios from 'axios';
+import callApi from './../../utils/apiCaller';
 class ProductListPage extends Component {
     constructor(props) {
         super(props);
@@ -12,12 +12,7 @@ class ProductListPage extends Component {
     }
 
     componentDidMount() {
-        return axios({
-            method: 'get',
-            url: 'http://localhost:3000/products',
-            data: null
-        })
-        .then(res => {
+        callApi('get', 'products', null).then(res => {
             if (res.status === 200) {
                 this.setState({
                     products: res.data
