@@ -24,6 +24,11 @@ const menus = [
         exact: 'false'
     },
     {
+        name: 'ProductList',
+        to: '/product-list',
+        exact: 'false'
+    },
+    {
         name: 'ProductAction',
         to: '/product/add',
         exact: 'false'

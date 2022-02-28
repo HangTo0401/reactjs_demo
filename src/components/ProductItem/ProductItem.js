@@ -4,7 +4,7 @@ class ProductItem extends Component {
         var { product, index } = this.props
         var statusName = product.status === true ? 'Còn hàng' : 'Hết hàng'
         var statusClass = product.status ? 'badge-warning' : 'badge-default'
-        console.log(statusName)
+        
         return(
             <tr>
                 <td>{index + 1}</td>

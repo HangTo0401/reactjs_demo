@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import callApi from '../../utils/apiCaller';
+import { useNavigate, Link } from 'react-router-dom';
 class ProductActionPage extends Component {
     constructor(props) {
         super(props)
@@ -23,14 +24,14 @@ class ProductActionPage extends Component {
     onSave = (e) => {
         // Chặn load lại trang
         e.preventDefault();
-        var { txtName, txtPrice, checkStatus } = this.state;
+        var { txtName, txtPrice, checkStatus } = this.state
 
         callApi('POST', 'products', {
             name: txtName,
             price: txtPrice,
             status: checkStatus
         }).then(res => {
-            console.log(res)
+            this.props.navigate('/homepage')
         });
     }
 
@@ -54,6 +55,7 @@ class ProductActionPage extends Component {
                             <label className='form-check-label' htmlFor='flexCheckChecked'>Còn hàng</label>
                         </div>
                     </div>
+                    <Link to='/product-list' className='btn btn-warning'>Quay lại</Link>
                     <button type='submit' className='btn btn-primary'>Lưu lại</button>
                 </form>
             </div>
@@ -61,4 +63,9 @@ class ProductActionPage extends Component {
     }
 }
 
-export default ProductActionPage
+function WithNavigate(props) {
+    let navigate = useNavigate();
+    return <ProductActionPage {...props} navigate={navigate} />
+}
+
+export default WithNavigate

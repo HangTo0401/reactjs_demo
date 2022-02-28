@@ -9,7 +9,6 @@ import Menu from './components/Menu/Menu';
 import TaskForm from './components/TaskForm';
 import Search from './components/Search';
 import Sort from './components/Sort';
-import ProductListPage from './components/ProductListPage/ProductListPage';
 import TaskList from './components/TaskList';
 import ShoppingCartHeader from './components/ShoppingCartHeader';
 import ShoppingCartFooter from './components/ShoppingCartFooter';
@@ -480,7 +479,6 @@ class App extends Component {
             </main>
             <ShoppingCartFooter/>
           </div>
-          <ProductListPage/>
       </div>
     );
   }
