@@ -332,7 +332,6 @@ class App extends Component {
     return (
       <div className='App'>
           <Header/>
-          <Menu/>
           <div className='container-fluid'>
             <div className='row'>
             <div className='panel panel-danger'>

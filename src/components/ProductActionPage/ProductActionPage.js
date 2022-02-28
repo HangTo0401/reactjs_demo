@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import callApi from '../../utils/apiCaller';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+ 
+ // toast-configuration method,
+ // it is compulsory method.
+toast.configure()
 class ProductActionPage extends Component {
     constructor(props) {
         super(props)
@@ -31,7 +37,10 @@ class ProductActionPage extends Component {
             price: txtPrice,
             status: checkStatus
         }).then(res => {
-            this.props.navigate('/homepage')
+            if (res.status === 201) {
+                toast('Add new product successfully!')
+                this.props.navigate('/homepage')
+            }
         });
     }
 

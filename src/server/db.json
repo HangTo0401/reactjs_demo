@@ -13,28 +13,34 @@
       "status": true
     },
     {
-      "name": "Iphone 5",
-      "price": "22222",
-      "checkStatus": true,
+      "name": "Iphone 8 Plus",
+      "price": "12222",
+      "status": true,
       "id": 3
     },
     {
-      "name": "Iphone 7",
-      "price": "600",
-      "checkStatus": true,
+      "name": "Iphone 8 Plus",
+      "price": "12222",
+      "status": true,
       "id": 4
     },
     {
-      "name": "Iphone X",
-      "price": "900",
-      "checkStatus": true,
+      "name": "Iphone 8 Plus",
+      "price": "12222",
+      "status": true,
       "id": 5
     },
     {
-      "name": "Iphone 8 Plus",
-      "price": "10000",
+      "name": "Iphone X",
+      "price": "12223",
       "status": true,
       "id": 6
+    },
+    {
+      "name": "Iphone 8 Plus",
+      "price": "122121",
+      "status": true,
+      "id": 7
     }
   ]
 }
