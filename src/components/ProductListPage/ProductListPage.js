@@ -12,7 +12,7 @@ class ProductListPage extends Component {
     }
 
     componentDidMount() {
-        callApi('get', 'products', null).then(res => {
+        callApi('GET', 'products', null).then(res => {
             if (res.status === 200) {
                 this.setState({
                     products: res.data

@@ -219,6 +219,10 @@ a:hover {
   color: white;
 }
 
+input.form-control {
+  color: white !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,16 +1,40 @@
 {
-    "products": [
-        { 
-            "id": 1,
-            "name": "Iphone 6",
-            "price": 500,
-            "status": true
-        },
-        { 
-            "id": 2,
-            "name": "Iphone X",
-            "price": 700,
-            "status": true
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "Iphone 6",
+      "price": 500,
+      "status": true
+    },
+    {
+      "id": 2,
+      "name": "Iphone X",
+      "price": 700,
+      "status": true
+    },
+    {
+      "name": "Iphone 5",
+      "price": "22222",
+      "checkStatus": true,
+      "id": 3
+    },
+    {
+      "name": "Iphone 7",
+      "price": "600",
+      "checkStatus": true,
+      "id": 4
+    },
+    {
+      "name": "Iphone X",
+      "price": "900",
+      "checkStatus": true,
+      "id": 5
+    },
+    {
+      "name": "Iphone 8 Plus",
+      "price": "10000",
+      "status": true,
+      "id": 6
+    }
+  ]
 }
