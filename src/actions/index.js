@@ -118,7 +118,7 @@ export const fetchProducts = (products) => {
     }
 }
 
-// Create action to call api and dispatch this action
+// Create action to fetch data from api and dispatch this action
 export const fetchProductsCallApi = () => {
     return (dispatch) => {
         return callApi('GET', `products`, null).then((res) => {
