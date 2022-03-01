@@ -1,4 +1,5 @@
 import * as types from './../constants/ActionTypes';
+import callApi from './../utils/apiCaller';
 
 export const listAll = () => {
     return {
@@ -114,5 +115,14 @@ export const fetchProducts = (products) => {
     return {
         type: types.FETCH_PRODUCTS,
         products // products: products
+    }
+}
+
+// Create action to call api and dispatch this action
+export const fetchProductsCallApi = () => {
+    return (dispatch) => {
+        return callApi('GET', `products`, null).then((res) => {
+            dispatch(fetchProducts(res.data))
+        });
     }
 }

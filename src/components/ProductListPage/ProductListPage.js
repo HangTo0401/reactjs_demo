@@ -6,6 +6,7 @@ import ProductList from './../ProductList/ProductList'
 import { toast } from 'react-toastify';
 import callApi from './../../utils/apiCaller';
 import { fetchProducts } from './../../actions/index';
+import { fetchProductsCallApi } from './../../actions/index';
 import 'react-toastify/dist/ReactToastify.css';
 
  // toast-configuration method,
@@ -20,12 +21,13 @@ class ProductListPage extends Component {
     }
 
     componentDidMount() {
-        callApi('GET', 'products', null).then(res => {
-            if (res.status === 200) {
-                this.props.fetchProducts(res.data)
-            }
-        })
-        .catch(res => {console.log(res)});
+        // callApi('GET', 'products', null).then(res => {
+        //     if (res.status === 200) {
+        //         this.props.fetchProducts(res.data)
+        //     }
+        // })
+        // .catch(res => {console.log(res)});
+        this.props.fetchProductsCallApi()
     };
 
     onDelete = (id) => {
@@ -106,6 +108,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchProducts: (products) => {
             dispatch(fetchProducts(products))
+        },
+        fetchProductsCallApi: () => {
+            dispatch(fetchProductsCallApi())
         }
     }
 }
