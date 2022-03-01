@@ -126,3 +126,18 @@ export const fetchProductsCallApi = () => {
         });
     }
 }
+
+export const deleteProduct = (id) => {
+    return {
+        type: types.DELETE_PRODUCT,
+        id // id: id
+    }
+}
+
+export const deleteProductCallApi = (id) => {
+    return (dispatch) => {
+        return callApi('DELETE', `products/${id}`, null).then(res => {
+            dispatch(deleteProduct(id))
+        })
+    }
+}

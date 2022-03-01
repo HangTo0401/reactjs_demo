@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductItem from '../ProductItem/ProductItem';
 import ProductList from './../ProductList/ProductList'
 import { toast } from 'react-toastify';
-import callApi from './../../utils/apiCaller';
-import { fetchProducts } from './../../actions/index';
-import { fetchProductsCallApi } from './../../actions/index';
+import { fetchProducts, fetchProductsCallApi, deleteProduct, deleteProductCallApi } from './../../actions/index';
 import 'react-toastify/dist/ReactToastify.css';
 
  // toast-configuration method,
@@ -31,23 +29,26 @@ class ProductListPage extends Component {
     };
 
     onDelete = (id) => {
-        var { products } = this.state
+        // var { products } = this.state
+        // callApi('DELETE', `products/${id}`, null).then(res => {
+        //     if (res.status === 200) { // OK
+        //         var index = this.findIndex(products, id);
+        //         if (index !== -1) {
+        //             products.splice(index, 1)
+        //             this.setState({
+        //                 products: products
+        //             })
+        //         }
+        //         toast('Delete successfully!')
+        //         navigation('/product-list')
+        //     }
+        // })
+        // .catch(res => {console.log(res)});
         const { navigation } = this.props;
-
-        callApi('DELETE', `products/${id}`, null).then(res => {
-            if (res.status === 200) { // OK
-                var index = this.findIndex(products, id);
-                if (index !== -1) {
-                    products.splice(index, 1)
-                    this.setState({
-                        products: products
-                    })
-                }
-                toast('Delete successfully!')
-                navigation('/product-list')
-            }
-        })
-        .catch(res => {console.log(res)});
+        
+        this.props.deleteProductCallApi(id)
+        toast('Delete successfully!')
+        navigation('/product-list')
     }
 
     findIndex = (products, id) => {
@@ -111,6 +112,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         fetchProductsCallApi: () => {
             dispatch(fetchProductsCallApi())
+        },
+        deleteProduct: (id) => {
+            dispatch(deleteProduct(id))
+        },
+        deleteProductCallApi: (id) => {
+            dispatch(deleteProductCallApi(id))
         }
     }
 }
