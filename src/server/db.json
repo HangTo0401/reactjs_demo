@@ -1,10 +1,10 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "Iphone 6",
-      "price": 500,
-      "status": true
+      "price": "900",
+      "status": true,
+      "id": 1
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Iphone 8 Plus",
-      "price": "12222",
+      "price": "10000",
       "status": true,
       "id": 3
     },
@@ -26,21 +26,9 @@
     },
     {
       "name": "Iphone 8 Plus",
-      "price": "12222",
+      "price": "1800",
       "status": true,
       "id": 5
-    },
-    {
-      "name": "Iphone X",
-      "price": "12223",
-      "status": true,
-      "id": 6
-    },
-    {
-      "name": "Iphone 8 Plus",
-      "price": "122121",
-      "status": true,
-      "id": 7
     }
   ]
 }

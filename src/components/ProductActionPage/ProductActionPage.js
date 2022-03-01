@@ -46,18 +46,33 @@ class ProductActionPage extends Component {
   onSave = (e) => {
     // Chặn load lại trang
     e.preventDefault();
-    var { txtName, txtPrice, checkStatus } = this.state;
+    var { id, txtName, txtPrice, checkStatus } = this.state;
 
-    callApi("POST", "products", {
-      name: txtName,
-      price: txtPrice,
-      status: checkStatus,
-    }).then((res) => {
-      if (res.status === 201) {
-        toast("Add new product successfully!");
-        this.props.navigate("/homepage");
-      }
-    });
+    if (id) {
+        // Update
+        callApi('PUT', `products/${id}`, {
+            name: txtName,
+            price: txtPrice,
+            status: checkStatus,
+          }).then((res) => {
+            if (res.status === 200) {
+              toast('Update product successfully!');
+              this.props.navigate('/product-list');
+            }
+        });
+    } else {
+        // Add new
+        callApi('POST', 'products', {
+            name: txtName,
+            price: txtPrice,
+            status: checkStatus,
+          }).then((res) => {
+            if (res.status === 201) {
+              toast("Add new product successfully!");
+              this.props.navigate('/product-list');
+            }
+        });
+    }
   };
 
   render() {

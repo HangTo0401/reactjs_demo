@@ -32,6 +32,7 @@ class ProductListPage extends Component {
 
     onDelete = (id) => {
         var { products } = this.state
+        const { navigation } = this.props;
 
         callApi('DELETE', `products/${id}`, null).then(res => {
             if (res.status === 200) { // OK
@@ -43,6 +44,7 @@ class ProductListPage extends Component {
                     })
                 }
                 toast('Delete successfully!')
+                navigation('/product-list')
             }
         })
         .catch(res => {console.log(res)});
