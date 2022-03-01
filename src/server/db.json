@@ -25,9 +25,9 @@
       "id": 4
     },
     {
-      "name": "Iphone 8 Plus",
-      "price": "1800",
-      "status": true,
+      "name": "Ipad Air",
+      "price": "120000",
+      "status": "",
       "id": 5
     }
   ]

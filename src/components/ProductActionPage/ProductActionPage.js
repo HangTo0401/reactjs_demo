@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import callApi from "../../utils/apiCaller";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+import { addProduct, addProductCallApi } from './../../actions/index';
+import { connect } from 'react-redux';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,15 +24,19 @@ class ProductActionPage extends Component {
     const { match } = this.props;
     if (match) {
       var id = match.params.id;
-      callApi("GET", `products/${id}`, null).then((res) => {
-        var data = res.data;
-        this.setState({
-          id: data.id,
-          txtName: data.name,
-          txtPrice: data.price,
-          checkStatus: data.status,
-        });
-      });
+      if (id) {
+        callApi('GET', `products/${id}`, null)
+            .then((res) => {
+                var data = res.data;
+                this.setState({
+                id: data.id,
+                txtName: data.name,
+                txtPrice: data.price,
+                checkStatus: data.status,
+                });
+            })
+            .catch((res) => {toast('Error: ' + res)});
+      }
     }
   }
 
@@ -62,16 +68,23 @@ class ProductActionPage extends Component {
         });
     } else {
         // Add new
-        callApi('POST', 'products', {
+        this.props.addProductCallApi({
             name: txtName,
             price: txtPrice,
             status: checkStatus,
-          }).then((res) => {
-            if (res.status === 201) {
-              toast("Add new product successfully!");
-              this.props.navigate('/product-list');
-            }
         });
+        toast('Add new product successfully!');
+        this.props.navigate('/product-list');
+        // callApi('POST', 'products', {
+        //     name: txtName,
+        //     price: txtPrice,
+        //     status: checkStatus,
+        //   }).then((res) => {
+        //     if (res.status === 201) {
+        //       toast("Add new product successfully!");
+        //       this.props.navigate('/product-list');
+        //     }
+        // });
     }
   };
 
@@ -125,10 +138,23 @@ class ProductActionPage extends Component {
   }
 }
 
+// Save data on store
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        addProduct: (product) => {
+            dispatch(addProduct(product))
+        },
+        addProductCallApi: (product) => {
+            dispatch(addProductCallApi(product))
+        }
+    }
+}
+
 function WithNavigate(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const match = { params: useParams() };
+
   return (
     <ProductActionPage
       {...props} navigate={navigate} location={location} match={match}
@@ -136,4 +162,4 @@ function WithNavigate(props) {
   );
 }
 
-export default WithNavigate;
+export default connect(null, mapDispatchToProps)(WithNavigate);

@@ -24,6 +24,9 @@ const ProductsReducer = (state = initialState, action) => {
                 state.splice(index, 1);
             }
             return [...state]
+        case Types.ADD_PRODUCT:
+            state.push(action.product)
+            return [...state]
         default: return [...state]
     }
 }

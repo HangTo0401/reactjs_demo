@@ -11,6 +11,7 @@ export const TOGGLE_FORM = 'TOGGLE_FORM';
 export const OPEN_FORM = 'OPEN_FORM';
 export const CLOSE_FORM = 'CLOSE_FORM';
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const CHANGE_MESSAGE = 'CHANGE_MESSAGE';
 export const UPDATE_STATUS_TASK = 'UPDATE_STATUS_TASK';

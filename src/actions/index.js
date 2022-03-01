@@ -141,3 +141,19 @@ export const deleteProductCallApi = (id) => {
         })
     }
 }
+
+export const addProduct = (product) => {
+    return {
+        type: types.ADD_PRODUCT,
+        product // product: product
+    }
+}
+
+export const addProductCallApi = (product) => {
+    return (dispatch) => {
+        return callApi('POST', 'products', product).then(res => {
+            // res.data is new product is added in db
+            dispatch(addProduct(res.data))
+        })
+    }
+}
