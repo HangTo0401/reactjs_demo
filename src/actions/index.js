@@ -109,3 +109,10 @@ export const updateProductInCart = (product, quantity) => {
         quantity // quantity: quantity
     }
 }
+
+export const fetchProducts = (products) => {
+    return {
+        type: types.FETCH_PRODUCTS,
+        products // products: products
+    }
+}

@@ -5,7 +5,7 @@ import ProductItem from '../ProductItem/ProductItem';
 import ProductList from './../ProductList/ProductList'
 import { toast } from 'react-toastify';
 import callApi from './../../utils/apiCaller';
-
+import { fetchProducts } from './../../actions/index';
 import 'react-toastify/dist/ReactToastify.css';
 
  // toast-configuration method,
@@ -22,9 +22,7 @@ class ProductListPage extends Component {
     componentDidMount() {
         callApi('GET', 'products', null).then(res => {
             if (res.status === 200) {
-                this.setState({
-                    products: res.data
-                })
+                this.props.fetchProducts(res.data)
             }
         })
         .catch(res => {console.log(res)});
@@ -79,7 +77,7 @@ class ProductListPage extends Component {
     }
     
     render() {
-        var { products } = this.state
+        var { products } = this.props
 
         return(
             <div className="container">
@@ -98,9 +96,18 @@ class ProductListPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return{
+    return {
         products: state.ProductsReducer
     };
+}
+
+// Save data on store
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        fetchProducts: (products) => {
+            dispatch(fetchProducts(products))
+        }
+    }
 }
 
 // Wrap and export
@@ -109,4 +116,4 @@ const WithNavigate = (props) => {
     return <ProductListPage {...props} navigation={navigation} />;
 }
 
-export default connect(mapStateToProps, null)(WithNavigate)
+export default connect(mapStateToProps, mapDispatchToProps)(WithNavigate)

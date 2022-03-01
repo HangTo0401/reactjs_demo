@@ -1,25 +1,11 @@
-var initialState = [{
-        id: 1,
-        name: 'Iphone 6 plus',
-        price: 400,
-        status: true
-    },
-    {
-        id: 2,
-        name: 'Iphone 7 plus',
-        price: 600,
-        status: true
-    },
-    {
-        id: 3,
-        name: 'Iphone X',
-        price: 700,
-        status: true
-    }
-];
+import * as Types from './../constants/ActionTypes';
+var initialState = [];
 
 const ProductsReducer = (state = initialState, action) => {
     switch(action.type) {
+        case Types.FETCH_PRODUCTS:
+            state = action.products;
+            return [...state]
         default: return [...state]
     }
 }
