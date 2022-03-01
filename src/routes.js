@@ -48,6 +48,11 @@ const routes = [
         element: <ProductActionPage/>
     },
     {
+        path: '/product/:id/edit',
+        exact: 'false',
+        element: <ProductActionPage/>
+    },
+    {
         path: '/products/:slug',
         exact: 'false',
         element: <ProductItem/>
