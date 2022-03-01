@@ -3,11 +3,13 @@ var initialState = [];
 
 const findIndex = (products, id) => {
     var result = -1;
-    products.forEach((product, index) => {
-        if (product.id === id) {
-            result = index
-        }
-    });
+    if (products.length > 0) {
+        products.forEach((product, index) => {
+            if (product.id === id) {
+                result = index
+            }
+        });
+    }
     return result;
 }
 
@@ -32,7 +34,7 @@ const ProductsReducer = (state = initialState, action) => {
         case Types.UPDATE_PRODUCT:
             index = findIndex(state, product.id);
             state[index] = product;
-            return [...state];
+            return state;
         default: return [...state]
     }
 }
