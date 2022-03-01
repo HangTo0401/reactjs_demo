@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import callApi from "../../utils/apiCaller";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
-import { addProduct, addProductCallApi } from './../../actions/index';
+import { addProduct, addProductCallApi, getProductCallApi, updateProductCallApi } from './../../actions/index';
 import { connect } from 'react-redux';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,18 +25,31 @@ class ProductActionPage extends Component {
     if (match) {
       var id = match.params.id;
       if (id) {
-        callApi('GET', `products/${id}`, null)
-            .then((res) => {
-                var data = res.data;
-                this.setState({
-                id: data.id,
-                txtName: data.name,
-                txtPrice: data.price,
-                checkStatus: data.status,
-                });
-            })
-            .catch((res) => {toast('Error: ' + res)});
+          this.props.getProductCallApi(Number(id))
+        // callApi('GET', `products/${id}`, null)
+        //     .then((res) => {
+        //         var data = res.data;
+        //         this.setState({
+        //         id: data.id,
+        //         txtName: data.name,
+        //         txtPrice: data.price,
+        //         checkStatus: data.status,
+        //         });
+        //     })
+        //     .catch((res) => {toast('Error: ' + res)});
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.itemEditing) {
+        var { itemEditing } = nextProps
+        this.setState({
+            id: itemEditing.id,
+            txtName: itemEditing.name,
+            txtPrice: itemEditing.price,
+            checkStatus: itemEditing.status,
+        });
     }
   }
 
@@ -53,19 +66,27 @@ class ProductActionPage extends Component {
     // Chặn load lại trang
     e.preventDefault();
     var { id, txtName, txtPrice, checkStatus } = this.state;
-
+    var product = {
+        id : id,
+        name : txtName,
+        price : txtPrice,
+        status : checkStatus
+    };
     if (id) {
         // Update
-        callApi('PUT', `products/${id}`, {
-            name: txtName,
-            price: txtPrice,
-            status: checkStatus,
-          }).then((res) => {
-            if (res.status === 200) {
-              toast('Update product successfully!');
-              this.props.navigate('/product-list');
-            }
-        });
+        // callApi('PUT', `products/${id}`, {
+        //     name: txtName,
+        //     price: txtPrice,
+        //     status: checkStatus,
+        //   }).then((res) => {
+        //     if (res.status === 200) {
+        //       toast('Update product successfully!');
+        //       this.props.navigate('/product-list');
+        //     }
+        // });
+        this.props.updateProductCallApi(product)
+        toast('Update product successfully!');
+        this.props.navigate('/product-list');
     } else {
         // Add new
         this.props.addProductCallApi({
@@ -138,6 +159,12 @@ class ProductActionPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        itemEditing: state.ItemEditingReducer
+    };
+}
+
 // Save data on store
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -146,6 +173,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         addProductCallApi: (product) => {
             dispatch(addProductCallApi(product))
+        },
+        getProductCallApi: (id) => {
+            dispatch(getProductCallApi(id))
+        },
+        updateProductCallApi: (id) => {
+            dispatch(updateProductCallApi(id))
         }
     }
 }
@@ -162,4 +195,4 @@ function WithNavigate(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(WithNavigate);
+export default connect(mapStateToProps, mapDispatchToProps)(WithNavigate);

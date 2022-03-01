@@ -9,6 +9,7 @@ import ShoppingCartProductsReducer from './ShoppingCartProductsReducer';
 import ShoppingCartReducer from './ShoppingCartReducer';
 import MessageReducer from './MessageReducer';
 import ProductsReducer from './ProductsReducer';
+import ItemEditingReducer from './ItemEditingReducer';
 
 const myReducer = combineReducers({
     TasksReducer, //TasksReducer: TasksReducer
@@ -20,7 +21,8 @@ const myReducer = combineReducers({
     ShoppingCartProductsReducer, //ShoppingCartProductsReducer: ShoppingCartProductsReducer
     ShoppingCartReducer, //ShoppingCartReducer: ShoppingCartReducer
     MessageReducer, //MessageReducer: MessageReducer
-    ProductsReducer //ProductsReducer: ProductsReducer
+    ProductsReducer, //ProductsReducer: ProductsReducer
+    ItemEditingReducer //ItemEditingReducer: ItemEditingReducer
 });
 
 export default myReducer

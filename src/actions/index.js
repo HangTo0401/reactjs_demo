@@ -157,3 +157,37 @@ export const addProductCallApi = (product) => {
         })
     }
 }
+
+// Get product on store
+export const getProduct = (product) => {
+    return {
+        type: types.GET_PRODUCT,
+        product // product: product
+    }
+}
+
+// Get product on store
+export const getProductCallApi = (id) => {
+    return (dispatch) => {
+        return callApi('GET', `products/${id}`, null).then((res) => {
+            // res.data is product get from db
+            dispatch(getProduct(res.data))
+        })
+    }
+}
+
+export const updateProduct = (product) => {
+    return {
+        type: types.UPDATE_PRODUCT,
+        product // product: product
+    }
+}
+
+export const updateProductCallApi = (product) => {
+    return (dispatch) => {
+        return callApi('PUT', `products/${product.id}`, product).then(res => {
+            // res.data is new product is added in db
+            dispatch(updateProduct(res.data))
+        })
+    }
+}

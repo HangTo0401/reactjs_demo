@@ -13,7 +13,7 @@ const findIndex = (products, id) => {
 
 const ProductsReducer = (state = initialState, action) => {
     var index = -1;
-    var { id } = action
+    var { id, product } = action
     switch(action.type) {
         case Types.FETCH_PRODUCTS:
             state = action.products;
@@ -27,6 +27,12 @@ const ProductsReducer = (state = initialState, action) => {
         case Types.ADD_PRODUCT:
             state.push(action.product)
             return [...state]
+        case Types.GET_PRODUCT:
+            return action.product
+        case Types.UPDATE_PRODUCT:
+            index = findIndex(state, product.id);
+            state[index] = product;
+            return [...state];
         default: return [...state]
     }
 }
