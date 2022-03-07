@@ -3,7 +3,7 @@ import { createTheme } from '@material-ui/core/styles';
 // All the following keys are optional.
 // We try our best to provide a great default value.
 const theme = createTheme({
-    palette: {
+    color: {
       primary: "#b71c1c",
       secondary: "#283593",
       error: "#e53935",
@@ -19,7 +19,7 @@ const theme = createTheme({
       fontFamily: "Roboto"
     },
     shape: {
-      textColor: "#FFFFFF",
+      color: "#FFFFFF",
       borderColor: "#CCCCCC",
       backgroundColor: "#651fff",
       borderRadius: "4px"
