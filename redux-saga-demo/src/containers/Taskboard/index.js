@@ -16,20 +16,20 @@ import TaskForm from '../../components/TaskForm/index';
 const listTasks = [
   {
     id: 0,
-    title: "Read book",
-    description: "Read Material UI book",
+    title: 'Read book',
+    description: 'Read Material UI book',
     status: 0
   },
   {
     id: 1,
-    title: "Play games",
-    description: "Play doraemon games",
+    title: 'Play games',
+    description: 'Play doraemon games',
     status: 2
   },
   {
     id: 2,
-    title: "Do homework",
-    description: "Do homework",
+    title: 'Do homework',
+    description: 'Do homework',
     status: 1
   }
 ];
