@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import Box from '@material-ui/core/Box';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import { Typography, withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { STATUS } from '../../constants/index';
+
+import TaskList from '../../components/TaskList/index';
+import TaskItem from '../../components/TaskItem/index';
+import TaskForm from '../../components/TaskForm/index';
 
 const listTasks = [
   {
@@ -42,33 +42,7 @@ class Taskboard extends Component {
           STATUS.map((status, index) => {
             const filteredTasks = listTasks.filter(task => task.status === status.value)
             return (
-              <Grid item md={4} xs={12} key={status?.value}>
-                <Box mt={1} mb={1}>
-                  <div className={classes.status}>{status?.label}</div>
-                </Box>
-                <div className={classes.wrapperListTasks}>
-                  {
-                    filteredTasks.map((task) => {
-                      const { title } = task
-                      return (
-                        <Card key={task.id} className={classes.card}>
-                          <CardContent>
-                            <Grid container justifyContent='space-between'>
-                              <Grid item md={8}>
-                                <Typography component='h2'>{title}</Typography>  
-                              </Grid>
-                              <Grid item md={4}>{status.label}</Grid>
-                            </Grid>
-                          </CardContent>
-                          <CardActions>
-                            <Button size="small"></Button>
-                          </CardActions>
-                        </Card>
-                      );
-                    })
-                  }  
-                </div>
-              </Grid>
+              <TaskList key={status.value} filteredTasks={filteredTasks} status={status}/>
             );
           })
         }
