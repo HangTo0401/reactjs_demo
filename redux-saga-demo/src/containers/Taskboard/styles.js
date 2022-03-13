@@ -13,6 +13,10 @@ const styles = (theme) => ({
     },
     button: {
         borderRadius: '4px'
+    },
+    okButton: {
+        color: '#fafafa',
+        backgroundColor: '#1b5e20'
     }
 })
 
