@@ -35,7 +35,7 @@ const listTasks = [
 class Taskboard extends Component {
   state = {
     open: false
-  }
+  };
 
   openForm = () => {
     this.setState({
@@ -50,22 +50,21 @@ class Taskboard extends Component {
   };
 
   renderForm() {
-    const { open } = this.state
-    let xHtml = null
+    const { open } = this.state;
+    let xHtml = null;
     xHtml = (
       <TaskForm open={open} onClose={this.handleClose}/>
     );
-    return xHtml
+    return xHtml;
   }
 
   renderBoard() {
-    const { classes } = this.props
-    let xHtml = null
+    let xHtml = null;
     xHtml = (
       <Grid container spacing={2}>
         {
           STATUS.map((status, index) => {
-            const filteredTasks = listTasks.filter(task => task.status === status.value)
+            const filteredTasks = listTasks.filter(task => task.status === status.value);
             return (
               <TaskList key={status.value} filteredTasks={filteredTasks} status={status}/>
             );
@@ -73,11 +72,11 @@ class Taskboard extends Component {
         }
       </Grid>
     );
-    return xHtml
+    return xHtml;
   }
 
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return ( 
       <div className={classes.taskBoard}>
         <Button variant='contained' color='primary' className={classes.button} onClick={this.openForm}>
