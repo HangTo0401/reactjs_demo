@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
 import { STATUS } from '../../constants/index';
+import { PropTypes } from 'prop-types';
 
 import TaskList from '../../components/TaskList/index';
 import TaskForm from '../../components/TaskForm/index';
@@ -88,5 +89,9 @@ class Taskboard extends Component {
     );
   }
 }
+
+Taskboard.propTypes = {
+  classes: PropTypes.object
+};
 
 export default withStyles(styles)(Taskboard);
