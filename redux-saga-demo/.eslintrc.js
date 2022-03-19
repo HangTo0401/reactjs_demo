@@ -12,8 +12,9 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/require-default-props': 0,
     'prettier/prettier': ['error'],
+    'react/jsx-uses-vars': 2
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['prettier'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 6,

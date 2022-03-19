@@ -80,8 +80,14 @@ class Taskboard extends Component {
     const { classes } = this.props;
     return ( 
       <div className={classes.taskBoard}>
-        <Button variant='contained' color='primary' className={classes.button} onClick={this.openForm}>
-          <AddIcon/>Add new task
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={this.openForm}
+        >
+          <AddIcon />
+          Add new task
         </Button>
         {this.renderBoard()}
         {this.renderForm()}

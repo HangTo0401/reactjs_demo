@@ -18,6 +18,6 @@ const styles = (theme) => ({
         color: '#fafafa',
         backgroundColor: '#1b5e20'
     }
-})
+});
 
-export default styles
+export default styles;

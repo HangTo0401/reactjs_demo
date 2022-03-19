@@ -10,7 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 
 class TaskForm extends Component {
   render() {
-    const { classes, open, onClose } = this.props
+    const { classes, open, onClose } = this.props;
     return (
         <Dialog
         onClose={onClose}
