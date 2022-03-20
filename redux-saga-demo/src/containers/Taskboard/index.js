@@ -13,6 +13,10 @@ import { PropTypes } from 'prop-types';
 import TaskList from '../../components/TaskList/index';
 import TaskForm from '../../components/TaskForm/index';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as taskActions from './../../actions/taskActions';
+
 const listTasks = [
   {
     id: 0,
@@ -37,6 +41,14 @@ class Taskboard extends Component {
   state = {
     open: false
   };
+
+  componentDidMount() {
+    const { taskActionCreators } = this.props;
+    const { fetchListTasks } = taskActionCreators;
+
+    // call fetchListTasks function in taskActions.js
+    fetchListTasks(); 
+  }
 
   openForm = () => {
     this.setState({
@@ -97,7 +109,22 @@ class Taskboard extends Component {
 }
 
 Taskboard.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  taskActionCreators: PropTypes.shape({
+    fetchListTasks: PropTypes.func
+  })
 };
 
-export default withStyles(styles)(Taskboard);
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = (dispatch) => {
+  // Use bindActionCreator to dispatch actions
+  return {
+    // now we have props taskActions
+    taskActionCreators: bindActionCreators(taskActions, dispatch)
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Taskboard));
