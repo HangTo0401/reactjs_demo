@@ -1,4 +1,5 @@
 import * as taskActionsType from './../constants/taskActionsType';
+import * as toastHelpers from './../helpers/toastHelpers';
 
 const initialState = {
     listTasks: []
@@ -18,6 +19,8 @@ const taskReducer = (state = initialState, action) => {
                 listTasks: data // gán listTasks trong store là data
             };
         case taskActionsType.FETCH_TASKS_FAILURE:
+            const error = action.payload 
+            toastHelpers.toastError(error)
             return {
                 ...state
             };
