@@ -4,6 +4,9 @@ import axios from 'axios';
 class AxiosService {
     constructor() {
         const instance = axios.create();
+
+        // Add response interceptors
+        instance.interceptors.response.use(this.handleSuccessResponse, this.handleErrorResponse);
         this.instance = instance;
     }
 
