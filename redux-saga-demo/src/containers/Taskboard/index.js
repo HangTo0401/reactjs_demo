@@ -16,27 +16,6 @@ import TaskForm from '../../components/TaskForm/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/taskActions';
-
-const listTasks = [
-  {
-    id: 0,
-    title: 'Read book',
-    description: 'Read Material UI book',
-    status: 0
-  },
-  {
-    id: 1,
-    title: 'Play games',
-    description: 'Play doraemon games',
-    status: 2
-  },
-  {
-    id: 2,
-    title: 'Do homework',
-    description: 'Do homework',
-    status: 1
-  }
-];
 class Taskboard extends Component {
   state = {
     open: false
@@ -72,6 +51,7 @@ class Taskboard extends Component {
   }
 
   renderBoard() {
+    const { listTasks } = this.props
     let xHtml = null;
     xHtml = (
       <Grid container spacing={2}>
@@ -112,11 +92,14 @@ Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
     fetchListTasks: PropTypes.func
-  })
+  }),
+  listTasks: PropTypes.array
 };
 
-const mapStateToProps = () => {
-
+const mapStateToProps = (state) => {
+  return {
+    listTasks: state.taskReducer.listTasks
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -11,6 +11,16 @@ const taskReducer = (state = initialState, action) => {
                 ...state,
                 listTasks: [] // gán listTasks trong store là rỗng
             };
+        case taskActionsType.FETCH_TASKS_SUCCESS:
+            const data = action.payload 
+            return {
+                ...state,
+                listTasks: data // gán listTasks trong store là data
+            };
+        case taskActionsType.FETCH_TASKS_FAILURE:
+            return {
+                ...state
+            };
         default:
             return state
     }
