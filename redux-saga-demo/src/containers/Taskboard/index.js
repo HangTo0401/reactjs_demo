@@ -44,10 +44,10 @@ class Taskboard extends Component {
 
   componentDidMount() {
     const { taskActionCreators } = this.props;
-    const { fetchListTasks } = taskActionCreators;
+    const { fetchListTasksRequest } = taskActionCreators;
 
     // call fetchListTasks function in taskActions.js
-    fetchListTasks(); 
+    fetchListTasksRequest(); 
   }
 
   openForm = () => {
