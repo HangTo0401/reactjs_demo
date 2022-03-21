@@ -1,6 +1,7 @@
 import { fork, take, call } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
 import { getListTasks } from './../apis/taskApi';
+import { STATUS_CODE } from './../constants/index';
 
 // Process dùng để lắng nghe actions đăng ký
 function* rootSaga(){
@@ -16,7 +17,12 @@ function* watchFetchListTasksActions(){
     const response = yield call(getListTasks);
     // Block cho đến chỉ khi ta call xong API, thì đoạn code dưới mới chạy
     console.log('Print response: ')
-    console.log(response)
+    const { status, data } = response
+    if (status === STATUS_CODE.SUCCESS) {
+        // dispatch action fetchListTaskSuccess
+    } else {
+        // dispatch action fetchListTaskFailed
+    }
 }
 
 function* watchCreateTaskActions(){
