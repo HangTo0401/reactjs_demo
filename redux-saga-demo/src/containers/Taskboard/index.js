@@ -21,13 +21,13 @@ class Taskboard extends Component {
     open: false
   };
 
-  componentDidMount() {
-    const { taskActionCreators } = this.props;
-    const { fetchListTasksRequest } = taskActionCreators;
+  // componentDidMount() {
+  //   const { taskActionCreators } = this.props;
+  //   const { fetchListTasksRequest } = taskActionCreators;
 
-    // call fetchListTasks function in taskActions.js
-    fetchListTasksRequest(); 
-  }
+  //   // call fetchListTasks function in taskActions.js
+  //   fetchListTasksRequest(); 
+  // }
 
   openForm = () => {
     this.setState({
@@ -68,10 +68,27 @@ class Taskboard extends Component {
     return xHtml;
   }
 
+  loadData = () => {
+    const { taskActionCreators } = this.props;
+    const { fetchListTasksActions } = taskActionCreators;
+
+    // call fetchListTasks function in taskActions.js
+    fetchListTasksActions();
+  }
+
   render() {
     const { classes } = this.props;
     return ( 
       <div className={classes.taskBoard}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={this.loadData}
+          style={{marginRight: "20px"}}
+        >
+          Load Data
+        </Button>
         <Button
           variant="contained"
           color="primary"
