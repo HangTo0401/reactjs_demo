@@ -2,6 +2,7 @@ import './../../App.css';
 import styles from './styles.js';
 import React, { Component } from 'react';
 import Taskboard from '../Taskboard';
+import GlobalLoading from '../../components/GlobalLoading/index';
 import theme from './../../commons/theme';
 
 import { withStyles } from '@material-ui/core';
@@ -19,7 +20,8 @@ class App extends Component {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <ToastContainer/>
-          <Taskboard/>  
+          <GlobalLoading/>
+          <Taskboard/>
         </ThemeProvider>
       </Provider>
     );
