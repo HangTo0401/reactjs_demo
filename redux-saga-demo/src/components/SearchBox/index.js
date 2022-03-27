@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core';
 import PropTypes from "prop-types";
 import Form from "@material-ui/core/FormGroup";
 import TextField from '@material-ui/core/TextField';
-
 class SearchBox extends Component {
   render() {
     const { classes, handleChange } = this.props

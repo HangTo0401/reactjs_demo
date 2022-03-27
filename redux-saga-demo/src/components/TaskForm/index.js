@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import Modal from '@material-ui/core/Modal'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import CloseIcon from '@material-ui/icons/Clear'
 import PropTypes from 'prop-types'
 class TaskForm extends Component {
   render() {
@@ -14,7 +15,11 @@ class TaskForm extends Component {
       <Modal open={open} onClose={onClose} animation="false">
         <div className={classes.modal}>
           <form>
-            <Typography gutterBottom className={classes.title}>Dialog Content</Typography>
+            <div className={classes.header}>
+              <Typography gutterBottom className={classes.title}>Dialog Content</Typography>
+              <CloseIcon className={classes.closeIcon} onClick={onClose}/>
+            </div>
+            
             <Grid container className={classes.container}>
               <Grid item md={12} className={classes.textField}>
                 <TextField

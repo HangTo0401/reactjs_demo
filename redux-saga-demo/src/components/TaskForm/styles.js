@@ -14,9 +14,19 @@ const styles = () => ({
     textField: {
         width: '100%'
     },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
     title: {
         marginTop: '10px',
         marginLeft: '20px'
+    },
+    closeIcon: {
+        cursor: 'pointer',
+        fontSize: '25px'
     },
     buttons: {
         display: 'flex',
