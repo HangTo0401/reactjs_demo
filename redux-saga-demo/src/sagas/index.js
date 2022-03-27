@@ -1,4 +1,4 @@
-import { fork, take, call, put, delay, takeLatest, select } from 'redux-saga/effects';
+import { fork, take, call, put, delay, takeLatest, select, takeEvery } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
 import { getListTasks } from './../apis/taskApi';
 import { STATUS_CODE } from './../constants/index';
@@ -9,7 +9,7 @@ import { fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskS
 function* rootSaga(){
     yield fork(watchFetchListTasksActions);// watchFetchListTasksActions is generator function
     yield fork(watchCreateTaskActions);// watchCreateTaskActions is generator function, run parallel with watchFetchListTasksActions
-    yield takeLatest(taskActionsType.FILTER_TASK, filterTaskSaga);
+    yield takeEvery(taskActionsType.FILTER_TASK, filterTaskSaga);
 }
 
 /**

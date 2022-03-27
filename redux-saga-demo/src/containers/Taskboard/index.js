@@ -22,13 +22,13 @@ class Taskboard extends Component {
     open: false
   };
 
-  // componentDidMount() {
-  //   const { taskActionCreators } = this.props;
-  //   const { fetchListTasksRequest } = taskActionCreators;
+  componentDidMount() {
+    const { taskActionCreators } = this.props;
+    const { fetchListTasksRequest } = taskActionCreators;
 
-  //   // call fetchListTasks function in taskActions.js
-  //   fetchListTasksRequest(); 
-  // }
+    // call fetchListTasks function in taskActions.js
+    fetchListTasksRequest(); 
+  }
 
   openForm = () => {
     this.setState({
