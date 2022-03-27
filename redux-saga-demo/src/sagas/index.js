@@ -1,15 +1,15 @@
-import { fork, take, call, put, delay } from 'redux-saga/effects';
+import { fork, take, call, put, delay, takeLatest, select } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
 import { getListTasks } from './../apis/taskApi';
 import { STATUS_CODE } from './../constants/index';
 import { showLoading, hideLoading } from '../actions/uiActions';
-import { fetchListTasksSuccessActions, fetchListTasksFailureActions } from './../actions/taskActions';
+import { fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess } from './../actions/taskActions';
 
 // Process dùng để lắng nghe actions đăng ký
 function* rootSaga(){
-    console.log('This is root saga')
     yield fork(watchFetchListTasksActions);// watchFetchListTasksActions is generator function
     yield fork(watchCreateTaskActions);// watchCreateTaskActions is generator function, run parallel with watchFetchListTasksActions
+    yield takeLatest(taskActionsType.FILTER_TASK, filterTaskSaga);
 }
 
 /**
@@ -27,12 +27,10 @@ function* watchFetchListTasksActions(){
     // Vòng lặp vô tận trong generation function sẽ không gây ra crash app
     while(true) {
         // Đoạn code từ đây trở về sẽ bị block cho đến chỉ khi ta dispatch action FETCH_TASKS, thì đoạn code dưới mới chạy
-        console.log('Watch fetch list tasks Actions')
         yield take(taskActionsType.FETCH_TASKS);
         yield put(showLoading());
         const response = yield call(getListTasks);
         // Block cho đến chỉ khi ta call xong API, thì đoạn code dưới mới chạy
-        console.log('Print response: ')
         const { status, data } = response
         if (status === STATUS_CODE.SUCCESS) {
             // dispatch action fetchListTaskSuccess
@@ -48,6 +46,14 @@ function* watchFetchListTasksActions(){
 
 function* watchCreateTaskActions(){
     console.log('Watch create task Actions')
+}
+
+function* filterTaskSaga({ payload }) {
+    yield delay(500)
+    const keyword = payload;
+    const list = yield select(state => state.taskReducer.listTasks);
+    const filteredTasks = list.filter(task => task.title.toLowerCase().includes(keyword.trim().toLowerCase()));
+    yield put(filterTaskSuccess(filteredTasks))
 }
 
 export default rootSaga;

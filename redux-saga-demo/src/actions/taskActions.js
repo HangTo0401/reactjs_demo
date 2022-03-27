@@ -26,6 +26,22 @@ export const fetchListTasksFailureActions = (error) => {
 }
 
 // Using thunk to handle async action
+export const filterTask = (keyword) => {
+    return {
+        type: taskActionsType.FILTER_TASK,
+        payload: keyword
+    }
+}
+
+// Using thunk to handle async action
+export const filterTaskSuccess = (data) => {
+    return {
+        type: taskActionsType.FILTER_TASK_SUCCESS,
+        payload: data
+    }
+}
+
+// Using thunk to handle async action
 /**
  * B1: Gọi fetchListTasksRequest
  * B2: Để reset lại state về rỗng [], ta dispatch fetchListTasksActions
