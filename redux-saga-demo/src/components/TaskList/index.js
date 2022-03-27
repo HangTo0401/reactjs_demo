@@ -5,7 +5,6 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import TaskItem from "../TaskItem/index.js";
-
 class TaskList extends Component {
   // Render list of tasks
   render() {
