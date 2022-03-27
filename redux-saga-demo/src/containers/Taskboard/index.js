@@ -17,6 +17,7 @@ import SearchBox from '../../components/SearchBox/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/taskActions';
+import * as modalActions from './../../actions/modalActions';
 class Taskboard extends Component {
   state = {
     open: false
@@ -31,9 +32,14 @@ class Taskboard extends Component {
   }
 
   openForm = () => {
-    this.setState({
-      open: true
-    });
+    // this.setState({
+    //   open: true
+    // });
+    const { modalActionsCreators } = this.props
+    const { showModal, changeModalTitle, changeModalContent } = modalActionsCreators
+    showModal()
+    changeModalTitle('Add new task')
+    changeModalContent()
   };
 
   handleClose = () => {
@@ -128,7 +134,13 @@ Taskboard.propTypes = {
     fetchListTasks: PropTypes.func,
     filterTask: PropTypes.func
   }),
-  listTasks: PropTypes.array
+  listTasks: PropTypes.array,
+  modalActionsCreators: PropTypes.shape({
+    showModal: PropTypes.func,
+    hideModal: PropTypes.func,
+    changeModalTitle: PropTypes.func,
+    changeModalContent: PropTypes.func
+  }),
 };
 
 const mapStateToProps = (state) => {
@@ -141,7 +153,8 @@ const mapDispatchToProps = (dispatch) => {
   // Use bindActionCreator to dispatch actions
   return {
     // now we have props taskActions
-    taskActionCreators: bindActionCreators(taskActions, dispatch)
+    taskActionCreators: bindActionCreators(taskActions, dispatch),
+    modalActionsCreators: bindActionCreators(modalActions, dispatch)
   }
 }
 
