@@ -4,7 +4,7 @@ const initialState = {
     showLoading: false
 };
 
-const reducer = (state = initialState, action) => {
+const uiReducer = (state = initialState, action) => {
     switch(action.type) {
         case uiActionsType.GLOBAL_SHOW_LOADING:
             return {
@@ -18,8 +18,7 @@ const reducer = (state = initialState, action) => {
             }
         default:
             return state
-        
     }
 }
 
-export default reducer
+export default uiReducer

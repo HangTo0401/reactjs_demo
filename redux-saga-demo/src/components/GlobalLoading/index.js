@@ -8,19 +8,23 @@ import { connect } from "react-redux";
 import * as uiActions from "./../../actions/uiActions";
 class GlobalLoading extends Component {
   render() {
-    const { classes } = this.props;
-    return (
+    const { classes, showLoading } = this.props;
+    let xHtml = null;
+    if (showLoading) {
+      xHtml = (
         <div >
             <h2>Loading</h2>
             <img src={LoadingIcon} alt="loading" className={classes.icon}/>
         </div>
-    );
+      );
+    }
+    return xHtml;
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    showLoading: state.uiActions.showLoading
+    showLoading: state.uiReducer.showLoading
   }
 }
 
