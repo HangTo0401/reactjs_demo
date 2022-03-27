@@ -13,8 +13,7 @@ class GlobalLoading extends Component {
     if (showLoading) {
       xHtml = (
         <div >
-            <h2>Loading</h2>
-            <img src={LoadingIcon} alt="loading" className={classes.icon}/>
+          <img src={LoadingIcon} alt="loading" className={classes.icon}/>
         </div>
       );
     }

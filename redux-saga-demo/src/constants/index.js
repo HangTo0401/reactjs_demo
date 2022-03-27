@@ -20,3 +20,5 @@ export const STATUS_CODE = {
   CREATED: 201,
   UPDATE: 202
 }
+
+export const FORM_NAME = 'TASK MANAGEMENT'

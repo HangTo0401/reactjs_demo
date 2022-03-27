@@ -39,7 +39,7 @@ class Taskboard extends Component {
     const { showModal, changeModalTitle, changeModalContent } = modalActionsCreators
     showModal()
     changeModalTitle('Add new task')
-    changeModalContent()
+    changeModalContent(<TaskForm/>)
   };
 
   handleClose = () => {
@@ -48,14 +48,14 @@ class Taskboard extends Component {
     });
   };
 
-  renderForm() {
-    const { open } = this.state;
-    let xHtml = null;
-    xHtml = (
-      <TaskForm open={open} onClose={this.handleClose}/>
-    );
-    return xHtml;
-  }
+  // renderForm() {
+  //   const { open } = this.state;
+  //   let xHtml = null;
+  //   xHtml = (
+  //     <TaskForm open={open} onClose={this.handleClose}/>
+  //   );
+  //   return xHtml;
+  // }
 
   handleFilter = (event) => {
     const { value } = event.target;
@@ -122,7 +122,7 @@ class Taskboard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {this.renderForm()}
+        {/* {this.renderForm()} */}
       </div>
     );
   }

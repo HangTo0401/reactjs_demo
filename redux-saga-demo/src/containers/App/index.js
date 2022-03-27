@@ -2,6 +2,7 @@ import './../../App.css';
 import styles from './styles.js';
 import React, { Component } from 'react';
 import Taskboard from '../Taskboard';
+import CustomModal from '../../components/CustomModal/index';
 import GlobalLoading from '../../components/GlobalLoading/index';
 import theme from './../../commons/theme';
 
@@ -21,6 +22,7 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <ToastContainer/>
           <GlobalLoading/>
+          <CustomModal/>
           <Taskboard/>
         </ThemeProvider>
       </Provider>
