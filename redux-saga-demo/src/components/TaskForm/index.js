@@ -11,12 +11,14 @@ import { compose, bindActionCreators } from 'redux';
 import * as modalActions from "../../actions/modalActions";
 import * as constants from "./../../constants/index";
 import { reduxForm, Field } from 'redux-form';
+import renderTextField from '../FormHelper/TextField/index.js';
+
 class TaskForm extends Component {
   handleSubmitForm = (data) => {
     console.log(data)
     return data
   }
-
+  
   render() {
     const { classes, handleSubmit, modalActionsCreators } = this.props
     const { hideModal } = modalActionsCreators
@@ -24,7 +26,15 @@ class TaskForm extends Component {
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
         <Grid container className={classes.container}>
           <Grid item md={12} className={classes.textField}>
-            <Field name="title" component="input" placeholder="Please input..." />
+            <Field
+              id="title"
+              label="Title"
+              className={classes.textField}
+              margin="normal"
+              name="title"
+              component={renderTextField}
+              placeholder="Please input title..."
+            />  
           </Grid>
 
           <Grid item md={12} className={classes.textField}>
@@ -42,6 +52,7 @@ class TaskForm extends Component {
               margin="normal"
             ></TextField>
           </Grid>
+          
           <Grid item md={12} className={classes.buttons}>
             <Box className={classes.box}>
               <Button
