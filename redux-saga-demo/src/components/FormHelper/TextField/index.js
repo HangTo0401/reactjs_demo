@@ -13,7 +13,7 @@ const renderTextField = ({
     placeholder={label}
     error={touched && invalid}
     helperText={touched && error}
-    // {...input}
+    {...input}
     {...custom}
   />
 );
