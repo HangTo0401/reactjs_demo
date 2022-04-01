@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextField, withStyles } from '@material-ui/core';
 import styles from './styles.js';
-
+import validate from './validate';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -18,9 +18,30 @@ class TaskForm extends Component {
     console.log(data)
     return data
   }
-  
+
+  renderStatusSelection() {
+    let xhtml = null;
+    const { taskEditing, classes } = this.props;
+    if (taskEditing && taskEditing.id) {
+      xhtml = (
+        <Field
+          id="status"
+          label="Status"
+          className={classes.select}
+          name="status"
+          component={renderSelectField}
+        >
+          <MenuItem value={0}>Ready</MenuItem>
+          <MenuItem value={1}>In Progress</MenuItem>
+          <MenuItem value={2}>Completed</MenuItem>
+        </Field>
+      );
+    }
+    return xhtml;
+  }
+
   render() {
-    const { classes, handleSubmit, modalActionsCreators } = this.props
+    const { classes, handleSubmit, modalActionsCreators, invalid, submitting } = this.props
     const { hideModal } = modalActionsCreators
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -38,21 +59,18 @@ class TaskForm extends Component {
           </Grid>
 
           <Grid item md={12} className={classes.textField}>
-            <TextField
-              id="standard-name"
-              label="Name"
-              margin="normal"
-            ></TextField>
-          </Grid>
-          <Grid item md={12} className={classes.textField}>
-            <TextField
-              id="standard-multiline-name"
-              label="Multiline"
+            <Field
+              id="description"
+              label="Description"
               multiline
+              rowsMax="4"
+              className={classes.textField}
               margin="normal"
-            ></TextField>
+              name="description"
+              component={renderTextField}
+            />
           </Grid>
-          
+          {this.renderStatusSelection()}
           <Grid item md={12} className={classes.buttons}>
             <Box className={classes.box}>
               <Button
@@ -93,8 +111,9 @@ const mapDispatchToProps = (dispatch) => {
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReduxForm = reduxForm({
-  form: constants.FORM_NAME
-})
+  form: constants.FORM_NAME,
+  validate,
+});
 
 TaskForm.propTypes = {
   classes: PropTypes.object,
