@@ -1,15 +1,17 @@
 import { fork, take, call, put, delay, takeLatest, select, takeEvery } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
-import { getListTasks } from './../apis/taskApi';
-import { STATUS_CODE } from './../constants/index';
+import { addTask, getListTasks } from './../apis/taskApi';
+import { STATUS_CODE, STATUS } from './../constants/index';
 import { showLoading, hideLoading } from '../actions/uiActions';
-import { fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess } from './../actions/taskActions';
+import { fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions } from './../actions/taskActions';
+import { hideModal } from '../actions/modalActions';
 
 // Process dùng để lắng nghe actions đăng ký
 function* rootSaga(){
     yield fork(watchFetchListTasksActions);// watchFetchListTasksActions is generator function
     yield fork(watchCreateTaskActions);// watchCreateTaskActions is generator function, run parallel with watchFetchListTasksActions
-    yield takeEvery(taskActionsType.FILTER_TASK, filterTaskSaga);
+    yield takeLatest(taskActionsType.FILTER_TASK, filterTaskSaga);
+    yield takeEvery(taskActionsType.ADD_TASK, addTaskSaga);
 }
 
 /**
@@ -54,6 +56,27 @@ function* filterTaskSaga({ payload }) {
     const list = yield select(state => state.taskReducer.listTasks);
     const filteredTasks = list.filter(task => task.title.toLowerCase().includes(keyword.trim().toLowerCase()));
     yield put(filterTaskSuccess(filteredTasks))
+}
+
+function* addTaskSaga({ payload }) {
+    const { title, description } = payload
+    yield put(showLoading())
+    const resp = yield call(addTask, {
+        title,
+        description,
+        status: STATUS[0].value
+    })
+
+    const { data, status } = resp
+    if (status === STATUS_CODE.CREATED) {
+        yield put(addTaskSuccessActions(data))
+        yield put(hideModal())
+    } else {
+        yield put(addTaskFailureActions(data))
+    }
+
+    yield delay(1000)
+    yield put(hideLoading())
 }
 
 export default rootSaga;
