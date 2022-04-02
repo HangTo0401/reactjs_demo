@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     taskReducer, //taskReducer: taskReducer
     uiReducer, //uiReducer: uiReducer
     modalReducer,
-    formReducer
+    form: formReducer
 });
 
 export default rootReducer;
