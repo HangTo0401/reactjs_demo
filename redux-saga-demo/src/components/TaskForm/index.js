@@ -12,11 +12,13 @@ import * as modalActions from "../../actions/modalActions";
 import * as constants from "./../../constants/index";
 import { reduxForm, Field } from 'redux-form';
 import renderTextField from '../FormHelper/TextField/index.js';
-
+import * as taskActions from "../../actions/taskActions";
 class TaskForm extends Component {
   handleSubmitForm = (data) => {
-    console.log(data)
-    return data
+    const { taskActionsCreators } = this.props
+    const { addTaskActions } = taskActionsCreators
+    const { title, description } = data
+    addTaskActions(title, description)
   }
 
   renderStatusSelection() {
@@ -63,7 +65,7 @@ class TaskForm extends Component {
               id="description"
               label="Description"
               multiline
-              rowsMax="4"
+              maxRows="4"
               className={classes.textField}
               margin="normal"
               name="description"
@@ -82,7 +84,7 @@ class TaskForm extends Component {
                 Cancel
               </Button>
               <Button
-                onClick={hideModal}
+                disabled={invalid || submitting}
                 variant="contained"
                 className={classes.okButton}
                 type="submit"
@@ -104,7 +106,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // Use bindActionCreator to dispatch actions
   return {
-    modalActionsCreators: bindActionCreators(modalActions, dispatch)
+    modalActionsCreators: bindActionCreators(modalActions, dispatch),
+    taskActionsCreators: bindActionCreators(taskActions, dispatch)
   }
 }
 
@@ -118,6 +121,15 @@ const withReduxForm = reduxForm({
 TaskForm.propTypes = {
   classes: PropTypes.object,
   onClose: PropTypes.func,
+  modalActionsCreators: PropTypes.shape({
+    hideModal: PropTypes.func
+  }),
+  taskActionsCreators: PropTypes.shape({
+    addTask: PropTypes.func
+  }),
+  handleSubmit: PropTypes.func,
+  invalid: PropTypes.bool,
+  submitting: PropTypes.bool
 }
 
 export default compose(
