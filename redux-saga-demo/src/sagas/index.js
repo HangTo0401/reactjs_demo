@@ -3,7 +3,7 @@ import * as taskActionsType from './../constants/taskActionsType';
 import { addTask, getListTasks } from './../apis/taskApi';
 import { STATUS_CODE, STATUS } from './../constants/index';
 import { showLoading, hideLoading } from '../actions/uiActions';
-import { fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions } from './../actions/taskActions';
+import { fetchListTasksActions, fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions } from './../actions/taskActions';
 import { hideModal } from '../actions/modalActions';
 
 // Process dùng để lắng nghe actions đăng ký
@@ -29,9 +29,10 @@ function* watchFetchListTasksActions(){
     // Vòng lặp vô tận trong generation function sẽ không gây ra crash app
     while(true) {
         // Đoạn code từ đây trở về sẽ bị block cho đến chỉ khi ta dispatch action FETCH_TASKS, thì đoạn code dưới mới chạy
-        yield take(taskActionsType.FETCH_TASKS);
+        const action = yield take(taskActionsType.FETCH_TASKS);
         yield put(showLoading());
-        const response = yield call(getListTasks);
+        const { params } = action.payload;
+        const response = yield call(getListTasks, params);
         // Block cho đến chỉ khi ta call xong API, thì đoạn code dưới mới chạy
         const { status, data } = response
         if (status === STATUS_CODE.SUCCESS) {
@@ -53,9 +54,13 @@ function* watchCreateTaskActions(){
 function* filterTaskSaga({ payload }) {
     yield delay(500)
     const keyword = payload;
-    const list = yield select(state => state.taskReducer.listTasks);
-    const filteredTasks = list.filter(task => task.title.toLowerCase().includes(keyword.trim().toLowerCase()));
-    yield put(filterTaskSuccess(filteredTasks))
+    yield put(fetchListTasksActions({
+        q: keyword
+    }))
+    // const keyword = payload;
+    // const list = yield select(state => state.taskReducer.listTasks);
+    // const filteredTasks = list.filter(task => task.title.toLowerCase().includes(keyword.trim().toLowerCase()));
+    // yield put(filterTaskSuccess(filteredTasks))
 }
 
 function* addTaskSaga({ payload }) {

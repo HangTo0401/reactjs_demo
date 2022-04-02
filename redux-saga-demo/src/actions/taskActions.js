@@ -2,9 +2,12 @@ import * as taskApis from '../apis/taskApi';
 import * as taskActionsType from '../constants/taskActionsType';
 
 // Using thunk to handle async action
-export const fetchListTasksActions = () => {
+export const fetchListTasksActions = (params = {}) => {
     return {
-        type: taskActionsType.FETCH_TASKS
+        type: taskActionsType.FETCH_TASKS,
+        payload: {
+            params
+        }
     }
 }
 
