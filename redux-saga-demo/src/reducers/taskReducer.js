@@ -34,6 +34,22 @@ const taskReducer = (state = initialState, action) => {
                 ...state,
                 listTasks: listTasks
             };
+        case taskActionsType.ADD_TASK: 
+            return {
+                ...state
+            };
+        case taskActionsType.ADD_TASK_SUCCESS:
+            const newTask = action.payload 
+            return {
+                ...state,
+                listTasks: [newTask].concat(state.listTasks)
+            };
+        case taskActionsType.ADD_TASK_FAILURE:
+            const { taskError } = action.payload 
+            toastHelpers.toastError(taskError)
+            return {
+                ...state
+            };
         default:
             return state
     }
