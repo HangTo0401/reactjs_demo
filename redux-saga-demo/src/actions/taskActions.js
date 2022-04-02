@@ -26,6 +26,34 @@ export const fetchListTasksFailureActions = (error) => {
 }
 
 // Using thunk to handle async action
+export const addTaskActions = (title, description) => {
+    return {
+        type: taskActionsType.ADD_TASK,
+        payload: {
+            title,
+            description
+        }
+    }
+}
+
+// Using thunk to handle async action
+// data inside actions is called payload
+export const addTaskSuccessActions = (data) => {
+    return {
+        type: taskActionsType.ADD_TASK_SUCCESS,
+        payload: data
+    }
+}
+
+// Using thunk to handle async action
+export const addTaskFailureActions = (error) => {
+    return {
+        type: taskActionsType.ADD_TASK_FAILURE,
+        payload: error
+    }
+}
+
+// Using thunk to handle async action
 export const filterTask = (keyword) => {
     return {
         type: taskActionsType.FILTER_TASK,
