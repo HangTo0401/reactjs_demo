@@ -43,7 +43,7 @@ class TaskForm extends Component {
   }
 
   render() {
-    const { classes, handleSubmit, modalActionsCreators, invalid, submitting } = this.props
+    const { classes, handleSubmit, modalActionsCreators, invalid, submitting, taskEditing } = this.props
     const { hideModal } = modalActionsCreators
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -57,6 +57,7 @@ class TaskForm extends Component {
               name="title"
               component={renderTextField}
               placeholder="Please input title..."
+              value={taskEditing ? taskEditing.title : ''}
             />  
           </Grid>
 
@@ -70,6 +71,7 @@ class TaskForm extends Component {
               margin="normal"
               name="description"
               component={renderTextField}
+              value={taskEditing ? taskEditing.description : ''}
             />
           </Grid>
           {this.renderStatusSelection()}
@@ -100,7 +102,13 @@ class TaskForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    taskEditing: state.taskReducer.taskEditing,
+    initialValues: {
+      title: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.title : null,
+      description: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.description : null
+    }
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -129,7 +137,8 @@ TaskForm.propTypes = {
   }),
   handleSubmit: PropTypes.func,
   invalid: PropTypes.bool,
-  submitting: PropTypes.bool
+  submitting: PropTypes.bool,
+  taskEditing: PropTypes.object
 }
 
 export default compose(
