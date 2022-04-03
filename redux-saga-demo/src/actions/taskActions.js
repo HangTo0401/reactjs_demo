@@ -73,6 +73,16 @@ export const filterTaskSuccess = (data) => {
 }
 
 // Using thunk to handle async action
+export const setTaskEditingActions = (task) => {
+    return {
+        type: taskActionsType.SET_TASK_EDITING,
+        payload: {
+            task
+        }
+    }
+}
+
+// Using thunk to handle async action
 /**
  * B1: Gọi fetchListTasksRequest
  * B2: Để reset lại state về rỗng [], ta dispatch fetchListTasksActions
