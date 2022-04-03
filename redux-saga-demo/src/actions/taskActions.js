@@ -1,5 +1,6 @@
 import * as taskApis from '../apis/taskApi';
 import * as taskActionsType from '../constants/taskActionsType';
+import { STATUS } from '../constants';
 
 // Using thunk to handle async action
 export const fetchListTasksActions = (params = {}) => {
@@ -83,12 +84,13 @@ export const setTaskEditingActions = (task) => {
 }
 
 // Using thunk to handle async action
-export const updateTaskActions = (title, description) => {
+export const updateTaskActions = (title, description, status = STATUS[0].value) => {
     return {
         type: taskActionsType.UPDATE_TASK,
         payload: {
             title,
-            description
+            description,
+            status
         }
     }
 }
