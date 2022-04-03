@@ -83,6 +83,34 @@ export const setTaskEditingActions = (task) => {
 }
 
 // Using thunk to handle async action
+export const updateTaskActions = (title, description) => {
+    return {
+        type: taskActionsType.UPDATE_TASK,
+        payload: {
+            title,
+            description
+        }
+    }
+}
+
+// Using thunk to handle async action
+// data inside actions is called payload
+export const updateTaskSuccessActions = (data) => {
+    return {
+        type: taskActionsType.UPDATE_TASK_SUCCESS,
+        payload: data
+    }
+}
+
+// Using thunk to handle async action
+export const updateTaskFailureActions = (error) => {
+    return {
+        type: taskActionsType.UPDATE_TASK_FAILURE,
+        payload: error
+    }
+}
+
+// Using thunk to handle async action
 /**
  * B1: Gọi fetchListTasksRequest
  * B2: Để reset lại state về rỗng [], ta dispatch fetchListTasksActions
