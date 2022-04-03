@@ -73,14 +73,29 @@ const taskReducer = (state = initialState, action) => {
                 ];
                 toastHelpers.toastSuccess('Update task successfully');
                 return {
-                ...state,
-                listTasks: newList,
+                    ...state,
+                    listTasks: newList,
                 };
             }
             return {
                 ...state
             };
         case taskActionsType.UPDATE_TASK_FAILURE:
+            return {
+                ...state
+            };
+        case taskActionsType.DELETE_TASK: 
+            return {
+                ...state
+            };
+        case taskActionsType.DELETE_TASK_SUCCESS:
+            const deleteId = action.payload
+            toastHelpers.toastSuccess(`Delete task successfully`);
+            return {
+                ...state,
+                listTasks: state.listTasks.filter(item => item.id !== deleteId)
+            };
+        case taskActionsType.DELETE_TASK_FAILURE:
             return {
                 ...state
             };

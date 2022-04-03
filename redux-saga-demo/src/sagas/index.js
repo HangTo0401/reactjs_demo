@@ -1,9 +1,19 @@
 import { fork, take, call, put, delay, takeLatest, select, takeEvery } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
-import { addTask, getListTasks, updateTask } from './../apis/taskApi';
+import { addTask, getListTasks, updateTask, deleteTask } from './../apis/taskApi';
 import { STATUS_CODE, STATUS } from './../constants/index';
 import { showLoading, hideLoading } from '../actions/uiActions';
-import { fetchListTasksActions, fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions, updateTaskSuccessActions, updateTaskFailureActions } from './../actions/taskActions';
+import { 
+    fetchListTasksActions, 
+    fetchListTasksSuccessActions, 
+    fetchListTasksFailureActions, 
+    filterTaskSuccess, 
+    addTaskSuccessActions, 
+    addTaskFailureActions, 
+    updateTaskSuccessActions, 
+    updateTaskFailureActions,
+    deleteTaskSuccessActions,
+    deleteTaskFailureActions } from './../actions/taskActions';
 import { hideModal } from '../actions/modalActions';
 
 // Process dùng để lắng nghe actions đăng ký
@@ -13,6 +23,7 @@ function* rootSaga(){
     yield takeLatest(taskActionsType.FILTER_TASK, filterTaskSaga);
     yield takeEvery(taskActionsType.ADD_TASK, addTaskSaga);
     yield takeLatest(taskActionsType.UPDATE_TASK, updateTaskSaga);
+    yield takeLatest(taskActionsType.DELETE_TASK, deleteTaskSaga);
 }
 
 /**
@@ -97,6 +108,23 @@ function* updateTaskSaga({ payload }) {
         yield put(hideModal())
     } else {
         yield put(updateTaskFailureActions(data))
+    }
+
+    yield delay(1000)
+    yield put(hideLoading())
+}
+
+function* deleteTaskSaga({ payload }) {
+    const { taskId } = payload;
+    yield put(showLoading())
+    const resp = yield call(deleteTask, taskId)
+
+    const { data, status } = resp
+    if (status === STATUS_CODE.SUCCESS) {
+        yield put(deleteTaskSuccessActions(taskId))
+        yield put(hideModal())
+    } else {
+        yield put(deleteTaskFailureActions(data))
     }
 
     yield delay(1000)

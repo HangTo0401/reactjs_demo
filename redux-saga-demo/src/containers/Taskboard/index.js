@@ -81,7 +81,10 @@ class Taskboard extends Component {
   }
 
   handleDeleteSingleTask = task => {
-    console.log(task)
+    const { id } = task
+    const { taskActionCreators } = this.props
+    const { deleteTaskActions } = taskActionCreators;
+    deleteTaskActions(id)
   }
 
   handleFilter = (event) => {
@@ -163,9 +166,10 @@ class Taskboard extends Component {
 Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
-    fetchListTasks: PropTypes.func,
+    fetchListTasksActions: PropTypes.func,
     filterTask: PropTypes.func,
-    setTaskEditingActions: PropTypes.func
+    setTaskEditingActions: PropTypes.func,
+    deleteTaskActions: PropTypes.func
   }),
   listTasks: PropTypes.array,
   modalActionsCreators: PropTypes.shape({

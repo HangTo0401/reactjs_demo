@@ -113,6 +113,33 @@ export const updateTaskFailureActions = (error) => {
 }
 
 // Using thunk to handle async action
+export const deleteTaskActions = (taskId) => {
+    return {
+        type: taskActionsType.DELETE_TASK,
+        payload: {
+            taskId
+        }
+    }
+}
+
+// Using thunk to handle async action
+// data inside actions is called payload
+export const deleteTaskSuccessActions = (data) => {
+    return {
+        type: taskActionsType.DELETE_TASK_SUCCESS,
+        payload: data
+    }
+}
+
+// Using thunk to handle async action
+export const deleteTaskFailureActions = (error) => {
+    return {
+        type: taskActionsType.DELETE_TASK_FAILURE,
+        payload: error
+    }
+}
+
+// Using thunk to handle async action
 /**
  * B1: Gọi fetchListTasksRequest
  * B2: Để reset lại state về rỗng [], ta dispatch fetchListTasksActions
