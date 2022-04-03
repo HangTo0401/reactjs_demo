@@ -157,7 +157,6 @@ class Taskboard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {/* {this.renderForm()} */}
       </div>
     );
   }

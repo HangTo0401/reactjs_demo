@@ -40,7 +40,8 @@ const taskReducer = (state = initialState, action) => {
                 ...state
             };
         case taskActionsType.ADD_TASK_SUCCESS:
-            const newTask = action.payload 
+            const newTask = action.payload
+            toastHelpers.toastSuccess('Add new task successfully');
             return {
                 ...state,
                 listTasks: [newTask].concat(state.listTasks)

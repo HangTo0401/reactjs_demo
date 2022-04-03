@@ -8,6 +8,10 @@ const styles = (theme) => ({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  deleteIcon: {
+    color: '#fafafa',
+    backgroundColor: '#f50057'
+  }
 });
 
 export default styles;

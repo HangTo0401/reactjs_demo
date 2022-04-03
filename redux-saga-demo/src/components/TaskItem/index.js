@@ -28,16 +28,15 @@ class TaskItem extends Component {
           <Fab
             color="primary"
             aria-label="Edit"
-            className={classes.fab}
+            className={classes.editIcon}
             size="small"
             onClick={onClickEdit}
           >
             <Icon fontSize="small">edit_icon</Icon>
           </Fab>
           <Fab
-            color="primary"
             aria-label="Delete"
-            className={classes.fab}
+            className={classes.deleteIcon}
             size="small"
             onClick={onClickDelete}
           >
