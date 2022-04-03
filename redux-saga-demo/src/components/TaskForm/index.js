@@ -15,10 +15,15 @@ import renderSelectField from '../FormHelper/Select/index.js';
 import * as taskActions from "../../actions/taskActions";
 class TaskForm extends Component {
   handleSubmitForm = (data) => {
-    const { taskActionsCreators } = this.props
-    const { addTaskActions } = taskActionsCreators
-    const { title, description } = data
-    addTaskActions(title, description)
+    const { taskActionsCreators, taskEditing } = this.props
+    const { addTaskActions, updateTaskActions } = taskActionsCreators
+    const { title, description, status } = data
+    if (taskEditing && taskEditing.id) {
+      updateTaskActions(title, description, status)
+    } else {
+      addTaskActions(title, description)
+    }
+    
   }
 
   renderStatusSelection() {
@@ -109,7 +114,8 @@ const mapStateToProps = (state) => {
     taskEditing: state.taskReducer.taskEditing,
     initialValues: {
       title: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.title : null,
-      description: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.description : null
+      description: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.description : null,
+      status: state.taskReducer.taskEditing ? state.taskReducer.taskEditing.status : null,
     }
   };
 }
@@ -136,7 +142,8 @@ TaskForm.propTypes = {
     hideModal: PropTypes.func
   }),
   taskActionsCreators: PropTypes.shape({
-    addTask: PropTypes.func
+    addTaskActions: PropTypes.func,
+    updateTaskActions: PropTypes.func
   }),
   handleSubmit: PropTypes.func,
   invalid: PropTypes.bool,

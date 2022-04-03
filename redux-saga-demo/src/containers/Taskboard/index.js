@@ -41,15 +41,6 @@ class Taskboard extends Component {
     changeModalContent(<TaskForm/>)
   };
 
-  // renderForm() {
-  //   const { open } = this.state;
-  //   let xHtml = null;
-  //   xHtml = (
-  //     <TaskForm open={open} onClose={this.handleClose}/>
-  //   );
-  //   return xHtml;
-  // }
-
   handleEditTask = task => {
     const { modalActionsCreators, taskActionCreators } = this.props
     const { showModal, changeModalTitle, changeModalContent } = modalActionsCreators
