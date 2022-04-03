@@ -32,20 +32,13 @@ class Taskboard extends Component {
   }
 
   openForm = () => {
-    // this.setState({
-    //   open: true
-    // });
-    const { modalActionsCreators } = this.props
+    const { modalActionsCreators, taskActionCreators } = this.props
+    const { setTaskEditingActions } = taskActionCreators;
     const { showModal, changeModalTitle, changeModalContent } = modalActionsCreators
+    setTaskEditingActions(null)
     showModal()
     changeModalTitle('Add new task')
     changeModalContent(<TaskForm/>)
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false
-    });
   };
 
   // renderForm() {
@@ -56,6 +49,16 @@ class Taskboard extends Component {
   //   );
   //   return xHtml;
   // }
+
+  handleEditTask = task => {
+    const { modalActionsCreators, taskActionCreators } = this.props
+    const { showModal, changeModalTitle, changeModalContent } = modalActionsCreators
+    const { setTaskEditingActions } = taskActionCreators;
+    setTaskEditingActions(task)
+    showModal()
+    changeModalTitle('Update task')
+    changeModalContent(<TaskForm/>)
+  }
 
   handleFilter = (event) => {
     const { value } = event.target;
@@ -81,7 +84,11 @@ class Taskboard extends Component {
           STATUS.map((status, index) => {
             const filteredTasks = listTasks.filter(task => task.status === status.value);
             return (
-              <TaskList key={status.value} filteredTasks={filteredTasks} status={status}/>
+              <TaskList 
+                key={status.value} 
+                filteredTasks={filteredTasks} 
+                status={status} 
+                onClickEdit={this.handleEditTask}/>
             );
           })
         }
@@ -132,7 +139,8 @@ Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
     fetchListTasks: PropTypes.func,
-    filterTask: PropTypes.func
+    filterTask: PropTypes.func,
+    setTaskEditingActions: PropTypes.func
   }),
   listTasks: PropTypes.array,
   modalActionsCreators: PropTypes.shape({
