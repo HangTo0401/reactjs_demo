@@ -57,6 +57,33 @@ const taskReducer = (state = initialState, action) => {
                 ...state,
                 taskEditing: task
             };
+        case taskActionsType.UPDATE_TASK: 
+            return {
+                ...state
+            };
+        case taskActionsType.UPDATE_TASK_SUCCESS:
+            const updatedTask = action.payload 
+            const listOfTasks = state.listTasks
+            const index = listOfTasks.findIndex(item => item.id === updatedTask.id);
+            if (index !== -1) {
+                const newList = [
+                ...listOfTasks.slice(0, index),
+                updatedTask,
+                ...listOfTasks.slice(index + 1),
+                ];
+                toastHelpers.toastSuccess('Update task successfully');
+                return {
+                ...state,
+                listTasks: newList,
+                };
+            }
+            return {
+                ...state
+            };
+        case taskActionsType.UPDATE_TASK_FAILURE:
+            return {
+                ...state
+            };
         default:
             return state
     }
