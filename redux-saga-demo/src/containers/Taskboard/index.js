@@ -2,9 +2,7 @@ import './../../App.css';
 import styles from './styles.js';
 import React, { Component } from 'react';
 
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core';
+import { Box, Grid, Button, withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
 import { STATUS } from '../../constants/index';
@@ -51,6 +49,41 @@ class Taskboard extends Component {
     changeModalContent(<TaskForm/>)
   }
 
+  handleDeleteTask = task => {
+    const { modalActionsCreators, classes } = this.props
+    const { showModal, changeModalTitle, changeModalContent, hideModal } = modalActionsCreators
+    showModal()
+    changeModalTitle('Delete task')
+    changeModalContent(
+      <div className={classes.modalDelete}>
+        <div className={classes.modalConfirmText}>
+          Are you sure want to delete task with title {' '}
+          <span className={classes.modalConfirmTextBold}>{task.title}</span>?
+        </div>
+        <Box display="flex" flexDirection="row-reverse" mt={2}>
+          <Box ml={1}>
+            <Button variant="contained" onClick={hideModal}>
+             Cancel
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              variant="contained"
+              className={classes.modalConfirmButton}
+              onClick={() => this.handleDeleteSingleTask(task)}
+            >
+              Confirm
+            </Button>
+          </Box>
+        </Box>
+      </div>,
+    )
+  }
+
+  handleDeleteSingleTask = task => {
+    console.log(task)
+  }
+
   handleFilter = (event) => {
     const { value } = event.target;
     const { taskActionCreators } = this.props
@@ -79,7 +112,8 @@ class Taskboard extends Component {
                 key={status.value} 
                 filteredTasks={filteredTasks} 
                 status={status} 
-                onClickEdit={this.handleEditTask}/>
+                onClickEdit={this.handleEditTask}
+                onClickDelete={this.handleDeleteTask} />
             );
           })
         }

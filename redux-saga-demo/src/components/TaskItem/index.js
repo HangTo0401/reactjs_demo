@@ -11,7 +11,7 @@ import CardActions from "@material-ui/core/CardActions";
 import PropTypes from "prop-types";
 class TaskItem extends Component {
   render() {
-    const { classes, task, status, onClickEdit } = this.props;
+    const { classes, task, status, onClickEdit, onClickDelete } = this.props;
     const { id, title } = task;
     return (
       <Card key={id} className={classes.card}>
@@ -39,6 +39,7 @@ class TaskItem extends Component {
             aria-label="Delete"
             className={classes.fab}
             size="small"
+            onClick={onClickDelete}
           >
             <Icon fontSize="small">delete_icon</Icon>
           </Fab>

@@ -6,7 +6,6 @@ const styles = () => ({
         transform: 'translate(-50%, -50%)',
         position: 'absolute',
         width: 400,
-        height: 280,
         borderRadius: '10px',
         backgroundColor: 'white',
         outline: 'none',
