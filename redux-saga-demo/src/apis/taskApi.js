@@ -10,7 +10,6 @@ export const getListTasks = (params) => {
     let queryParams = '';
     if (Object.keys(params || {}).length > 0) {
         queryParams = `?${qs.stringify(params)}`;
-        console.log(queryParams)
     }
     return axiosService.get(`${API_ENDPOINT}/${TASKS_URL}${queryParams}`)
 }
