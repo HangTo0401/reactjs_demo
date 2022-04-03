@@ -1,9 +1,9 @@
 import { fork, take, call, put, delay, takeLatest, select, takeEvery } from 'redux-saga/effects';
 import * as taskActionsType from './../constants/taskActionsType';
-import { addTask, getListTasks } from './../apis/taskApi';
+import { addTask, getListTasks, updateTask } from './../apis/taskApi';
 import { STATUS_CODE, STATUS } from './../constants/index';
 import { showLoading, hideLoading } from '../actions/uiActions';
-import { fetchListTasksActions, fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions } from './../actions/taskActions';
+import { fetchListTasksActions, fetchListTasksSuccessActions, fetchListTasksFailureActions, filterTaskSuccess, addTaskSuccessActions, addTaskFailureActions, updateTaskSuccessActions, updateTaskFailureActions } from './../actions/taskActions';
 import { hideModal } from '../actions/modalActions';
 
 // Process dùng để lắng nghe actions đăng ký
@@ -12,6 +12,7 @@ function* rootSaga(){
     yield fork(watchCreateTaskActions);// watchCreateTaskActions is generator function, run parallel with watchFetchListTasksActions
     yield takeLatest(taskActionsType.FILTER_TASK, filterTaskSaga);
     yield takeEvery(taskActionsType.ADD_TASK, addTaskSaga);
+    yield takeLatest(taskActionsType.UPDATE_TASK, updateTaskSaga);
 }
 
 /**
@@ -78,6 +79,24 @@ function* addTaskSaga({ payload }) {
         yield put(hideModal())
     } else {
         yield put(addTaskFailureActions(data))
+    }
+
+    yield delay(1000)
+    yield put(hideLoading())
+}
+
+function* updateTaskSaga({ payload }) {
+    // Using select to get data from store
+    const taskEditing = yield select(state => state.taskReducer.taskEditing)
+    yield put(showLoading())
+    const resp = yield call(updateTask, payload, taskEditing.id)
+
+    const { data, status } = resp
+    if (status === STATUS_CODE.SUCCESS) {
+        yield put(updateTaskSuccessActions(data))
+        yield put(hideModal())
+    } else {
+        yield put(updateTaskFailureActions(data))
     }
 
     yield delay(1000)
