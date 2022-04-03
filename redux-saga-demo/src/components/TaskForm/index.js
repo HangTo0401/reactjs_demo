@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { TextField, withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import styles from './styles.js';
 import validate from './validate';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import { Grid, Box, MenuItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
@@ -12,6 +11,7 @@ import * as modalActions from "../../actions/modalActions";
 import * as constants from "./../../constants/index";
 import { reduxForm, Field } from 'redux-form';
 import renderTextField from '../FormHelper/TextField/index.js';
+import renderSelectField from '../FormHelper/Select/index.js';
 import * as taskActions from "../../actions/taskActions";
 class TaskForm extends Component {
   handleSubmitForm = (data) => {
@@ -24,7 +24,7 @@ class TaskForm extends Component {
   renderStatusSelection() {
     let xhtml = null;
     const { taskEditing, classes } = this.props;
-    if (taskEditing && taskEditing.id) {
+    if (taskEditing && taskEditing.id !== null) {
       xhtml = (
         <Field
           id="status"
@@ -39,6 +39,7 @@ class TaskForm extends Component {
         </Field>
       );
     }
+
     return xhtml;
   }
 
@@ -74,7 +75,9 @@ class TaskForm extends Component {
               value={taskEditing ? taskEditing.description : ''}
             />
           </Grid>
+
           {this.renderStatusSelection()}
+
           <Grid item md={12} className={classes.buttons}>
             <Box className={classes.box}>
               <Button

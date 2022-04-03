@@ -12,6 +12,10 @@ const styles = () => ({
         outline: 'none',
         padding: '20px'
     },
+    select: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
     textField: {
         width: '100%'
     },
