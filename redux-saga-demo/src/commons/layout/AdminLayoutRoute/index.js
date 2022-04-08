@@ -1,31 +1,37 @@
-import { Dashboard } from "@material-ui/icons";
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './../../../components/Dashboard';
 class AdminLayoutRoute extends Component {
-    render() {
-        const { component: YourComponent, ...remainProps } = this.props;
-        return (
-          <Route
-            {...remainProps}
-            render={routeProps => {
-              return (
-                <Dashboard {...remainProps}>
-                  <YourComponent {...routeProps} />
-                </Dashboard>
-              );
-            }}
-          />
-        );
-    }
+  renderHomePage(remainProps) {
+    return(
+      <Dashboard {...remainProps}>
+        {this.props.component}
+      </Dashboard>
+    )
+  }
+
+  render() {
+    const { component: YourComponent, ...remainProps } = this.props;
+    console.log(this.props)
+    return (
+      <Routes>
+        <Route
+          exact={this.props.exact}
+          path={this.props.path}
+          name={this.props.name}
+          element={this.renderHomePage(this.props)}
+        />
+      </Routes>
+    );
+  }
 }
 
 AdminLayoutRoute.propTypes = {
-    path: PropTypes.string,
-    exact: PropTypes.bool,
-    component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    name: PropTypes.string,
-}
+  path: PropTypes.string,
+  exact: PropTypes.bool,
+  component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  name: PropTypes.string,
+};
 
-export default AdminLayoutRoute
+export default AdminLayoutRoute;
