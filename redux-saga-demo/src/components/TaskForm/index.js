@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReduxForm = reduxForm({
-  form: constants.FORM_NAME,
+  form: 'TASK MANAGEMENT',
   validate,
 });
 
