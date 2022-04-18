@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/taskActions';
 import * as modalActions from './../../actions/modalActions';
+
 class Taskboard extends Component {
   state = {
     open: false
@@ -76,7 +77,7 @@ class Taskboard extends Component {
             </Button>
           </Box>
         </Box>
-      </div>,
+      </div>
     )
   }
 
