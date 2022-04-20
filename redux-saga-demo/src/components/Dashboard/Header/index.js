@@ -60,7 +60,7 @@ class Header extends Component {
   };
   
   render() {
-    const { classes } = this.props
+    const { classes, name } = this.props
 
     return (
       <div className={classes.grow}>
