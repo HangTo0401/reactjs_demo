@@ -14,7 +14,7 @@ const styles = theme => ({
       '&>div': {
         backgroundColor: theme.color.hover,
       },
-    },
+    }
   });
   
   export default styles;
