@@ -1,7 +1,5 @@
 const styles = theme => ({
     wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
       height: '100vh',
     },
     wrapperContent: {
