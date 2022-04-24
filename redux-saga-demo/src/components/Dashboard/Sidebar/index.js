@@ -3,6 +3,12 @@ import { withStyles } from '@material-ui/core';
 import styles from './styles.js';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { ADMIN_ROUTES } from './../../../constants';
 class Sidebar extends Component {
   toggleDrawer = value => {
     const { onToggleSidebar } = this.props;
@@ -37,7 +43,7 @@ class Sidebar extends Component {
     );
     return xhtml;
   }
-  
+
   render() {
     return (
       <div>Sidebar</div>
