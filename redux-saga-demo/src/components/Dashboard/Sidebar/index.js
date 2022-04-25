@@ -45,11 +45,27 @@ class Sidebar extends Component {
   }
 
   render() {
+    const { classes, showSidebar } = this.props;
     return (
-      <div>Sidebar</div>
+      <Drawer
+        open={showSidebar}
+        onClose={() => this.toggleDrawer(false)}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        variant="persistent"
+      >
+        {this.renderList()}
+      </Drawer>
     );
   }
 }
+
+Sidebar.propTypes = {
+  classes: PropTypes.object,
+  showSidebar: PropTypes.bool,
+  onToggleSidebar: PropTypes.func,
+};
 
 const mapStateToProps = state => {
     return {
